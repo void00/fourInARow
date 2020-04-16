@@ -10,7 +10,17 @@ Feature: Play Connect 4
   Scenario: A new Game creates a new board
     Given that a new Game is created
     Then it should create a new Board
-    And Game it should be of an instance of Game
+    Then game should be of an instance of Game
+    Then it should create a matrix 7 x 6 with 0 in all cells
+    Examples:
+      | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+      | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+      | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+      | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+      | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+      | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+    Then currentPlayers should be 1
+    Then playInProgres should be false
 
 
 
@@ -36,6 +46,6 @@ Feature: Play Connect 4
     Then it should render “Röd vann!” if won is 1 as innerHTML of .message
     Then it should render “Gul vann!” if won is 2 as innerHTML of .message
     Then it should render “Det blev oavgjort!” if won is “draw” as innerHTML of .message
-    And it should also render a button with the text "Spela igen" and css-class "again"
+    And it should render a button with the text ”Spela igen” and css-class ”again”
 
 
