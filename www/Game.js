@@ -2,9 +2,9 @@ class Game {
 
   constructor(addEventListener, Start)
 
-  start()
+  start() { }
 
-  tellTurn()
+  tellTurn() { }
 
 }
 
