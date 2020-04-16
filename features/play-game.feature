@@ -12,13 +12,13 @@ Feature: Play Connect 4
     Then it should create a new Board
     Then game should be of an instance of Game
     Then it should create a matrix 7 x 6 with 0 in all cells
-    Examples:
-      | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
-      | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
-      | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
-      | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
-      | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
-      | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+    #Examples:
+    # | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+    # | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+    # | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+    # | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+    # | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+    # | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
     Then currentPlayers should be 1
     Then playInProgres should be false
 
