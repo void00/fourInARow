@@ -16,7 +16,7 @@ function winCheck() {
   
       Check diagonalt upp (--) om över eller = 3. neråt (++) om den är under eller = 3 samt baklänges.
       (1,2) if 1 or 2 v do (1++,2++), (2,3)v (2++,3++) (3,4)v (3++,4++) (4,5)v   Winner
-      Diagonal loop
+      Diagonal loop start from active players position
   */
 
 }
