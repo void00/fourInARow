@@ -2,7 +2,9 @@
       async makeMove(column)
       Metoden ska vara async.
 
-      Metoden ska ta emot inargumentet column som ska vara ett heltal mellan 0 och 6. Om detta inte är fallet ska felmeddelandet “column must be an integer between 0 and 6” kastas.
+      Metoden ska ta emot inargumentet column som ska vara ett heltal mellan 0 och 6.
+      Om detta inte är fallet ska felmeddelandet
+      “column must be an integer between 0 and 6” kastas.
 
       Metoden ska returnera null om egenskapen playInProgress är true.
 
@@ -18,9 +20,14 @@
       Om det går: flytta brickan ett steg ner i kolumnen och upprepa från steg 3.
       Anropa metoden winCheck och om den returnerar något som är truthy:
       a) Anropa metoden removeEventListener
-      b) Om winCheck har returnerat ett objekt med egenskapen combo så ska metoden markWin med combo-egenskapen från winCheck som inargument.
-      c) Anropa egenskapen game:s metod over med egenskapen winner från winChecks returvärde som inargument.
+      b) Om winCheck har returnerat ett objekt med egenskapen combo så ska
+      metoden markWin med combo-egenskapen från winCheck som inargument.
+
+      c) Anropa egenskapen game:s metod over med egenskapen winner från
+      winChecks returvärde som inargument.
+
       d) Returnera true
+
       Sätta egenskapen currentPlayer till 2 om den är 1 och till 1 om den är 2.
       Anropa egenskapen game:s metod tellTurn med currentPlayer-egenskapen som inargument.
       Sätta egenskapen playInProgress till false.

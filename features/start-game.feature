@@ -18,10 +18,12 @@
       till texten “Röds tur…” om player har värdet 1 och
       till texten “Guls tur…” om player har värdet 2.
 
+      // Done
       over(won)
       Metoden ska ta emot inargumentet won som ska ha värdet “draw”, 1 eller 2 .
       Om så inte är fallet ska felet ‘won must be “draw”, 1 or 2’ kastas.
 
+      // Done
       Metoden ska ta tag i DOM-elementet med css-klassen message och byta dess innehåll till texten
       “Det blev oavgjort!” om won är “draw”.
       “Röd vann!” om won är 1.
@@ -36,3 +38,18 @@
       Händelselyssnaren ska detektera om man har klickat på knappen med
       css-klassen again och i så fall anropa metoden start.
       """
+
+  Scenario: A game should have two players
+    Given that one player have used its turn
+    Then it should be second players trun
+
+  Scenario: A game should end
+    Given that game not ended with 1,2 or draw
+    Then it should return won must be draw, 1 or 2
+
+  Scenario: A winner adds winner or draw to the .message element
+    Given that wincheck has value true
+    Then it should render “Röd vann!” if won is 1 as innerHTML of .message
+    Then it should render “Gul vann!” if won is 2 as innerHTML of .message
+    Then it should render “Det blev oavgjort!” if won is “draw” as innerHTML of .message
+    And it should render a button with the text ”Spela igen” and css-class ”again”

@@ -8,23 +8,7 @@ Feature: Play Connect 4
 
 
 
-  # Dela upp i 2 game är start, board är logiken
-  Scenario: A new Game creates a new board
-    Given that a new Game is created
-    Then it should create a new Board
-    Then game should be of an instance of Game
-    #And set Board property
-    And it should create a matrix 7 x 6 with 0 in all cells
-    And currentPlayers should be 1
-    And playInProgres should be false
 
-  #Examples:
-  # | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
-  # | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
-  # | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
-  # | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
-  # | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
-  # | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
 
   Scenario: The game can only accept 2 players
     Given that the board game only accepts 1 or 2 players
@@ -35,19 +19,6 @@ Feature: Play Connect 4
     Given that a new Board is created
     Then it should render 42 divs as children of the board element
 
-  Scenario: A game should have two players
-    Given that one player have used its turn
-    Then it should be second players trun
 
-  Scenario: A game should end
-    Given that game not ended with 1,2 or draw
-    Then it should return won must be draw, 1 or 2
-
-  Scenario: A winner adds winner or draw to the .message element
-    Given that wincheck has value true
-    Then it should render “Röd vann!” if won is 1 as innerHTML of .message
-    Then it should render “Gul vann!” if won is 2 as innerHTML of .message
-    Then it should render “Det blev oavgjort!” if won is “draw” as innerHTML of .message
-    And it should render a button with the text ”Spela igen” and css-class ”again”
 
 

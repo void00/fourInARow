@@ -22,3 +22,14 @@
       Därefter ska den anropa egenskapen game:s metod tellTurn med
       currentPlayer-egenskapen som inargument.
       """
+
+
+  # Dela upp i 2. game är start, board är logiken, flytta game till start-game.feature
+  Scenario: A new Game creates a new board
+    Given that a new Game is created
+    Then it should create a new Board
+    Then game should be of an instance of Game
+    #And set Board property
+    And it should create a matrix 7 x 6 with 0 in all cells
+    And currentPlayers should be 1
+    And playInProgres should be false
