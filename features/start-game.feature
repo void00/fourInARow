@@ -10,6 +10,7 @@
       Metoden ska skapa ett ny instans av Board och skicka nuvarande instans av
       Game till dess konstruktor. Instansen ska lagras i egenskapen board.
 
+      // Done
       tellTurn(player)
       Metoden ska ta emot inargumentet player som ska vara ett heltal (1 eller 2).
       Om så inte är fallet ska felet “player must be 1 or 2” kastas.
@@ -38,6 +39,11 @@
       Händelselyssnaren ska detektera om man har klickat på knappen med
       css-klassen again och i så fall anropa metoden start.
       """
+
+  Scenario: The game can only accept 2 players
+    Given that the board game only accepts 1 or 2 players
+    And if there is not 1 or 2 players
+    Then it should return player must be 1 or 2
 
   Scenario: A game should have two players
     Given that one player have used its turn
