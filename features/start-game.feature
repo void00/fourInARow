@@ -10,7 +10,7 @@
       Metoden ska skapa ett ny instans av Board och skicka nuvarande instans av
       Game till dess konstruktor. Instansen ska lagras i egenskapen board.
 
-      // Done
+      // Half Done
       tellTurn(player)
       Metoden ska ta emot inargumentet player som ska vara ett heltal (1 eller 2).
       Om så inte är fallet ska felet “player must be 1 or 2” kastas.
