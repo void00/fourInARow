@@ -7,22 +7,24 @@ Feature: Play Connect 4
   # (these have no When - but there will be plenty that have)
 
 
+
+  # Dela upp i 2 game är start, board är logiken
   Scenario: A new Game creates a new board
     Given that a new Game is created
     Then it should create a new Board
     Then game should be of an instance of Game
-    Then it should create a matrix 7 x 6 with 0 in all cells
-    #Examples:
-    # | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
-    # | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
-    # | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
-    # | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
-    # | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
-    # | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
-    Then currentPlayers should be 1
-    Then playInProgres should be false
+    #And set Board property
+    And it should create a matrix 7 x 6 with 0 in all cells
+    And currentPlayers should be 1
+    And playInProgres should be false
 
-
+  #Examples:
+  # | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+  # | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+  # | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+  # | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+  # | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+  # | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
 
   Scenario: The game can only accept 2 players
     Given that the board game only accepts 1 or 2 players
