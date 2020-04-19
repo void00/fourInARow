@@ -1,7 +1,9 @@
 
-Feature:
-  Scenario: Check to see if there is an async method that accepts integer 0-6 otherwise return column must be an integer between 0 and 6.
+Feature: There is an async method
+  The async method accepts integer 0-6 otherwise
+  returns- column must be an integer between 0 and 6.
 
+  Scenario: Scenario name
 
 
       Feature Description

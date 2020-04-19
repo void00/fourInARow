@@ -1,5 +1,8 @@
-Feature:
-  Scenario: Check to see if there is a render method with the CSS klass board in DOM.
+Feature: Render method
+  The method...
+
+
+  Scenario: There is a render method with the CSS klass board in DOM etc...
 
       Feature Description
 

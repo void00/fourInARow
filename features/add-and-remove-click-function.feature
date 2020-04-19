@@ -1,6 +1,7 @@
-Feature:
+Feature:There is an addEventListeter
+  The add event listener should....
 
-  Scenario: Check to see if there is an addEventListener
+  Scenario: Check to see if there is an addEventListener...
 
       Feature Description
       """
