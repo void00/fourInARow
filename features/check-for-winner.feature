@@ -1,4 +1,4 @@
-Feature: Check for winner
+Feature: Check for winner or if draw
       As a player I would like to see if I have won.
       So that we can play again.
 
