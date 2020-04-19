@@ -55,13 +55,13 @@ class Board {
     let html = '<h4>Board</h4>'
     //for (let u = 0; u < 5; u++)
     //for (let position in this.matrix)
-    for (let position in this.matrix) {//Does this loop work?? No, have to loop next array
+    for (let position of this.matrix) {//Does this loop work?? No, have to loop next array
       {
         //for (let i = 0; i < 6; i++) 
-        for (let position2 in this.matrix) {
-          html += `<div class="matrix">${position2}</div>`;
+        for (let position in this.matrix[0]) {
+          html += `<div class="matrix">${position}</div>`;
         }
-        html += '<br>';
+        //html += '<br>';
       }
       $div.innerHTML = html;
       $('.board').append($div);
