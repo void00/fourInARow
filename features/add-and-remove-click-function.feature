@@ -1,4 +1,4 @@
-Feature: Check to
+Feature: Check to see if there is an addEventListener
 
                   Feature Description
                   """
