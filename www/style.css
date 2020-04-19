@@ -21,7 +21,10 @@ body {
 }
 
 .board > div > div {
-  width: 10vh;
+  
+  text-align: center;
+  color: black;
+  font-family: Verdana, sans-serif;width: 10vh;
   height: 10vh;
   border: 1vh solid blue;
   border-radius: 50%;
@@ -69,4 +72,12 @@ body {
 
 .board > .win > div {
   border-color: #000;
+}
+
+
+
+
+
+.green{
+  color: green;
 }

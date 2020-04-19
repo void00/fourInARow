@@ -54,15 +54,18 @@ class Board {
     $div.className = "board";
     let html = '<h4>Board</h4>'
     //for (let u = 0; u < 5; u++)
-    for (let position of this.matrix) {//Does this loop work?? No have to loop next array
+    //for (let position in this.matrix)
+    for (let position in this.matrix) {//Does this loop work?? No, have to loop next array
       {
-        html += '<br>';
-        for (let i = 0; i < 6; i++) {
-          html += `<div class="matrix"><h4>0<h4></div>`;
+        //for (let i = 0; i < 6; i++) 
+        for (let position2 in this.matrix) {
+          html += `<div class="matrix">${position2}</div>`;
         }
+        html += '<br>';
       }
       $div.innerHTML = html;
-      $('body').append($div);
+      $('.board').append($div);
+      //$('body').append($div);
     }
 
   }
@@ -79,11 +82,11 @@ class Board {
     //
     this.listener = (event) => {
       let $thing = event.target.closest('.matrix');
-      // something is not right with closest....
+      // something is not right 
       console.log('Testing listner matrix: ', event.target.closest('.matrix'));
       if ($thing) {
         $('.test-class').append($thing);
-        event.target.innerHTML = '1';// just for fun
+        event.target.className = 'green';// just for fun, should be currentPlayer
       }
 
     };
