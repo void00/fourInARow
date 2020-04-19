@@ -1,4 +1,4 @@
-new Game();
+
 
 let $h1 = document.querySelector('h1').innerHTML = "Blöö";
 $h1.innerHTML = "Blah";
@@ -16,3 +16,5 @@ function addPlease(appendTo = document.body) {
 }
 addPlease();
 addPlease();
+
+new Game();

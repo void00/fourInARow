@@ -13,6 +13,9 @@ class Board {
     this.currentPlayer;
     this.winner;
     this.listener;
+    this.addBoardToDOM();
+    this.addRestartButton();
+    this.addEventHandlers();
   }
   async makeMove(column) { }
 
@@ -41,15 +44,67 @@ class Board {
 
   markWin(combo) { }
 
-  addEventListener() { }
+  //addEventListener() { }
 
-  removeEventListener() { }
+  removeEventListener() {
+    $('.matrix').removeEventListener('click', this.listener);
+  }
 
-  addEventListener();
-  render();
-  tellTurn(currentPlayer);
 
-}
+  addBoardToDOM() {
+    let $div = document.createElement('div');
+    $div.className = "board";
+    let html = '<h4>Board</h4>'
+    for (let position of this.matrix) {// ?? Does this loop work??
+      html += `<div class="matrix"><h4>${position}<h4></div>`;
+    }
+    $div.innerHTML = html;
+    $('body').append($div);
+  }
+
+  //console.log(event.target);
+  //console.log(event.target.closest('.matrix'));
+  //
+
+  addEventHandlers() {// testing
+    $('body').addEventListener('click', (event) => {
+      console.log(event);
+    });
+
+    //console.log('Testing: ', event.target.closest('.matrix'));
+    this.listener = (event) => {
+      let $thing = event.target.closest('.matrix');
+      if ($thing) {
+        $('.test-class').append($thing);// don't forget to make this class before testing
+      }
+
+    };
+    $('body').addEventListener('click', this.listener);
+
+
+
+
+    //$('.restar-button').addEventListener('click'), (event) => {
+    //  this.removeEventHandlers();
+    //}
+  }
+
+  addRestartButton() {
+    let $button = document.createElement('button');
+    $button.className = 'restart-button';
+    $button.innerHTML = 'Restart game';
+    $('body').append($button);
+  }
+
+
+  //addEventListener();
+  //render();
+  //addBoardToDOM();
+  //tellTurn(currentPlayer);
+
+
+
+};
 
 // make it possible to test on backend
 if (typeof global !== 'undefined') { global.Board = Board };

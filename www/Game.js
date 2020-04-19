@@ -1,7 +1,7 @@
 class Game {
 
   constructor() {
-    this.board;
+    this.board = {};
     this.addEventListener();
     this.start();
   }
