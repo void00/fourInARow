@@ -1,6 +1,6 @@
 
 
-let $h1 = document.querySelector('h1').innerHTML = "Blöö";
+/*let $h1 = document.querySelector('h1').innerHTML = "Blöö";
 $h1.innerHTML = "Blah";
 
 for (let i = 0; i < 10; i++) {
@@ -15,6 +15,6 @@ function addPlease(appendTo = document.body) {
   appendTo.append($h3);
 }
 addPlease();
-addPlease();
+addPlease();*/
 
 new Game();

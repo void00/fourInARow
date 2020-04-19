@@ -53,11 +53,18 @@ class Board {
     let $div = document.createElement('div');
     $div.className = "board";
     let html = '<h4>Board</h4>'
+    //for (let u = 0; u < 5; u++)
     for (let position of this.matrix) {//Does this loop work?? No have to loop next array
-      html += `<div class="matrix"><h4>${position}<h4></div>`;
+      {
+        html += '<br>';
+        for (let i = 0; i < 6; i++) {
+          html += `<div class="matrix"><h4>0<h4></div>`;
+        }
+      }
+      $div.innerHTML = html;
+      $('body').append($div);
     }
-    $div.innerHTML = html;
-    $('body').append($div);
+
   }
 
   //console.log(event.target);
@@ -72,17 +79,19 @@ class Board {
     //
     this.listener = (event) => {
       let $thing = event.target.closest('.matrix');
+      // something is not right with closest....
       console.log('Testing listner matrix: ', event.target.closest('.matrix'));
       if ($thing) {
         $('.test-class').append($thing);
+        event.target.innerHTML = '1';// just for fun
       }
 
     };
     $('body').addEventListener('click', this.listener);
 
 
-
-    this.resetButtonListener = (event) => {// testing
+    // testing, semi working, dosen't reset but removes listener from body.
+    this.resetButtonListener = (event) => {
       this.removeEventHandlers();
     };
     $('.restart-button').addEventListener('click', this.resetButtonListener);
@@ -91,7 +100,7 @@ class Board {
 
   removeEventHandlers() {
     console.log('Testing: ', this.listener)
-    $('.matrix').removeEventListener('click', this.listener);
+    $('body').removeEventListener('click', this.listener);
   }
 
   addRestartButton() {
