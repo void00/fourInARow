@@ -1,3 +1,7 @@
+Feature: Check for winner
+      As a player I would like to see if I have won.
+      So that we can play again.
+
       """
       winCheck()
       Ska titta på hela brädet och kontrollera om någon har vunnit

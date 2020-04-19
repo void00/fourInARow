@@ -26,6 +26,8 @@ class Board {
       ['', ''],
       ['', '']
     ];
+
+    //if ();
     /* Random game with player 2 winner diagonal down from row2,col1 to row5,col4
         __1_2_3_4_5_6_7
         0  
