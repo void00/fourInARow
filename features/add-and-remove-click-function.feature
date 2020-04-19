@@ -1,18 +1,20 @@
-Feature: Check to see if there is an addEventListener
+Feature:
 
-                  Feature Description
-                  """
-                  addEventListener()
-                  Metoden ska addera en händelselyssnare/funktion för click-händelser till elementet med css-klassen board i DOM:en.
+  Scenario: Check to see if there is an addEventListener
 
-                  Händelselyssnare ska detektera vilken kolumn användaren har klickat på och anropa metoden makeMove med denna kolumn som inargument.
+      Feature Description
+      """
+      addEventListener()
+      Metoden ska addera en händelselyssnare/funktion för click-händelser till elementet med css-klassen board i DOM:en.
 
-                  Händelselyssnaren ska sparas som en egenskap med namnet listener, så att den kan tas bort vid ett senare tillfälle.
+      Händelselyssnare ska detektera vilken kolumn användaren har klickat på och anropa metoden makeMove med denna kolumn som inargument.
 
-                  Metoden ska använda hjälpmetoden $ för att ta tag i rätt element i DOM:en.
+      Händelselyssnaren ska sparas som en egenskap med namnet listener, så att den kan tas bort vid ett senare tillfälle.
 
-                  removeEventListener()
-                  Metoden ska ta bort händelselyssnaren lagrad i egenskapen listener från elementet med css-klassen board i DOM:en.
+      Metoden ska använda hjälpmetoden $ för att ta tag i rätt element i DOM:en.
 
-                  Metoden ska använda hjälpmetoden $ för att ta tag i rätt element i DOM:en.
-                  """
+      removeEventListener()
+      Metoden ska ta bort händelselyssnaren lagrad i egenskapen listener från elementet med css-klassen board i DOM:en.
+
+      Metoden ska använda hjälpmetoden $ för att ta tag i rätt element i DOM:en.
+      """
