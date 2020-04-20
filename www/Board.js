@@ -1,5 +1,6 @@
 class Board {
   constructor(game) {
+    if (!game instanceof Game) throw console.error(' Game must be instance of game');
     this.game = game;
     this.matrix = [
       [0, 0, 0, 0, 0, 0, 0],
@@ -10,7 +11,8 @@ class Board {
       [0, 0, 0, 0, 0, 0, 0]
     ];
     this.playInProgress;
-    this.currentPlayer;
+    this.currentPlayer = 1;
+    this.playInProgress = false;
     this.winner;
     this.listener;
     this.addBoardToDOM();
