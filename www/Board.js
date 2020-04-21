@@ -7,7 +7,7 @@ class Board {
       [0, 0, 0, 0, 0, 0, 0],
       [0, 0, 0, 0, 0, 0, 0],
       [0, 0, 0, 0, 0, 0, 0],
-      [0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 2, 0, 0, 0],
       [0, 0, 0, 0, 0, 0, 0]
     ];
     this.playInProgress;
@@ -86,19 +86,35 @@ class Board {
       Metoden ska använda hjälpmetoden $ för att ta tag i rätt element i DOM:en.
   */
   render() {
-    let markers = this.matrix.length * 7;
+    let markers = this.matrix;
     let $container = $(".board");
-    let $blockDiv, $playerDiv;
+    let $blockDiv, $playerDiv, u = 0, i = 0;
 
-    for (let i = 0; i < markers; i++) {
+    for (let position of this.matrix) {
+      for (let i = 0; i < 6; i++) {
+        for (let position in this.matrix[i]) {
+          $blockDiv = document.createElement("div");
+          $playerDiv = document.createElement("div");
+          $playerDiv.innerHTML = markers[u][i];
+          $blockDiv.append($playerDiv);
+          $container.append($blockDiv);
+          i++;
+        }
+        u++;
+      }
+
+    }
+
+
+    /*for (let i = 0; i < markers; i++) {
       $blockDiv = document.createElement("div");
       //$blockDiv.className = "block";
       $playerDiv = document.createElement("div");
       //$playerDiv.className = "player";
       $blockDiv.append($playerDiv);
       $container.append($blockDiv);
-
-    }
+  
+    }*/
   }
 
   markWin(combo) { }
