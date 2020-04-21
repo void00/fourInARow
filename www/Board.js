@@ -86,24 +86,20 @@ class Board {
       Metoden ska använda hjälpmetoden $ för att ta tag i rätt element i DOM:en.
   */
   render() {
-    let markers = this.matrix;
     let $container = $(".board");
-    let $blockDiv, $playerDiv, u = 0, i = 0;
+    let $blockDiv, $playerDiv, u = 0;//, i = 0;
 
-    for (let position of this.matrix) {
-      for (let i = 0; i < 6; i++) {
+    for (let position of this.matrix) {// I think I'm doing this to many times
+      for (let i = 0; i < this.matrix.length; i++) {
         for (let position in this.matrix[i]) {
           $blockDiv = document.createElement("div");
           $playerDiv = document.createElement("div");
-          if (markers[u][i] == 1) {
-            $playerDiv.innerHTML = markers[u][i];
+          if (this.matrix[u][position] === 1) {
             $blockDiv.className = "yellow";
           }
-          else if (markers[u][i] === 2) {
-            $playerDiv.innerHTML = markers[u][i];
+          else if (this.matrix[u][position] === 2) {
             $blockDiv.className = "red";
           }
-
           $blockDiv.append($playerDiv);
           $container.append($blockDiv);
           i++;
