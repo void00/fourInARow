@@ -69,38 +69,37 @@ class Board {
 
   /*
   render()
+      Om spelare 1 har en bricka på en position ska det div-element som
+      motsvarar positionen få css-klassen red. Om spelare 2 har en bricka på en
+      position ska det div-element som motsvarar positionen få css-klassen yellow.
+
+      // Done
       Metoden ska hitta elementet med css-klassen board i
       DOM:en och byta innehållet i detta element till en html-struktur med
       42 stycken div-element i rad. Dessa motsvarar de olika positionerna
       på brädet från det övre vänstra hörnet till det nedre högre hörnet.
 
-      Om spelare 1 har en bricka på en position ska det div-element som
-      motsvarar positionen få css-klassen red. Om spelare 2 har en bricka på en
-      position ska det div-element som motsvarar positionen få css-klassen yellow.
-
+      // Done
       Vart och ett av de 42 div-element som beskrivs ovan ska i sin tur
       innehålla ett div-element. Detta ska vara tomt.
-
+      
+      // Done
       Metoden ska använda hjälpmetoden $ för att ta tag i rätt element i DOM:en.
   */
   render() {
-    let markers = 42;
-    let $container = document.createElement("div");
-    $container.className = "board";
+    let markers = this.matrix.length * 7;
+    let $container = $(".board");
     let $blockDiv, $playerDiv;
-
-    $('body').append($container);
 
     for (let i = 0; i < markers; i++) {
       $blockDiv = document.createElement("div");
-      $blockDiv.className = "block";
+      //$blockDiv.className = "block";
       $playerDiv = document.createElement("div");
-      $playerDiv.className = "player";
+      //$playerDiv.className = "player";
       $blockDiv.append($playerDiv);
       $container.append($blockDiv);
 
     }
-
   }
 
   markWin(combo) { }
@@ -123,9 +122,9 @@ class Board {
 
     //
     this.listener = (event) => {
-      let $thing = event.target.closest('.matrix');//div
+      let $thing = event.target.closest('.board');//div
       // something is not right 
-      console.log('Testing listner matrix: ', event.target.closest('.matrix'));
+      console.log('Testing listner matrix: ', event.target.closest('.board'));
       if ($thing) {
         $('.test-class').append($thing);//div
         event.target.className = 'green';// just for fun, test
