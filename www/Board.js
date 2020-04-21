@@ -3,12 +3,12 @@ class Board {
     if (!game instanceof Game) throw console.error(' Game must be instance of game');
     this.game = game;
     this.matrix = [
-      [1, 1, 1, 1, 0, 2, 1],
-      [0, 0, 0, 0, 0, 0, 0],
-      [0, 0, 0, 0, 0, 0, 0],
-      [0, 0, 0, 0, 0, 0, 0],
-      [0, 0, 0, 2, 0, 0, 0],
-      [0, 0, 0, 0, 0, 0, 0]
+      [0, 2, 2, 2, 2, 0, 0],
+      [2, 2, 2, 0, 0, 0, 0],
+      [2, 2, 1, 0, 0, 0, 0],
+      [1, 1, 1, 2, 2, 0, 0],
+      [1, 1, 1, 2, 0, 0, 0],
+      [2, 2, 1, 1, 2, 1, 2]
     ];
     this.playInProgress;
     this.currentPlayer = 1;
@@ -17,7 +17,8 @@ class Board {
     this.listener;
     this.addRestartButton();
     this.addEventHandlers();
-    this.winCheck();
+    //this.winCheck();
+    this.combo;
     this.render();
 
   }
@@ -25,33 +26,79 @@ class Board {
 
 
   winCheck() {
-    let combo = [
-      ['', ''],
-      ['', ''],
-      ['', ''],
-      ['', '']
-    ];
+    let draw = true;
+    let currentPlayer = 1;
+    let winningPlayer = new Object();
+    winningPlayer.winner = currentPlayer;
+    let combo = new Array(4);
+    let width = this.matrix[0].length;
+    let height = this.matrix.length;
+    for (let row = 0; row < height; row++) {
+      for (let cell = 0; cell < width; cell++) {
+        let marker = this.matrix[row][cell];
+        if (marker === 0) {// Hoppa över nollor och sätt draw till false
+          continue;
+          draw = false;
+        }
+        //Kolla horisontellt
+        if (cell + 3 < width &&
+          marker === this.matrix[row][cell + 1] &&
+          marker === this.matrix[row][cell + 2] &&
+          marker === this.matrix[row][cell + 3]) {
+          for (let i = 0; i < 4; i++) {
+            combo[i] = new Array(row, cell + i);
+          }
+          winningPlayer.combo = combo;
+          return winningPlayer;
+        }
+        //Kolla vertikalt
+        if (row + 3 < height) {
+          if (
+            marker === this.matrix[row + 1][cell] &&
+            marker === this.matrix[row + 2][cell] &&
+            marker === this.matrix[row + 3][cell]) {
+            for (let i = 0; i < 4; i++) {
+              combo[i] = new Array(row + i, cell);
+            }
+            winningPlayer.combo = combo;
+            return winningPlayer;
+          }
+          //Kolla diagonalt höger
+          if (cell + 3 < width &&
+            marker === this.matrix[row + 1][cell + 1] &&
+            marker === this.matrix[row + 2][cell + 2] &&
+            marker === this.matrix[row + 3][cell + 3]) {
+            for (let i = 0; i < 4; i++) {
+              combo[i] = new Array(row + i, cell + i);
+            }
+            winningPlayer.combo = combo;
+            return winningPlayer;
+          }
+          //Kolla diagonalt vänster
+          if (cell - 3 >= 0 &&
+            marker === this.matrix[row + 1][cell - 1] &&
+            marker === this.matrix[row + 2][cell - 2] &&
+            marker === this.matrix[row + 3][cell - 3]) {
+            for (let i = 0; i < 4; i++) {
+              combo[i] = new Array(row + i, cell - i);
+            }
+            winningPlayer.combo = combo;
+            return winningPlayer;
+          }
+          else if (zeros === true) {
+            return winningPlayer.winner = 'draw';
+          }
+        }
+      }
 
-    console.log(this.matrix[0][1]);
-    /*
-        let check = playerLastPosition + 4;
-        let checkRow = playerLastPosition;
-        let checkDia = playerLastPosition;
-        //Testing big time...
-        for (playerLastPosition; check < playerLastPosition; playerLastPosition++) {
-          for (let i = 0; i < 5; i++)
-            if (this.matrix[i][playerLastPosition] === 1) {
-              console.log('Winner');
-            }
-        }
-        for (playerLastPosition; check < playerLastPosition; playerLastPosition++) {
-          for (let i = 0; i < 3; i++)
-            if (this.matrix[i][checkDia] === 1) {
-              checkDia++;
-              if (checkDia === playerLastPosition + 4)
-                console.log('Winner');
-            }
-        }
+      return false; // No winner.
+    }
+
+
+    /*let playerLastPosition = 0;
+    //Testing big time...
+   
+   
          Random game with player 2 winner diagonal down from row2,col1 to row5,col4
             __1_2_3_4_5_6_7
             0  
@@ -69,16 +116,17 @@ class Board {
 
   /*
   render()
+      // Done
       Om spelare 1 har en bricka på en position ska det div-element som
       motsvarar positionen få css-klassen red. Om spelare 2 har en bricka på en
       position ska det div-element som motsvarar positionen få css-klassen yellow.
-
+   
       // Done
       Metoden ska hitta elementet med css-klassen board i
       DOM:en och byta innehållet i detta element till en html-struktur med
       42 stycken div-element i rad. Dessa motsvarar de olika positionerna
       på brädet från det övre vänstra hörnet till det nedre högre hörnet.
-
+   
       // Done
       Vart och ett av de 42 div-element som beskrivs ovan ska i sin tur
       innehålla ett div-element. Detta ska vara tomt.
@@ -94,7 +142,8 @@ class Board {
       for (let cell of row) {
         $blockDiv = document.createElement("div");
         $playerDiv = document.createElement("div");
-        console.log(cell);
+        //console.log(cell);
+        //await sleep(16);// Just for fun, and test sleep.
         if (cell === 1) {
           $blockDiv.className = "yellow";
         }
@@ -105,14 +154,13 @@ class Board {
         $container.append($blockDiv);
       }
     }
+    this.winCheck();
   }
 
   markWin(combo) { }
 
   //addEventListener() { }
 
-  //console.log(event.target);
-  //console.log(event.target.closest('.matrix'));
 
 
   addEventHandlers() {
@@ -123,10 +171,7 @@ class Board {
     //
     this.listener = (event) => {
       let $thing = event.target.closest('div');//div
-      // something is not right, dont fetch board fetch the clicked child
-      console.log('Testing listner matrix: ', event.target.closest('div'));
       if ($thing) {
-        //$('.test-class').append($thing);//div
         event.target.parentNode.className = 'yellow';// just for fun, test
       }
 
