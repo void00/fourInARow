@@ -1,8 +1,8 @@
 class Game {
 
   constructor() {
-    this.board = {};
-    this.addEventListener();
+    this.board;
+    //this.addEventListener();
     this.start();
   }
 

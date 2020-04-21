@@ -15,10 +15,12 @@ class Board {
     this.playInProgress = false;
     this.winner;
     this.listener;
-    this.addBoardToDooM();
+    //this.addBoardToDooM();
     this.addRestartButton();
     this.addEventHandlers();
     this.winCheck();
+    this.render();
+
   }
   async makeMove(column) { }
 
@@ -82,17 +84,23 @@ class Board {
       Metoden ska använda hjälpmetoden $ för att ta tag i rätt element i DOM:en.
   */
   render() {
-    /*for (let position of this.matrix) {
+    let markers = 42;
+    let $container = document.createElement("div");
+    $container.className = "board";
+    let $blockDiv, $playerDiv;
 
-      //for (let i = 0; i < 6; i++) 
-      for (let position in this.matrix[0]) {
-        html += `<div>${position}<div></div></div>`;
-      }
-      //html += '<br>';
+    $('body').append($container);
+
+    for (let i = 0; i < markers; i++) {
+      $blockDiv = document.createElement("div");
+      $blockDiv.className = "block";
+      $playerDiv = document.createElement("div");
+      $playerDiv.className = "player";
+      $blockDiv.append($playerDiv);
+      $container.append($blockDiv);
+
     }
-    $div.innerHTML = html;
-    $('.board').append($div);
-    */
+
   }
 
   markWin(combo) { }
@@ -100,28 +108,7 @@ class Board {
   //addEventListener() { }
 
   addBoardToDooM() {// test
-    let $div1 = document.createElement('div');
-    let $div2 = document.createElement('div');
-    //$div.className = "board";
-    let html = '';
-    let html2 = '';
-    //for (let u = 0; u < 5; u++)
-    //for (let position in this.matrix)
-    for (let position of this.matrix) {
-      {
-        //for (let i = 0; i < 6; i++) 
-        for (let position in this.matrix[0]) {
-          $div2.append($div1);
-          //html2 += `<div></div>`;
-          //html += document.createElement('div');
-        }
-        //html += '<br>';
-      }
-      $div2.innerHTML += html;
-      $('.board').append($div2);
-      //$('.board').append($div2);
-      //$('body').append($div);
-    }
+
 
   }
 
