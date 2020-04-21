@@ -95,7 +95,15 @@ class Board {
         for (let position in this.matrix[i]) {
           $blockDiv = document.createElement("div");
           $playerDiv = document.createElement("div");
-          $playerDiv.innerHTML = markers[u][i];
+          if (markers[u][i] == 1) {
+            $playerDiv.innerHTML = markers[u][i];
+            $blockDiv.className = "yellow";
+          }
+          else if (markers[u][i] === 2) {
+            $playerDiv.innerHTML = markers[u][i];
+            $blockDiv.className = "red";
+          }
+
           $blockDiv.append($playerDiv);
           $container.append($blockDiv);
           i++;
