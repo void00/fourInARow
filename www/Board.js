@@ -15,7 +15,6 @@ class Board {
     this.playInProgress = false;
     this.winner;
     this.listener;
-    //this.addBoardToDooM();
     this.addRestartButton();
     this.addEventHandlers();
     this.winCheck();
@@ -106,14 +105,9 @@ class Board {
 
   //addEventListener() { }
 
-  addBoardToDooM() {// test
-
-
-  }
-
   //console.log(event.target);
   //console.log(event.target.closest('.matrix'));
-  //
+
 
   addEventHandlers() {
     $('body').addEventListener('click', (event) => {
@@ -122,19 +116,19 @@ class Board {
 
     //
     this.listener = (event) => {
-      let $thing = event.target.closest('.board');//div
-      // something is not right 
-      console.log('Testing listner matrix: ', event.target.closest('.board'));
+      let $thing = event.target.closest('div');//div
+      // something is not right, dont fetch board fetch the clicked child
+      console.log('Testing listner matrix: ', event.target.closest('div'));
       if ($thing) {
-        $('.test-class').append($thing);//div
-        event.target.className = 'green';// just for fun, test
+        //$('.test-class').append($thing);//div
+        event.target.parentNode.className = 'yellow';// just for fun, test
       }
 
     };
     $('body').addEventListener('click', this.listener);
 
 
-    // testing, semi working, dosen't reset but removes listener from body.
+    // testing
     this.resetButtonListener = (event) => {
       this.removeEventHandlers();
     };
