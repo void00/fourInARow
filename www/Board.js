@@ -88,38 +88,23 @@ class Board {
   */
   render() {
     let $container = $(".board");
-    let $blockDiv, $playerDiv, u = 0;//, i = 0;
+    let $blockDiv, $playerDiv;
 
-    for (let position of this.matrix) {// I think I'm doing this to many times
-      for (let i = 0; i < this.matrix.length; i++) {
-        for (let position in this.matrix[i]) {
-          $blockDiv = document.createElement("div");
-          $playerDiv = document.createElement("div");
-          if (this.matrix[u][position] === 1) {
-            $blockDiv.className = "yellow";
-          }
-          else if (this.matrix[u][position] === 2) {
-            $blockDiv.className = "red";
-          }
-          $blockDiv.append($playerDiv);
-          $container.append($blockDiv);
-          i++;
+    for (let row of this.matrix) {
+      for (let cell of row) {
+        $blockDiv = document.createElement("div");
+        $playerDiv = document.createElement("div");
+        console.log(cell);
+        if (cell === 1) {
+          $blockDiv.className = "yellow";
         }
-        u++;
+        else if (cell === 2) {
+          $blockDiv.className = "red";
+        }
+        $blockDiv.append($playerDiv);
+        $container.append($blockDiv);
       }
-
     }
-
-
-    /*for (let i = 0; i < markers; i++) {
-      $blockDiv = document.createElement("div");
-      //$blockDiv.className = "block";
-      $playerDiv = document.createElement("div");
-      //$playerDiv.className = "player";
-      $blockDiv.append($playerDiv);
-      $container.append($blockDiv);
-  
-    }*/
   }
 
   markWin(combo) { }
