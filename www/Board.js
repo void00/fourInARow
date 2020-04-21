@@ -21,6 +21,7 @@ class Board {
   }
   async makeMove(column) { }
 
+
   winCheck() {
     let combo = [
       ['', ''],
