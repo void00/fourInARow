@@ -3,12 +3,12 @@ class Board {
     if (!game instanceof Game) throw console.error(' Game must be instance of game');
     this.game = game;
     this.matrix = [
-      [1, 2, 2, 2, 2, 2, 2],
-      [1, 2, 2, 0, 0, 0, 0],
+      [2, 1, 2, 2, 0, 2, 2],
+      [1, 1, 2, 0, 0, 0, 0],
       [2, 2, 1, 2, 0, 0, 0],
-      [2, 1, 2, 1, 2, 0, 0],
+      [0, 1, 0, 0, 2, 0, 0],
       [2, 1, 1, 2, 2, 0, 0],
-      [2, 2, 1, 1, 1, 1, 2]
+      [2, 2, 1, 0, 1, 1, 2]
     ];
     this.playInProgress;
     this.currentPlayer = 1;
@@ -45,8 +45,8 @@ class Board {
         console.log('Check cell: ' + cell + ' row: ' + row + ' round: ' + counter + ' marker: ' + marker);
         counter++;
         if (marker === 0) {// Hoppa över nollor och sätt draw till false
-          continue;
           draw = false;
+          continue;
         }
         //Kolla horisontellt
         console.log('Kolla horisontellt ' + cell, +' : ' + row + ' draw: ' + draw);
@@ -54,7 +54,7 @@ class Board {
           marker === this.matrix[row][cell + 1] &&
           marker === this.matrix[row][cell + 2] &&
           marker === this.matrix[row][cell + 3]) {
-          for (let i = 0; i < 3; i++) {// Det är nog en bugg här
+          for (let i = 0; i < 4; i++) {// Det är nog en bugg här
             combo[i] = new Array(row, cell + i);
           }
           console.log(combo[0], combo[1], combo[2], combo[3]);
@@ -68,7 +68,7 @@ class Board {
             marker === this.matrix[row + 1][cell] &&
             marker === this.matrix[row + 2][cell] &&
             marker === this.matrix[row + 3][cell]) {
-            for (let i = 0; i < 3; i++) {
+            for (let i = 0; i < 4; i++) {
               combo[i] = new Array(row + i, cell);
             }
             console.log(combo[0], combo[1], combo[2], combo[3]);
@@ -81,7 +81,7 @@ class Board {
             marker === this.matrix[row + 1][cell + 1] &&
             marker === this.matrix[row + 2][cell + 2] &&
             marker === this.matrix[row + 3][cell + 3]) {
-            for (let i = 0; i < 3; i++) {
+            for (let i = 0; i < 4; i++) {
               combo[i] = new Array(row + i, cell + i);
             }
             console.log(combo[0], combo[1], combo[2], combo[3]);
@@ -94,17 +94,17 @@ class Board {
             marker === this.matrix[row + 1][cell - 1] &&
             marker === this.matrix[row + 2][cell - 2] &&
             marker === this.matrix[row + 3][cell - 3]) {
-            for (let i = 0; i < 3; i++) {
+            for (let i = 0; i < 4; i++) {
               combo[i] = new Array(row + i, cell - i);
             }
             console.log(combo[0], combo[1], combo[2], combo[3]);
             winningPlayer.combo = combo;
             return winningPlayer;
           }
-          else if (draw === true) {
-            return winningPlayer.winner = 'draw';
-          }
         }
+      }
+      if (draw === true) {
+        return winningPlayer.winner = 'draw';
       }
 
       return false; // No winner.
