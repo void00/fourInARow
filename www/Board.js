@@ -3,7 +3,7 @@ class Board {
     if (!game instanceof Game) throw console.error(' Game must be instance of game');
     this.game = game;
     this.matrix = [
-      [2, 1, 2, 2, 0, 2, 2],
+      [2, 2, 2, 2, 0, 2, 2],
       [1, 1, 2, 0, 0, 0, 0],
       [2, 2, 1, 2, 0, 0, 0],
       [0, 1, 0, 0, 2, 0, 0],
@@ -11,15 +11,15 @@ class Board {
       [2, 2, 1, 0, 1, 1, 2]
     ];
     this.playInProgress;
-    this.currentPlayer = 1;
+    this.currentPlayer;
     this.playInProgress = false;
     this.winner;
     this.listener;
-    this.addRestartButton();
-    this.addEventHandlers();
-    //this.winCheck();
     this.combo;
+    this.addEventHandlers();
     this.render();
+    //this.removeEventHandlers();
+    //this.winCheck();
 
   }
   async makeMove(column) { }
@@ -37,9 +37,10 @@ class Board {
 
     let width = this.matrix[0].length;
     let height = this.matrix.length;
-    let counter = 1;
+    let counter = 0;
 
     for (let row = 0; row < height; row++) {
+      counter++;
       for (let cell = 0; cell < width; cell++) {
         let marker = this.matrix[row][cell];//Check from this cell positon 
         console.log('Check cell: ' + cell + ' row: ' + row + ' round: ' + counter + ' marker: ' + marker);
@@ -107,14 +108,12 @@ class Board {
         return winningPlayer.winner = 'draw';
       }
 
-      return false; // No winner.
+      return false; // No winner, no draw keep going.
     }
 
 
-    /*let playerLastPosition = 0;
-    //Testing big time...
-   
-   
+    /*
+    //Thinking big time... remove this when 100% check in winCheck() is done.
          Random game with player 2 winner diagonal down from row2,col1 to row5,col4
             __1_2_3_4_5_6_7
             0  
@@ -126,20 +125,21 @@ class Board {
         
             Check diagonalt upp (--) om över eller = 3. neråt (++) om den är under eller = 3 samt baklänges.
             (1,2) if 1 or 2 v do (1++,2++), (2,3)v (2++,3++) (3,4)v (3++,4++) (4,5)v   Winner
-            Diagonal loop start from active players position
+            Diagonal loop start from 0,0 etc...
         */
   }
 
   render() {
-    let $container = $(".board");
+    let $container = $(".board");// Copy board to local
+    $(".board").innerHTML = "";// Remove old board
     let $blockDiv, $playerDiv;
+
 
     for (let row of this.matrix) {
       for (let cell of row) {
         $blockDiv = document.createElement("div");
         $playerDiv = document.createElement("div");
-        //console.log(cell);
-        //await sleep(16);// Just for fun, and test sleep.
+        //await sleep(16);// Just for async fun, and test sleep.
         if (cell === 1) {
           $blockDiv.className = "yellow";
         }
@@ -147,10 +147,10 @@ class Board {
           $blockDiv.className = "red";
         }
         $blockDiv.append($playerDiv);
-        $container.append($blockDiv);
+        $container.append($blockDiv);// Building new board from matrix
       }
     }
-    this.winCheck();
+    this.winCheck();// Move this call to makeMove() 
   }
 
   markWin(combo) { }
@@ -161,7 +161,7 @@ class Board {
 
   addEventHandlers() {
     $('body').addEventListener('click', (event) => {
-      console.log(event);
+      //console.log(event);
     });
 
     //
@@ -169,6 +169,7 @@ class Board {
       let $thing = event.target.closest('div');//div
       if ($thing) {
         event.target.parentNode.className = 'yellow';// just for fun, test
+        // add current player draw to matrix
       }
 
     };
@@ -176,24 +177,24 @@ class Board {
 
 
     // testing
-    this.resetButtonListener = (event) => {
-      this.removeEventHandlers();
-    };
-    $('.restart-button').addEventListener('click', this.resetButtonListener);
+    /* this.resetButtonListener = (event) => {
+       this.removeEventHandlers();
+     };
+     $('.restart-button').addEventListener('click', this.resetButtonListener);*/
 
   }
 
   removeEventHandlers() {
-    console.log('Testing: ', this.listener)
+    //console.log('Testing: ', this.listener)
     $('body').removeEventListener('click', this.listener);
   }
 
-  addRestartButton() {
+  /*addRestartButton() {// Flyttad till Game won()
     let $button = document.createElement('button');
     $button.className = 'restart-button';
     $button.innerHTML = 'Restart game';
     $('body').append($button);
-  }
+  }*/
 
 
   //addEventListener();
