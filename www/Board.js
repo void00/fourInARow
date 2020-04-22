@@ -3,12 +3,12 @@ class Board {
     if (!game instanceof Game) throw console.error(' Game must be instance of game');
     this.game = game;
     this.matrix = [
-      [0, 2, 2, 2, 2, 0, 0],
-      [2, 2, 2, 0, 0, 0, 0],
-      [2, 2, 1, 0, 0, 0, 0],
-      [1, 1, 1, 2, 2, 0, 0],
-      [1, 1, 1, 2, 0, 0, 0],
-      [2, 2, 1, 1, 2, 1, 2]
+      [1, 2, 2, 2, 2, 2, 2],
+      [1, 2, 2, 0, 0, 0, 0],
+      [2, 2, 1, 2, 0, 0, 0],
+      [2, 1, 2, 1, 2, 0, 0],
+      [2, 1, 1, 2, 2, 0, 0],
+      [2, 2, 1, 1, 1, 1, 2]
     ];
     this.playInProgress;
     this.currentPlayer = 1;
@@ -24,68 +24,84 @@ class Board {
   }
   async makeMove(column) { }
 
-
+  // winCheck fungerar inte 100%
   winCheck() {
-    let draw = true;
-    let currentPlayer = 1;
+    let currentPlayer = 2;// Temporary player holder
+
     let winningPlayer = new Object();
     winningPlayer.winner = currentPlayer;
-    let combo = new Array(4);
+    let combo = new Array(4);// Winning positions
+
+    let draw = true;
+
+
     let width = this.matrix[0].length;
     let height = this.matrix.length;
+    let counter = 1;
+
     for (let row = 0; row < height; row++) {
       for (let cell = 0; cell < width; cell++) {
-        let marker = this.matrix[row][cell];
+        let marker = this.matrix[row][cell];//Check from this cell positon 
+        console.log('Check cell: ' + cell + ' row: ' + row + ' round: ' + counter + ' marker: ' + marker);
+        counter++;
         if (marker === 0) {// Hoppa över nollor och sätt draw till false
           continue;
           draw = false;
         }
         //Kolla horisontellt
+        console.log('Kolla horisontellt ' + cell, +' : ' + row + ' draw: ' + draw);
         if (cell + 3 < width &&
           marker === this.matrix[row][cell + 1] &&
           marker === this.matrix[row][cell + 2] &&
           marker === this.matrix[row][cell + 3]) {
-          for (let i = 0; i < 4; i++) {
+          for (let i = 0; i < 3; i++) {// Det är nog en bugg här
             combo[i] = new Array(row, cell + i);
           }
+          console.log(combo[0], combo[1], combo[2], combo[3]);
           winningPlayer.combo = combo;
           return winningPlayer;
         }
         //Kolla vertikalt
         if (row + 3 < height) {
+          console.log('Kolla vertikalt ' + cell, +' : ' + row);
           if (
             marker === this.matrix[row + 1][cell] &&
             marker === this.matrix[row + 2][cell] &&
             marker === this.matrix[row + 3][cell]) {
-            for (let i = 0; i < 4; i++) {
+            for (let i = 0; i < 3; i++) {
               combo[i] = new Array(row + i, cell);
             }
+            console.log(combo[0], combo[1], combo[2], combo[3]);
             winningPlayer.combo = combo;
             return winningPlayer;
           }
           //Kolla diagonalt höger
+          console.log('Kolla diagonalt höger ' + cell, +' : ' + row);
           if (cell + 3 < width &&
             marker === this.matrix[row + 1][cell + 1] &&
             marker === this.matrix[row + 2][cell + 2] &&
             marker === this.matrix[row + 3][cell + 3]) {
-            for (let i = 0; i < 4; i++) {
+            for (let i = 0; i < 3; i++) {
               combo[i] = new Array(row + i, cell + i);
             }
+            console.log(combo[0], combo[1], combo[2], combo[3]);
             winningPlayer.combo = combo;
             return winningPlayer;
           }
           //Kolla diagonalt vänster
+          console.log('Kolla diagonalt vänster ' + cell, +' : ' + row);
           if (cell - 3 >= 0 &&
             marker === this.matrix[row + 1][cell - 1] &&
             marker === this.matrix[row + 2][cell - 2] &&
             marker === this.matrix[row + 3][cell - 3]) {
-            for (let i = 0; i < 4; i++) {
+            for (let i = 0; i < 3; i++) {
               combo[i] = new Array(row + i, cell - i);
             }
+            console.log(combo[0], combo[1], combo[2], combo[3]);
             winningPlayer.combo = combo;
             return winningPlayer;
           }
-          else if (zeros === true) {
+          else if (draw === true) {
             return winningPlayer.winner = 'draw';
           }
         }
@@ -114,26 +130,6 @@ class Board {
         */
   }
 
-  /*
-  render()
-      // Done
-      Om spelare 1 har en bricka på en position ska det div-element som
-      motsvarar positionen få css-klassen red. Om spelare 2 har en bricka på en
-      position ska det div-element som motsvarar positionen få css-klassen yellow.
-   
-      // Done
-      Metoden ska hitta elementet med css-klassen board i
-      DOM:en och byta innehållet i detta element till en html-struktur med
-      42 stycken div-element i rad. Dessa motsvarar de olika positionerna
-      på brädet från det övre vänstra hörnet till det nedre högre hörnet.
-   
-      // Done
-      Vart och ett av de 42 div-element som beskrivs ovan ska i sin tur
-      innehålla ett div-element. Detta ska vara tomt.
-      
-      // Done
-      Metoden ska använda hjälpmetoden $ för att ta tag i rätt element i DOM:en.
-  */
   render() {
     let $container = $(".board");
     let $blockDiv, $playerDiv;
