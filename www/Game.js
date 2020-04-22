@@ -30,9 +30,6 @@ class Game {
     $('.message').append($button);
   }
 
-
-
-
   addEventHandler() {
     $('.message').addEventListener('click', event => {
       //if (event.target.closest('again')) {
@@ -40,19 +37,15 @@ class Game {
       //   }
     });
 
-
     this.listener = (event) => {
       let $thing = event.target.closest('.message');
       if ($thing) {
         //console.log(event + ' : Event i game klassen');
         this.start();
-        //event.target.parentNode.className = 'yellow';// just for fun, test
       }
     };
     $('.message').addEventListener('click', this.listener);
-
   }
-
 
 }
 // make it possible to test on backend
