@@ -42,13 +42,15 @@ class Board {
       }
     }
     if (this.winCheck()) {
-      console.log(this.winCheck());
+      //console.log(this.winCheck());
       this.markWin(this.winCheck().combo);
       this.game.over(this.winCheck().winner);
-
+      console.log('We have a winner: ' + this.winCheck().winner);
+      return true;
       // things left to write here when we have
       // written winCheck
     }
+    console.log('Do we have a winner: ' + this.winCheck());
     this.currentPlayer = this.currentPlayer === 1 ? 2 : 1; // switch player
     this.game.tellTurn(this.currentPlayer);
     this.playInProgress = false;
@@ -65,7 +67,6 @@ class Board {
   Metoden ska använda hjälpmetoden $ för att ta tag i rätt element i DOM:en.*/
 
   markWin(combo) {
-
     let i, u;
     for (let row = 0; row <= 3; row++) {
       for (let cell = 0; cell <= 1; cell++) {
@@ -78,7 +79,6 @@ class Board {
             $children[c].className = 'win';
         }
       }
-      //console.log(i, u);
     }
 
   }
