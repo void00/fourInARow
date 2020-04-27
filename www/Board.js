@@ -159,10 +159,10 @@ class Board {
         $blockDiv = document.createElement("div");
         $playerDiv = document.createElement("div");
         if (cell === 1) {
-          $blockDiv.className = "red";
+          $blockDiv.className = "yellow";
         }
         else if (cell === 2) {
-          $blockDiv.className = "yellow";
+          $blockDiv.className = "red";
         }
         $blockDiv.append($playerDiv);
         $container.append($blockDiv);// Building new board from matrix
