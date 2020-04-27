@@ -33,3 +33,9 @@
     And it should create a matrix 7 x 6 with 0 in all cells
     And currentPlayers should be 1
     And playInProgres should be false
+
+  Scenario: A board is renderd on screen
+    Given  that a new board i created with playInProgres set to false
+    Then addEventHandler should be called
+    And then render should be called
+    And currentPlayers should be passed to tellTurn as an argument
