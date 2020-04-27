@@ -18,7 +18,7 @@ class Board {
     this.listener;
     //this.addRestartButton();
     this.addEventListener();
-    this.winCheck();
+    //this.winCheck();
     this.render();
   }
 
@@ -181,48 +181,40 @@ class Board {
   // Done
   Metoden ska använda hjälpmetoden $ för att ta tag i rätt element i DOM: en.
   */
-    let markers = this.matrix;
-    let $container = $(".board");
-    let $blockDiv, $playerDiv, u = 0, i = 0;
-    $('.board').innerHTML = ''; // empty the board before draing new slots
-    for (let position of this.matrix) {
-      for (let i = 0; i < 6; i++) {
-        for (let position in this.matrix[i]) {
-          $blockDiv = document.createElement("div");
-          $playerDiv = document.createElement("div");
-          if (markers[u][i] == 1) {
-            //$playerDiv.innerHTML = markers[u][i];
-            $blockDiv.className = "red";
-          }
-          else if (markers[u][i] === 2) {
-            //$playerDiv.innerHTML = markers[u][i];
-            $blockDiv.className = "yellow";
-          }
-
-          $blockDiv.append($playerDiv);
-          $container.append($blockDiv);
-          i++;
+    let $container = $(".board");// Copy board to local
+    $(".board").innerHTML = "";// Remove old board
+    let $blockDiv, $playerDiv;
+    for (let row of this.matrix) {
+      for (let cell of row) {
+        $blockDiv = document.createElement("div");
+        $playerDiv = document.createElement("div");
+        //await sleep(16);// Just for async fun, and test sleep.
+        if (cell === 1) {
+          $blockDiv.className = "yellow";
         }
-        /*if (cell === 2) {
+        else if (cell === 2) {
           $blockDiv.className = "red";
-        }/*/
+        }
         $blockDiv.append($playerDiv);
         $container.append($blockDiv);// Building new board from matrix
       }
-
-
-
-      /*for (let i = 0; i < markers; i++) {
-        $blockDiv = document.createElement("div");
-        //$blockDiv.className = "block";
-        $playerDiv = document.createElement("div");
-        //$playerDiv.className = "player";
-        $blockDiv.append($playerDiv);
-        $container.append($blockDiv);
-
-      }*/
     }
+    // this.winCheck();// Move this call to makeMove() 
   }
+
+
+
+  /*for (let i = 0; i < markers; i++) {
+    $blockDiv = document.createElement("div");
+    //$blockDiv.className = "block";
+    $playerDiv = document.createElement("div");
+    //$playerDiv.className = "player";
+    $blockDiv.append($playerDiv);
+    $container.append($blockDiv);
+
+  }*/
+
+
 
   markWin(combo) { }
 
