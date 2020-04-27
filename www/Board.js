@@ -18,7 +18,7 @@ class Board {
     this.listener;
     //this.addRestartButton();
     this.addEventListener();
-    //this.winCheck();
+    this.winCheck();
     this.render();
   }
 
@@ -43,6 +43,7 @@ class Board {
       }
     }
     if (this.winCheck()) {
+      console.log(this.winCheck());
       // things left to write here when we have
       // written winCheck
     }
