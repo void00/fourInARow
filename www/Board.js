@@ -43,61 +43,72 @@ class Board {
     }
     if (this.winCheck()) {
       console.log(this.winCheck());
+      this.markWin(this.winCheck().combo);
+      this.game.over(this.winCheck().winner);
+
       // things left to write here when we have
       // written winCheck
     }
     this.currentPlayer = this.currentPlayer === 1 ? 2 : 1; // switch player
     this.game.tellTurn(this.currentPlayer);
     this.playInProgress = false;
-    console.log(this.matrix);
     return true;
   }
 
-  // winCheck fungerar inte 100%, mer testning krävs. 
-  winCheck() {
-    //let currentPlayer = 1;// Temporary player holder
+  /*Metoden ska ta emot inargumentet combo - en array 
+  skapad enligt specifikationerna som finns angivna för metoden winCheck.
 
+  Metoden ska hitta de fyra div-element som 
+  motsvarar positionerna angivna i combo och lägga 
+  till css-klassen win till vart och ett av dessa div-element.
+
+  Metoden ska använda hjälpmetoden $ för att ta tag i rätt element i DOM:en.*/
+
+  markWin(combo) {
+
+    let i, u;
+    for (let row = 0; row <= 3; row++) {
+      for (let cell = 0; cell <= 1; cell++) {
+        i = combo[row];
+        u = i[0] * 7;
+        u += i[1];
+        let $children = [...$$('.board > div')];
+        for (let c = 0; c < $children.length; c++) {
+          if (c === u)
+            $children[c].className = 'win';
+        }
+      }
+      //console.log(i, u);
+    }
+
+  }
+
+  winCheck() {
     let winningPlayer = {};
     winningPlayer.winner = this.currentPlayer;
     let combo = new Array(4);// Winning positions
-
     let draw = true;
-
     let width = this.matrix[0].length;
     let height = this.matrix.length;
-    // let row = 0, cell = 0;
-    //let counter = 0;
 
     for (let row = 0; row < height; row++) {
-      //console.log('Check row: ' + row);
-      //counter++;
       for (let cell = 0; cell < width; cell++) {
-        //console.log('Check cell: ' + cell);
         let marker = this.matrix[row][cell];//Check from this cell positon 
-        //console.log('Check cell: ' + cell + ' row: ' + row + ' round: ' + counter + ' marker: ' + marker);
-        //counter++;
         if (marker === 0) {// Hoppa över nollor och sätt draw till false
           draw = false;
           continue;
         }
-        //console.log('Marker: ' + marker);
-        //Kolla horisontellt
-        //console.log('Kolla horisontellt ' + cell +' : ' + row + ' draw: ' + draw);
-        if (cell + 3 < width &&
+        if (cell + 3 < width &&//Kolla horisontellt
           marker === this.matrix[row][cell + 1] &&
           marker === this.matrix[row][cell + 2] &&
           marker === this.matrix[row][cell + 3]) {
-          for (let i = 0; i < 4; i++) {// Det är nog en bugg här
+          for (let i = 0; i < 4; i++) {
             combo[i] = new Array(row, cell + i);
           }
-          //console.log(combo[0], combo[1], combo[2], combo[3]);
           winningPlayer.combo = combo;
           return winningPlayer;
         }
-        //console.log(this.matrix[row][cell]);
-        //Kolla vertikalt
-        if (row + 3 < height) {
-          //console.log('Kolla vertikalt ' + cell + ': ' + row + ': ' + this.matrix[row][cell] + 'height:' + height);
+        if (row + 3 < height) {//Kolla vertikalt
           if (
             marker === this.matrix[row + 1][cell] &&
             marker === this.matrix[row + 2][cell] &&
@@ -105,83 +116,41 @@ class Board {
             for (let i = 0; i < 4; i++) {
               combo[i] = new Array(row + i, cell);
             }
-            //console.log(combo[0], combo[1], combo[2], combo[3]);
             winningPlayer.combo = combo;
             return winningPlayer;
           }
-          //Kolla diagonalt höger
-          //console.log('Kolla diagonalt höger ' + cell, +' : ' + row);
-          if (cell + 3 < width &&
+          if (cell + 3 < width &&//Kolla diagonalt höger
             marker === this.matrix[row + 1][cell + 1] &&
             marker === this.matrix[row + 2][cell + 2] &&
             marker === this.matrix[row + 3][cell + 3]) {
             for (let i = 0; i < 4; i++) {
               combo[i] = new Array(row + i, cell + i);
             }
-            //console.log(combo[0], combo[1], combo[2], combo[3]);
             winningPlayer.combo = combo;
             return winningPlayer;
           }
-          //Kolla diagonalt vänster
-          //console.log('Kolla diagonalt vänster ' + cell +' : ' + row);
-          if (cell - 3 >= 0 &&
+          if (cell - 3 >= 0 &&//Kolla diagonalt vänster
             marker === this.matrix[row + 1][cell - 1] &&
             marker === this.matrix[row + 2][cell - 2] &&
             marker === this.matrix[row + 3][cell - 3]) {
             for (let i = 0; i < 4; i++) {
               combo[i] = new Array(row + i, cell - i);
             }
-            console.log(combo[0], combo[1], combo[2], combo[3]);
             winningPlayer.combo = combo;
             return winningPlayer;
           }
         }
       }
-      if (draw === true) {
+      if (draw === true) {// Kolla så denna funkar, det har ej gjorts.
         console.log('DRAW!');
         return winningPlayer.winner = 'draw';
       }
     }
     return false;// No winner, no draw keep going.
-
-
-    /*
-    //Thinking big time... remove this when 100% check in winCheck() is done.
-         Random game with player 2 winner diagonal down from row2,col1 to row5,col4
-            __1_2_3_4_5_6_7
-            0  
-            1       1
-            2 2 2   1   
-            3 1 2 2 2
-            4 1 1 2 1 2
-            5 1 1 1 2 2 1 2
-        
-            Check diagonalt upp (--) om över eller = 3. neråt (++) om den är under eller = 3 samt baklänges.
-            (1,2) if 1 or 2 v do (1++,2++), (2,3)v (2++,3++) (3,4)v (3++,4++) (4,5)v   Winner
-            Diagonal loop start from 0,0 etc...
-        */
   }
 
 
   render() {
-    /*
-    Om spelare 1 har en bricka på en position ska det div-element som
-  motsvarar positionen få css - klassen red.Om spelare 2 har en bricka på en
-  position ska det div - element som motsvarar positionen få css - klassen yellow.
-
-  // Done
-  Metoden ska hitta elementet med css - klassen board i
-  DOM: en och byta innehållet i detta element till en html - struktur med
-  42 stycken div - element i rad.Dessa motsvarar de olika positionerna
-  på brädet från det övre vänstra hörnet till det nedre högre hörnet.
-
-  // Done
-  Vart och ett av de 42 div - element som beskrivs ovan ska i sin tur
-  innehålla ett div - element.Detta ska vara tomt.
-
-  // Done
-  Metoden ska använda hjälpmetoden $ för att ta tag i rätt element i DOM: en.
-  */
     let $container = $(".board");// Copy board to local
     $(".board").innerHTML = "";// Remove old board
     let $blockDiv, $playerDiv;
@@ -200,23 +169,6 @@ class Board {
       }
     }
   }
-
-
-
-  /*for (let i = 0; i < markers; i++) {
-    $blockDiv = document.createElement("div");
-    //$blockDiv.className = "block";
-    $playerDiv = document.createElement("div");
-    //$playerDiv.className = "player";
-    $blockDiv.append($playerDiv);
-    $container.append($blockDiv);
-
-  }*/
-
-
-
-
-
 
 
   addEventListener() {
@@ -240,12 +192,6 @@ class Board {
     $button.innerHTML = 'Restart game';
     $('body').append($button);
   }*/
-
-
-  //addEventListener();
-  //render();
-  //tellTurn(currentPlayer);
-
 };
 
 // make it possible to test on backend
