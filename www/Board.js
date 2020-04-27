@@ -11,8 +11,7 @@ class Board {
       [0, 0, 0, 0, 0, 0, 0],
       [0, 0, 0, 0, 0, 0, 0]
     ];
-    this.playInProgress = 1;
-    this.currentPlayer;
+    this.currentPlayer = 1;
     this.playInProgress = false;
     this.winner;
     this.listener;
@@ -50,6 +49,7 @@ class Board {
     this.currentPlayer = this.currentPlayer === 1 ? 2 : 1; // switch player
     this.game.tellTurn(this.currentPlayer);
     this.playInProgress = false;
+    console.log(this.matrix);
     return true;
   }
 
@@ -66,13 +66,13 @@ class Board {
     let width = this.matrix[0].length;
     let height = this.matrix.length;
     // let row = 0, cell = 0;
-    let counter = 0;
+    //let counter = 0;
 
     for (let row = 0; row < height; row++) {
-      console.log('Check row: ' + row);
+      //console.log('Check row: ' + row);
       //counter++;
       for (let cell = 0; cell < width; cell++) {
-        console.log('Check cell: ' + cell);
+        //console.log('Check cell: ' + cell);
         let marker = this.matrix[row][cell];//Check from this cell positon 
         //console.log('Check cell: ' + cell + ' row: ' + row + ' round: ' + counter + ' marker: ' + marker);
         //counter++;
@@ -80,7 +80,7 @@ class Board {
           draw = false;
           continue;
         }
-        console.log('Marker: ' + marker);
+        //console.log('Marker: ' + marker);
         //Kolla horisontellt
         //console.log('Kolla horisontellt ' + cell +' : ' + row + ' draw: ' + draw);
         if (cell + 3 < width &&
@@ -90,14 +90,14 @@ class Board {
           for (let i = 0; i < 4; i++) {// Det är nog en bugg här
             combo[i] = new Array(row, cell + i);
           }
-          console.log(combo[0], combo[1], combo[2], combo[3]);
+          //console.log(combo[0], combo[1], combo[2], combo[3]);
           winningPlayer.combo = combo;
           return winningPlayer;
         }
         //console.log(this.matrix[row][cell]);
         //Kolla vertikalt
         if (row + 3 < height) {
-          console.log('Kolla vertikalt ' + cell + ': ' + row + ': ' + this.matrix[row][cell] + 'height:' + height);
+          //console.log('Kolla vertikalt ' + cell + ': ' + row + ': ' + this.matrix[row][cell] + 'height:' + height);
           if (
             marker === this.matrix[row + 1][cell] &&
             marker === this.matrix[row + 2][cell] &&
@@ -105,7 +105,7 @@ class Board {
             for (let i = 0; i < 4; i++) {
               combo[i] = new Array(row + i, cell);
             }
-            console.log(combo[0], combo[1], combo[2], combo[3]);
+            //console.log(combo[0], combo[1], combo[2], combo[3]);
             winningPlayer.combo = combo;
             return winningPlayer;
           }
@@ -118,7 +118,7 @@ class Board {
             for (let i = 0; i < 4; i++) {
               combo[i] = new Array(row + i, cell + i);
             }
-            console.log(combo[0], combo[1], combo[2], combo[3]);
+            //console.log(combo[0], combo[1], combo[2], combo[3]);
             winningPlayer.combo = combo;
             return winningPlayer;
           }
@@ -189,7 +189,6 @@ class Board {
       for (let cell of row) {
         $blockDiv = document.createElement("div");
         $playerDiv = document.createElement("div");
-        //await sleep(16);// Just for async fun, and test sleep.
         if (cell === 1) {
           $blockDiv.className = "yellow";
         }
@@ -200,7 +199,6 @@ class Board {
         $container.append($blockDiv);// Building new board from matrix
       }
     }
-    // this.winCheck();// Move this call to makeMove() 
   }
 
 

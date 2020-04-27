@@ -12,7 +12,7 @@ class Game {
 
   tellTurn(player) {
     if (player !== 1 && player !== 2) { throw (new Error('player must be 1 or 2')) }
-    if (player === 1) {
+    if (player === 2) {
       $('.message').innerHTML = 'Röds tur...';
     } else {
       $('.message').innerHTML = 'Guls tur...';
