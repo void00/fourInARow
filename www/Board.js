@@ -191,10 +191,10 @@ class Board {
         $playerDiv = document.createElement("div");
         //await sleep(16);// Just for async fun, and test sleep.
         if (cell === 1) {
-          $blockDiv.className = "yellow";
+          $blockDiv.className = "red";
         }
         else if (cell === 2) {
-          $blockDiv.className = "red";
+          $blockDiv.className = "yellow";
         }
         $blockDiv.append($playerDiv);
         $container.append($blockDiv);// Building new board from matrix
