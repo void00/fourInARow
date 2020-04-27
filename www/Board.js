@@ -140,21 +140,6 @@ class Board {
         */
   }
 
-<<<<<<< HEAD
-  render() {
-    let $container = $(".board");// Copy board to local
-    $(".board").innerHTML = "";// Remove old board
-    let $blockDiv, $playerDiv;
-
-
-    for (let row of this.matrix) {
-      for (let cell of row) {
-        $blockDiv = document.createElement("div");
-        $playerDiv = document.createElement("div");
-        //await sleep(16);// Just for async fun, and test sleep.
-        if (cell === 1) {
-          $blockDiv.className = "yellow";
-=======
 
   render() {
     /*
@@ -196,18 +181,13 @@ class Board {
           $blockDiv.append($playerDiv);
           $container.append($blockDiv);
           i++;
->>>>>>> Added MakeaMove
         }
-        else if (cell === 2) {
+        if (cell === 2) {
           $blockDiv.className = "red";
         }
         $blockDiv.append($playerDiv);
         $container.append($blockDiv);// Building new board from matrix
       }
-<<<<<<< HEAD
-    }
-    this.winCheck();// Move this call to makeMove() 
-=======
 
 
 
@@ -221,7 +201,6 @@ class Board {
 
       }*/
     }
->>>>>>> Added MakeaMove
   }
 
   markWin(combo) { }
@@ -230,31 +209,6 @@ class Board {
 
 
 
-<<<<<<< HEAD
-  addEventHandlers() {
-    $('body').addEventListener('click', (event) => {
-      //console.log(event);
-    });
-
-    //
-    this.listener = (event) => {
-      let $thing = event.target.closest('div');//div
-      if ($thing) {
-        event.target.parentNode.className = 'yellow';// just for fun, test
-        // add current player draw to matrix
-      }
-
-    };
-    $('body').addEventListener('click', this.listener);
-
-
-    // testing
-    /* this.resetButtonListener = (event) => {
-       this.removeEventHandlers();
-     };
-     $('.restart-button').addEventListener('click', this.resetButtonListener);*/
-
-=======
   addEventListener() {
     this.listener = (event) => {
       let $slot = event.target.closest('.board > div');
@@ -263,7 +217,6 @@ class Board {
       this.makeMove(whichColumn);
     }
     $('.board').addEventListener('click', this.listener);
->>>>>>> Added MakeaMove
   }
 
   removeEventHandlers() {
