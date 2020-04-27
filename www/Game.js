@@ -34,11 +34,11 @@ class Game {
   }
 
   addEventHandler() {
-    $('.message').addEventListener('click', event => {
+    if ($('.message').addEventListener('click', event => {
       //if (event.target.closest('again')) {
       // this.start();
       //   }
-    });
+    }));
 
     this.listener = (event) => {
       let $thing = event.target.closest('.message');
