@@ -1,8 +1,7 @@
 class Game {
 
   constructor() {
-    this.board = {};
-    this.addEventHandler();
+    //this.addEventListener();
     this.start();
     this.listener;
   }
@@ -12,13 +11,17 @@ class Game {
   }
 
   tellTurn(player) {
-    if (player !== 1 && player2) throw console.error('player must be 1 or 2')
-    if (player === 1) { $('.message').innerHTML = 'Röds tur...'; } else $('.message').innerHTML = 'Guls tur...';
+    if (player !== 1 && player !== 2) { throw (new Error('player must be 1 or 2')) }
+    if (player === 1) {
+      $('.message').innerHTML = 'Röds tur...';
+    } else {
+      $('.message').innerHTML = 'Guls tur...';
+    }
   }
 
   over(won) {
-    if (won !== 1 && won !== 2 && won !== 'draw') throw console.error(' won must be "draw", 1 or 2');
-    let message = 'Det blev oavgjort!';
+    if (won !== 1 && won !== 2 && won !== 'draw') { throw (new Error(' won must be "draw", 1 or 2')) };
+    let message = 'Det blev oavgjort';
     switch (won) {
       case 1: message = "Röd vann!"; break;
       case 2: message = 'Gul vann!'; break;

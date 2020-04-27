@@ -1,28 +1,56 @@
 class Board {
+
   constructor(game) {
-    if (!game instanceof Game) throw console.error(' Game must be instance of game');
+    if (!game instanceof Game) { throw (new Error(' Game must be instance of game')); }
     this.game = game;
     this.matrix = [
-      [2, 2, 2, 0, 0, 2, 2],
-      [1, 2, 1, 0, 0, 0, 0],
-      [2, 1, 1, 0, 1, 0, 0],
-      [1, 2, 1, 0, 0, 0, 0],
-      [2, 1, 1, 2, 2, 0, 0],
-      [2, 1, 2, 1, 1, 1, 2]
+      [0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0]
     ];
     this.playInProgress = 1;
     this.currentPlayer;
     this.playInProgress = false;
     this.winner;
     this.listener;
-    this.combo;
-    this.addEventHandlers();
+    //this.addRestartButton();
+    this.addEventListener();
+    this.winCheck();
     this.render();
-    //this.removeEventHandlers();
-    //this.winCheck();
-
   }
-  async makeMove(column) { }
+
+  async makeMove(column) {
+    if (!Number.isInteger(column) || column > 6 || column < 0) {
+      throw (new Error('column must be an integer between 0 and 6'))
+    }
+    if (this.playInProgress) { return null; }
+    if (this.matrix[0][column] !== 0) { return false; } // the column is full
+    this.playInProgress = true;
+    let row = 0;
+    while (true) {
+      this.matrix[row][column] = this.currentPlayer;
+      this.render();
+      await sleep(50);
+      if (row + 1 < 6 && this.matrix[row + 1][column] === 0) { // the slot has room to fall down
+        this.matrix[row][column] = 0; // remove the slot
+        row++; // go to next row
+      }
+      else { // the slot can't fall any further
+        break; // exit the loop
+      }
+    }
+    if (this.winCheck()) {
+      // things left to write here when we have
+      // written winCheck
+    }
+    this.currentPlayer = this.currentPlayer === 1 ? 2 : 1; // switch player
+    this.game.tellTurn(this.currentPlayer);
+    this.playInProgress = false;
+    return true;
+  }
 
   // winCheck fungerar inte 100%, mer testning krävs. 
   winCheck() {
@@ -133,28 +161,67 @@ class Board {
         */
   }
 
+
   render() {
-    let $container = $(".board");// Copy board to local
-    $(".board").innerHTML = "";// Remove old board
-    let $blockDiv, $playerDiv;
+    /*
+    Om spelare 1 har en bricka på en position ska det div-element som
+  motsvarar positionen få css - klassen red.Om spelare 2 har en bricka på en
+  position ska det div - element som motsvarar positionen få css - klassen yellow.
 
+  // Done
+  Metoden ska hitta elementet med css - klassen board i
+  DOM: en och byta innehållet i detta element till en html - struktur med
+  42 stycken div - element i rad.Dessa motsvarar de olika positionerna
+  på brädet från det övre vänstra hörnet till det nedre högre hörnet.
 
-    for (let row of this.matrix) {
-      for (let cell of row) {
-        $blockDiv = document.createElement("div");
-        $playerDiv = document.createElement("div");
-        //await sleep(16);// Just for async fun, and test sleep.
-        if (cell === 1) {
-          $blockDiv.className = "yellow";
+  // Done
+  Vart och ett av de 42 div - element som beskrivs ovan ska i sin tur
+  innehålla ett div - element.Detta ska vara tomt.
+
+  // Done
+  Metoden ska använda hjälpmetoden $ för att ta tag i rätt element i DOM: en.
+  */
+    let markers = this.matrix;
+    let $container = $(".board");
+    let $blockDiv, $playerDiv, u = 0, i = 0;
+    $('.board').innerHTML = ''; // empty the board before draing new slots
+    for (let position of this.matrix) {
+      for (let i = 0; i < 6; i++) {
+        for (let position in this.matrix[i]) {
+          $blockDiv = document.createElement("div");
+          $playerDiv = document.createElement("div");
+          if (markers[u][i] == 1) {
+            //$playerDiv.innerHTML = markers[u][i];
+            $blockDiv.className = "red";
+          }
+          else if (markers[u][i] === 2) {
+            //$playerDiv.innerHTML = markers[u][i];
+            $blockDiv.className = "yellow";
+          }
+
+          $blockDiv.append($playerDiv);
+          $container.append($blockDiv);
+          i++;
         }
-        else if (cell === 2) {
+        /*if (cell === 2) {
           $blockDiv.className = "red";
-        }
+        }/*/
         $blockDiv.append($playerDiv);
         $container.append($blockDiv);// Building new board from matrix
       }
+
+
+
+      /*for (let i = 0; i < markers; i++) {
+        $blockDiv = document.createElement("div");
+        //$blockDiv.className = "block";
+        $playerDiv = document.createElement("div");
+        //$playerDiv.className = "player";
+        $blockDiv.append($playerDiv);
+        $container.append($blockDiv);
+
+      }*/
     }
-    this.winCheck();// Move this call to makeMove() 
   }
 
   markWin(combo) { }
@@ -163,29 +230,14 @@ class Board {
 
 
 
-  addEventHandlers() {
-    $('body').addEventListener('click', (event) => {
-      //console.log(event);
-    });
-
-    //
+  addEventListener() {
     this.listener = (event) => {
-      let $thing = event.target.closest('div');//div
-      if ($thing) {
-        event.target.parentNode.className = 'yellow';// just for fun, test
-        // add current player draw to matrix
-      }
-
-    };
-    $('body').addEventListener('click', this.listener);
-
-
-    // testing
-    /* this.resetButtonListener = (event) => {
-       this.removeEventHandlers();
-     };
-     $('.restart-button').addEventListener('click', this.resetButtonListener);*/
-
+      let $slot = event.target.closest('.board > div');
+      let $allSlots = [...$$('.board > div')];
+      let whichColumn = $allSlots.indexOf($slot) % 7;
+      this.makeMove(whichColumn);
+    }
+    $('.board').addEventListener('click', this.listener);
   }
 
   removeEventHandlers() {
@@ -204,8 +256,6 @@ class Board {
   //addEventListener();
   //render();
   //tellTurn(currentPlayer);
-
-
 
 };
 
