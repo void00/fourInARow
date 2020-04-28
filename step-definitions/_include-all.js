@@ -6,7 +6,9 @@ module.exports = function includeAll() {
   global.sleep = (ms) => new Promise(res => setTimeout(res, ms));
   global.$ = (x) => DOM.window.document.querySelector(x);
   global.$$ = (x) => DOM.window.document.querySelectorAll(x);
+  global.document = DOM.window.document; // ADDED LINE
   // import the classes (that will add themselves to global)
   require('../www/Game.js');
   require('../www/Board.js');
 }
+
