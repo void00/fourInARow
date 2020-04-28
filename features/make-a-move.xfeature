@@ -23,7 +23,6 @@ Feature: The async method that makes player moves
 
 
 
-      Feature Description
       """
       async makeMove(column)
       Metoden ska vara async.

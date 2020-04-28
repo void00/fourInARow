@@ -14,7 +14,7 @@ class Board {
     ];*/
     this.currentPlayer = 1;
     this.playInProgress = false;
-    this.winner;
+    //this.winner;
     this.listener;
     this.addEventListener();
     this.winCheck();
@@ -65,7 +65,7 @@ class Board {
 
   markWin(combo) {
     if (!combo === 'draw') {
-      let i, u;
+      let u;
       for (let i of combo) {
         u = i[0] * 7 + i[1];
         let $children = [...$('.board').children];//[...$$('.board > div')];//
