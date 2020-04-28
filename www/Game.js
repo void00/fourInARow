@@ -35,7 +35,6 @@ class Game {
     $button.className = 'again';
     $button.innerHTML = ' Spela igen';
     $('body').append($button);
-    console.log(won);
     if (won !== 1 && won !== 2 && won !== 'draw')
       throw (new Error(' won must be "draw", 1 or 2'));
     else if (won === 1)
@@ -45,19 +44,14 @@ class Game {
     else
       $('.message').innerHTML = 'Det blev oavgjort';
   }
-
-
   /*
-  switch (won) {
-    case 1:
-      $('.message').innerHTML = "Röd vann!";
-      break;
-    case 2:
-      $('.message').innerHTML = 'Gul vann!';
-      break;
-  }
-  //$('.message').innerHTML = message + ' <button type="button" id = "PlayAgainbutton"> Play Again</button>';
- 
+    if (won !== 1 && won !== 2 && won !== 'draw') { throw (new Error(' won must be "draw", 1 or 2')) };
+    let message = 'Det blev oavgjort';
+    switch (won) {
+      case 1: message = "Röd vann!"; break;
+      case 2: message = 'Gul vann!'; break;
+    }
+    $('.message').innerHTML = message + ' <button type="button" id = "PlayAgainbutton"> Play Again</button>';
 }*/
 
   addEventHandler() {
