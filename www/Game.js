@@ -68,18 +68,16 @@ class Game {
     this.listener = (event) => {
       let $thing = event.target.closest('.again');
       if ($thing) {
-        //removeEventHandlers($thing);
-        //this.start();
-        //console.log(event + ' : Event i game klassen' + $thing);
-        window.location.reload();//Kanske inte det bästa sättet men det funkar innan remove är klar.   
+        //this.removeEventHandlers();
+        this.start();
       }
     };
     $('body').addEventListener('click', this.listener);
   }
+
   removeEventHandlers() {
     $('body').removeEventListener('click', this.listener);
   }
-
 
 }
 // make it possible to test on backend

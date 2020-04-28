@@ -14,10 +14,11 @@ class Board {
     ];*/
     this.currentPlayer = 1;
     this.playInProgress = false;
-    this.winner;
-    this.listener;
+    //this.winner;
+    //this.listener;
     this.addEventListener();
-    this.winCheck();
+    this.game.tellTurn(this.currentPlayer);
+    //this.winCheck();
     this.render();
   }
 
@@ -42,11 +43,6 @@ class Board {
       }
     }
     if (this.winCheck()) {
-      /* if (!this.markWin(this.winCheck().winner) === 'draw') {
-         this.markWin(this.winCheck().combo);
-         this.game.over(this.winCheck().winner);
-         return true;
-       }*/
       this.markWin(this.winCheck().combo);
       this.game.over(this.winCheck().winner);
       return true;
@@ -57,39 +53,17 @@ class Board {
     return true;
   }
 
-  /*Metoden ska ta emot inargumentet combo - en array 
-  skapad enligt specifikationerna som finns angivna för metoden winCheck.
-
-  Metoden ska hitta de fyra div-element som 
-  motsvarar positionerna angivna i combo och lägga 
-  till css-klassen win till vart och ett av dessa div-element.
-
-  Metoden ska använda hjälpmetoden $ för att ta tag i rätt element i DOM:en.*/
-
   markWin(combo) {
     let position;
     for (let match of combo) {
-      position = match[0] * 7 + match[1];
-      let $children = [...$('.board').children];//[...$$('.board > div')];//
+      position = match[0] * 7 + match[1];//Make winning position flat
+      let $children = [...$('.board').children];
+      //for (let child of $children)
       for (let child = 0; child < $children.length; child++) {
-        if (child === position)
-          $children[child].className = 'win';
+        if (position === child)//Check if div child is a winner
+          $children[child].className = 'win';//Set winning div to winner
       }
     }
-
-    /*
-  for (let row = 0; row <= 3; row++) {// Write this as "for of" instead of ordinary for.
-    for (let cell = 0; cell <= 1; cell++) {
-      i = combo[row];
-      u = i[0] * 7 + i[1];
-      let $children = [...$$('.board > div')];
-      for (let c = 0; c < $children.length; c++) {
-        if (c === u)
-          $children[c].className = 'win';
-      }
-    }
-  }*/
-
   }
 
   winCheck() {
@@ -103,11 +77,11 @@ class Board {
     for (let row = 0; row < height; row++) {
       for (let cell = 0; cell < width; cell++) {
         let marker = this.matrix[row][cell];//Check from this cell positon 
-        if (marker === 0) {// Hoppa över nollor och sätt draw till false
+        if (marker === 0) {// Find empty space and set draw to false
           draw = false;
           continue;
         }
-        if (cell + 3 < width &&//Kolla horisontellt
+        else if (cell + 3 < width &&//Check horizontal
           marker === this.matrix[row][cell + 1] &&
           marker === this.matrix[row][cell + 2] &&
           marker === this.matrix[row][cell + 3]) {
@@ -117,7 +91,7 @@ class Board {
           winningPlayer.combo = combo;
           return winningPlayer;
         }
-        if (row + 3 < height) {//Kolla vertikalt
+        else if (row + 3 < height) {//Check vertical
           if (
             marker === this.matrix[row + 1][cell] &&
             marker === this.matrix[row + 2][cell] &&
@@ -128,7 +102,7 @@ class Board {
             winningPlayer.combo = combo;
             return winningPlayer;
           }
-          if (cell + 3 < width &&//Kolla diagonalt höger
+          else if (cell + 3 < width &&//Check diagonal right
             marker === this.matrix[row + 1][cell + 1] &&
             marker === this.matrix[row + 2][cell + 2] &&
             marker === this.matrix[row + 3][cell + 3]) {
@@ -138,7 +112,7 @@ class Board {
             winningPlayer.combo = combo;
             return winningPlayer;
           }
-          if (cell - 3 >= 0 &&//Kolla diagonalt vänster
+          else if (cell - 3 >= 0 &&//Check diagonal left
             marker === this.matrix[row + 1][cell - 1] &&
             marker === this.matrix[row + 2][cell - 2] &&
             marker === this.matrix[row + 3][cell - 3]) {
@@ -150,7 +124,7 @@ class Board {
           }
         }
       }
-      if (draw === true) {
+      if (draw === true) {//Check if it's a draw
         winningPlayer.winner = 'draw';
         winningPlayer.combo = 'draw';
         return winningPlayer;
@@ -158,7 +132,6 @@ class Board {
     }
     return false;// No winner, no draw keep going.
   }
-
 
   render() {
     let $container = $(".board");// Copy board to local
@@ -179,7 +152,6 @@ class Board {
       }
     }
   }
-
 
   addEventListener() {
     this.listener = (event) => {
