@@ -17,12 +17,12 @@ class Board {
     //this.winner;
     //this.listener;
     this.addEventListener();
-    this.game.tellTurn(this.currentPlayer);
     //this.winCheck();
     this.render();
   }
 
   async makeMove(column) {
+    this.game.tellTurn(this.currentPlayer);//blink
     if (!Number.isInteger(column) || column > 6 || column < 0) {
       throw (new Error('column must be an integer between 0 and 6'))
     }
