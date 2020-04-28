@@ -67,13 +67,13 @@ class Board {
   Metoden ska använda hjälpmetoden $ för att ta tag i rätt element i DOM:en.*/
 
   markWin(combo) {
-    let u;
-    for (let i of combo) {
-      u = i[0] * 7 + i[1];
+    let position;
+    for (let match of combo) {
+      position = match[0] * 7 + match[1];
       let $children = [...$('.board').children];//[...$$('.board > div')];//
-      for (let c = 0; c < $children.length; c++) {
-        if (c === u)
-          $children[c].className = 'win';
+      for (let child = 0; child < $children.length; child++) {
+        if (child === position)
+          $children[child].className = 'win';
       }
     }
 
@@ -189,10 +189,6 @@ class Board {
       this.makeMove(whichColumn);
     }
     $('.board').addEventListener('click', this.listener);
-  }
-
-  removeEventHandlers() {
-    $('body').removeEventListener('click', this.listener);
   }
 
 };

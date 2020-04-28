@@ -62,20 +62,24 @@ class Game {
   addEventHandler() {
     $('body').addEventListener('click', event => {
       if (event.target.closest('.again')) {
-        //this.start();
       }
     });
 
     this.listener = (event) => {
       let $thing = event.target.closest('.again');
       if ($thing) {
-        //console.log(event + ' : Event i game klassen' + $thing);
-        window.location.reload();//Kanske inte det bästa sättet men det funkar för nu.
+        //removeEventHandlers($thing);
         //this.start();
+        //console.log(event + ' : Event i game klassen' + $thing);
+        window.location.reload();//Kanske inte det bästa sättet men det funkar innan remove är klar.   
       }
     };
     $('body').addEventListener('click', this.listener);
   }
+  removeEventHandlers() {
+    $('body').removeEventListener('click', this.listener);
+  }
+
 
 }
 // make it possible to test on backend
