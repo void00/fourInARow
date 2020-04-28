@@ -64,16 +64,16 @@ class Board {
   Metoden ska använda hjälpmetoden $ för att ta tag i rätt element i DOM:en.*/
 
   markWin(combo) {
-    //if (!combo === 'draw') {
-    let i, u;
-    for (let i of combo) {
-      u = i[0] * 7 + i[1];
-      let $children = [...$('.board').children];//[...$$('.board > div')];//
-      for (let c = 0; c < $children.length; c++) {
-        if (c === u)
-          $children[c].className = 'win';
+    if (!combo === 'draw') {
+      let i, u;
+      for (let i of combo) {
+        u = i[0] * 7 + i[1];
+        let $children = [...$('.board').children];//[...$$('.board > div')];//
+        for (let c = 0; c < $children.length; c++) {
+          if (c === u)
+            $children[c].className = 'win';
+        }
       }
-      //   }
     }
 
     /*
