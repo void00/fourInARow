@@ -14,7 +14,7 @@ class Board {
     ];*/
     this.currentPlayer = 1;
     this.playInProgress = false;
-    //this.winner;
+    this.winner;
     this.listener;
     this.addEventListener();
     this.winCheck();
@@ -42,9 +42,12 @@ class Board {
       }
     }
     if (this.winCheck()) {
-      if (!this.markWin(this.winCheck().winner) === 'draw') {
-        this.markWin(this.winCheck().combo);
-      }
+      /* if (!this.markWin(this.winCheck().winner) === 'draw') {
+         this.markWin(this.winCheck().combo);
+         this.game.over(this.winCheck().winner);
+         return true;
+       }*/
+      this.markWin(this.winCheck().combo);
       this.game.over(this.winCheck().winner);
       return true;
     }
@@ -64,15 +67,13 @@ class Board {
   Metoden ska använda hjälpmetoden $ för att ta tag i rätt element i DOM:en.*/
 
   markWin(combo) {
-    if (!combo === 'draw') {
-      let u;
-      for (let i of combo) {
-        u = i[0] * 7 + i[1];
-        let $children = [...$('.board').children];//[...$$('.board > div')];//
-        for (let c = 0; c < $children.length; c++) {
-          if (c === u)
-            $children[c].className = 'win';
-        }
+    let u;
+    for (let i of combo) {
+      u = i[0] * 7 + i[1];
+      let $children = [...$('.board').children];//[...$$('.board > div')];//
+      for (let c = 0; c < $children.length; c++) {
+        if (c === u)
+          $children[c].className = 'win';
       }
     }
 
@@ -151,6 +152,7 @@ class Board {
       }
       if (draw === true) {
         winningPlayer.winner = 'draw';
+        winningPlayer.combo = 'draw';
         return winningPlayer;
       }
     }
