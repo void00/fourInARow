@@ -3,19 +3,19 @@ class Board {
   constructor(game) {
     if (!game instanceof Game) { throw (new Error(' Game must be instance of game')); }
     this.game = game;
-    this.matrix = [
+    this.matrix = Array(6).fill().map(() => Array(7).fill(0));
+    /*this.matrix = [
       [0, 0, 0, 0, 0, 0, 0],
       [0, 0, 0, 0, 0, 0, 0],
       [0, 0, 0, 0, 0, 0, 0],
       [0, 0, 0, 0, 0, 0, 0],
       [0, 0, 0, 0, 0, 0, 0],
       [0, 0, 0, 0, 0, 0, 0]
-    ];
+    ];*/
     this.currentPlayer = 1;
     this.playInProgress = false;
     this.winner;
     this.listener;
-    //this.addRestartButton();
     this.addEventListener();
     this.winCheck();
     this.render();
@@ -159,10 +159,10 @@ class Board {
         $blockDiv = document.createElement("div");
         $playerDiv = document.createElement("div");
         if (cell === 1) {
-          $blockDiv.className = "yellow";
+          $blockDiv.className = "red";
         }
         else if (cell === 2) {
-          $blockDiv.className = "red";
+          $blockDiv.className = "yellow";
         }
         $blockDiv.append($playerDiv);
         $container.append($blockDiv);// Building new board from matrix
@@ -182,16 +182,9 @@ class Board {
   }
 
   removeEventHandlers() {
-    //console.log('Testing: ', this.listener)
     $('body').removeEventListener('click', this.listener);
   }
 
-  /*addRestartButton() {// Flyttad till Game won()
-    let $button = document.createElement('button');
-    $button.className = 'restart-button';
-    $button.innerHTML = 'Restart game';
-    $('body').append($button);
-  }*/
 };
 
 // make it possible to test on backend
