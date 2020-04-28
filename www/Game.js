@@ -11,12 +11,12 @@ class Game {
   }
 
   tellTurn(player) {
-    if (player !== 1 && player !== 2) { throw (new Error('player must be 1 or 2')) }
-    if (player === 1) {
+    if (player !== 1 && player !== 2)
+      throw (new Error('player must be 1 or 2'));
+    else if (player === 1)
       $('.message').innerHTML = 'Röds tur...';
-    } else {
+    else
       $('.message').innerHTML = 'Guls tur...';
-    }
   }
 
   /*Metoden ska ta emot inargumentet won som ska ha värdet “draw”, 
@@ -35,20 +35,15 @@ class Game {
     $button.className = 'again';
     $button.innerHTML = ' Spela igen';
     $('body').append($button);
-
     console.log(won);
-
-    //if (won !== 1 && won !== 2 && won !== 'draw') { throw (new Error(' won must be "draw", 1 or 2')) };
-
-    if (won === 1) {
+    if (won !== 1 && won !== 2 && won !== 'draw')
+      throw (new Error(' won must be "draw", 1 or 2'));
+    else if (won === 1)
       $('.message').innerHTML = 'Röd vann!';
-    }
-    else if (won === 2) {
+    else if (won === 2)
       $('.message').innerHTML = 'Guls vann!';
-    }
-    else {
+    else
       $('.message').innerHTML = 'Det blev oavgjort';
-    }
   }
 
 
@@ -76,7 +71,7 @@ class Game {
       let $thing = event.target.closest('.again');
       if ($thing) {
         //console.log(event + ' : Event i game klassen' + $thing);
-        window.location.reload();
+        window.location.reload();//Kanske inte det bästa sättet men det funkar för nu.
         //this.start();
       }
     };

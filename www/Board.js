@@ -3,15 +3,15 @@ class Board {
   constructor(game) {
     if (!game instanceof Game) { throw (new Error(' Game must be instance of game')); }
     this.game = game;
-    this.matrix = Array(6).fill().map(() => Array(7).fill(0));
-    /*this.matrix = [
-      [0, 0, 0, 0, 0, 0, 0],
-      [0, 0, 0, 0, 0, 0, 0],
-      [0, 0, 0, 0, 0, 0, 0],
-      [0, 0, 0, 0, 0, 0, 0],
-      [0, 0, 0, 0, 0, 0, 0],
-      [0, 0, 0, 0, 0, 0, 0]
-    ];*/
+    //this.matrix = Array(6).fill().map(() => Array(7).fill(0));
+    this.matrix = [
+      [0, 1, 2, 1, 2, 1, 2],
+      [2, 1, 2, 1, 2, 1, 2],
+      [2, 1, 2, 1, 2, 1, 2],
+      [1, 2, 1, 2, 1, 2, 1],
+      [1, 2, 1, 2, 1, 2, 1],
+      [1, 2, 1, 2, 1, 2, 1]
+    ];
     this.currentPlayer = 1;
     this.playInProgress = false;
     this.winner;
@@ -42,15 +42,12 @@ class Board {
       }
     }
     if (this.winCheck()) {
-      //console.log(this.winCheck());
-      this.markWin(this.winCheck().combo);
+      if (!this.markWin(this.winCheck().winner) === 'draw') {
+        this.markWin(this.winCheck().combo);
+      }
       this.game.over(this.winCheck().winner);
-      console.log('We have a winner: ' + this.winCheck().winner);
       return true;
-      // things left to write here when we have
-      // written winCheck
     }
-    console.log('Do we have a winner: ' + this.winCheck());
     this.currentPlayer = this.currentPlayer === 1 ? 2 : 1; // switch player
     this.game.tellTurn(this.currentPlayer);
     this.playInProgress = false;
@@ -67,14 +64,16 @@ class Board {
   Metoden ska använda hjälpmetoden $ för att ta tag i rätt element i DOM:en.*/
 
   markWin(combo) {
+    //if (!combo === 'draw') {
     let i, u;
     for (let i of combo) {
       u = i[0] * 7 + i[1];
-      let $children = [...$$('.board > div')];
+      let $children = [...$('.board').children];//[...$$('.board > div')];//
       for (let c = 0; c < $children.length; c++) {
         if (c === u)
           $children[c].className = 'win';
       }
+      //   }
     }
 
     /*
@@ -150,9 +149,9 @@ class Board {
           }
         }
       }
-      if (draw === true) {// Kolla så denna funkar, det har ej gjorts.
-        console.log('DRAW!');
-        return winningPlayer.winner = 'draw';
+      if (draw === true) {
+        winningPlayer.winner = 'draw';
+        return winningPlayer;
       }
     }
     return false;// No winner, no draw keep going.
