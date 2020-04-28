@@ -1,5 +1,5 @@
 
-Feature: The async method that makes player moves
+Feature: A player makes move
   The async method accepts an column with an integer value of 0 to 6
 
   Scenario: An player clicks a column to drop his/her marker

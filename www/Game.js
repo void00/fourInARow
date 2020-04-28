@@ -40,7 +40,7 @@ class Game {
     else if (won === 1)
       $('.message').innerHTML = 'Röd vann!';
     else if (won === 2)
-      $('.message').innerHTML = 'Guls vann!';
+      $('.message').innerHTML = 'Gul vann!';
     else
       $('.message').innerHTML = 'Det blev oavgjort';
   }
