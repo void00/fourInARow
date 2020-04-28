@@ -68,18 +68,27 @@ class Board {
 
   markWin(combo) {
     let i, u;
-    for (let row = 0; row <= 3; row++) {
-      for (let cell = 0; cell <= 1; cell++) {
-        i = combo[row];
-        u = i[0] * 7;
-        u += i[1];
-        let $children = [...$$('.board > div')];
-        for (let c = 0; c < $children.length; c++) {
-          if (c === u)
-            $children[c].className = 'win';
-        }
+    for (let i of combo) {
+      u = i[0] * 7 + i[1];
+      let $children = [...$$('.board > div')];
+      for (let c = 0; c < $children.length; c++) {
+        if (c === u)
+          $children[c].className = 'win';
       }
     }
+
+    /*
+  for (let row = 0; row <= 3; row++) {// Write this as "for of" instead of ordinary for.
+    for (let cell = 0; cell <= 1; cell++) {
+      i = combo[row];
+      u = i[0] * 7 + i[1];
+      let $children = [...$$('.board > div')];
+      for (let c = 0; c < $children.length; c++) {
+        if (c === u)
+          $children[c].className = 'win';
+      }
+    }
+  }*/
 
   }
 
