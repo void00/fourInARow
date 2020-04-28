@@ -70,6 +70,8 @@ class Game {
       if ($thing) {
         //this.removeEventHandlers();
         this.start();
+        //console.log(event + ' : Event i game klassen' + $thing);
+        //window.location.reload();//Kanske inte det bästa sättet men det funkar innan remove är klar.   
       }
     };
     $('body').addEventListener('click', this.listener);
