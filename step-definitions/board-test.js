@@ -5,7 +5,7 @@ module.exports = function () {
   let game;
 
 }
-this.Given(/^ Game is created $/, function () {
+this.When(/^ Game is created $/, function () {
   game = new Game();
   board = new board();
 });
@@ -18,4 +18,4 @@ this.Then(/^If game is not an instance of Game, it should give an error$/, funct
   expect(() => new board({})).to.throw(
     Error, expectedError,
   );
-}); 
+});
