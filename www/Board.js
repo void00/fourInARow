@@ -3,15 +3,15 @@ class Board {
   constructor(game) {
     if (!game instanceof Game) { throw (new Error(' Game must be instance of game')); }
     this.game = game;
-    this.matrix = Array(6).fill().map(() => Array(7).fill(0));
-    /*this.matrix = [
-      [0, 0, 0, 1, 2, 1, 2],
-      [0, 0, 0, 1, 2, 1, 2],
-      [0, 0, 0, 1, 2, 1, 2],
+    this.matrixx = Array(6).fill().map(() => Array(7).fill(0));
+    this.matrix = [
+      [0, 1, 2, 1, 2, 1, 2],
+      [0, 1, 2, 1, 2, 1, 2],
+      [0, 1, 2, 1, 2, 1, 2],
       [1, 2, 1, 2, 1, 2, 1],
       [1, 2, 1, 2, 1, 2, 1],
       [1, 2, 1, 2, 1, 2, 1]
-    ];*/
+    ];
     this.currentPlayer = 1;
     this.playInProgress = false;
     //this.winner;
@@ -43,6 +43,7 @@ class Board {
       }
     }
     if (this.winCheck()) {
+      //console.log(this.winCheck());
       this.markWin(this.winCheck().combo);
       this.game.over(this.winCheck().winner);
       return true;
@@ -54,6 +55,7 @@ class Board {
   }
 
   markWin(combo) {
+    //console.log(combo);
     let position;
     for (let match of combo) {
       position = match[0] * 7 + match[1];//Make winning position flat
@@ -68,7 +70,7 @@ class Board {
 
   winCheck() {
     let winningPlayer = {};
-    winningPlayer.winner = this.currentPlayer;
+    winningPlayer.winner;
     let combo = new Array(4);// Winning positions
     let draw = true;
     let width = this.matrix[0].length;
@@ -88,6 +90,7 @@ class Board {
           for (let i = 0; i < 4; i++) {
             combo[i] = new Array(row, cell + i);
           }
+          winningPlayer.winner = this.currentPlayer;
           winningPlayer.combo = combo;
           return winningPlayer;
         }
@@ -99,6 +102,7 @@ class Board {
             for (let i = 0; i < 4; i++) {
               combo[i] = new Array(row + i, cell);
             }
+            winningPlayer.winner = this.currentPlayer;
             winningPlayer.combo = combo;
             return winningPlayer;
           }
@@ -109,6 +113,7 @@ class Board {
             for (let i = 0; i < 4; i++) {
               combo[i] = new Array(row + i, cell + i);
             }
+            winningPlayer.winner = this.currentPlayer;
             winningPlayer.combo = combo;
             return winningPlayer;
           }
@@ -119,6 +124,7 @@ class Board {
             for (let i = 0; i < 4; i++) {
               combo[i] = new Array(row + i, cell - i);
             }
+            winningPlayer.winner = this.currentPlayer;
             winningPlayer.combo = combo;
             return winningPlayer;
           }
