@@ -8,7 +8,7 @@ module.exports = function () {
 }
 this.When(/^ new Board is created $/, function () {
   game = new Game();
-  board = new board();
+  board = new Board();
 });
 
 this.Then(/^Game should be an instance of game$/, function () {
