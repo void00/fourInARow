@@ -7,7 +7,7 @@ class Board {
     /*this.matrix = [
       [0, 1, 2, 1, 2, 1, 2],
       [0, 1, 2, 1, 2, 1, 2],
-      [0, 1, 2, 1, 2, 1, 2],
+      [2, 1, 2, 1, 2, 1, 2],
       [1, 2, 1, 2, 1, 2, 1],
       [1, 2, 1, 2, 1, 2, 1],
       [1, 2, 1, 2, 1, 2, 1]
@@ -52,12 +52,10 @@ class Board {
   }
 
   markWin(combo) {
-    //console.log(combo);
     let position;
+    let $children = [...$('.board').children];
     for (let match of combo) {
       position = match[0] * 7 + match[1];//Make winning position flat
-      let $children = [...$('.board').children];
-      //for (let child of $children)
       for (let child = 0; child < $children.length; child++) {
         if (position === child)//Check if div child is a winner
           $children[child].classList.add('win')//Set winning div to winner

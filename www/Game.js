@@ -9,8 +9,8 @@ class Game {
   start() {
     this.redPlayer = 'Röd';
     this.yellowPlayer = 'Gul';
-    // this.board = new Board(this);
-    this.board = new BoardWithAI(this, 2); // välj spelare 1 eller 2 för AI:n
+    //this.board = new Board(this);
+    this.board = new BoardWithAI(this, 1); // välj spelare 1 eller 2 för AI:n
   }
 
   tellTurn(player) {
