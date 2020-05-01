@@ -4,6 +4,7 @@ Feature: Check for winner or if draw
 
 
       """
+      npm --feature=featureFileName test
       winCheck()
       Ska titta på hela brädet och kontrollera om någon har vunnit
       eller om det har blivit oavgjort.

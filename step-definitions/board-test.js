@@ -22,15 +22,3 @@ this.Then(/^If game is not an instance of Game, it should give an error$/, funct
   );
 });
 
-this.Then(/^board positions should have the value of (d+)$/, function (value) {
-  value = +value;
-  expect(board.matrix)to.deep.equal([
-
-  ]
-
-  )
-));
-
-this.Then(/^ CurrentPlayer is set to (d+)$/)
-
-this.Then(/^)
