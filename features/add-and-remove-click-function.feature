@@ -1,10 +1,9 @@
 Feature:There is an addEventListeter
-  The add event listener should....
-
-  Scenario: Check to see if there is an addEventListener...
-
-      Feature Description
+      The add event listener should....
       """
+      Scenario: Check to see if there is an addEventListener...
+
+
       addEventListener()
       Metoden ska addera en händelselyssnare/funktion för click-händelser till elementet med css-klassen board i DOM:en.
 

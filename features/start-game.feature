@@ -1,3 +1,6 @@
+Feature: Start the game
+      start game
+
       """
       Klassen Game
       Klassen Game ska innehålla följande metoder.
