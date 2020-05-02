@@ -1,4 +1,25 @@
-Klassen Board
+Feature: There is an start
+  start board
+
+  Scenario: A new Game creates a new board
+    Given that a new Game is created
+    Then it should create a new Board
+    And game should be of an instance of Game
+    And it should create a matrix 7 x 6 with 0 in all cells
+    And currentPlayers should be 1
+    And playInProgres should be false
+
+  Scenario: A board is renderd on screen
+    Given that a new board is created with playInProgress set to false
+    Then addEventListener should be called
+    And then render should be called
+    And currentPlayers should be passed to tellTurn as an argument
+
+
+
+
+      """
+      Klassen Board
       Klassen Board ska innehålla följande metoder.
       (Vilka egenskaper som ska finnas anges i de metoder som sätter dessa.).
 
@@ -23,6 +44,7 @@ Klassen Board
       """
 
 
+<<<<<<< HEAD:features/boardfeature
   # Dela upp i 2. game är start, board är logiken, flytta game till start-game.feature
   """Scenario: A new Game creates a new board
     Given that a new Game is created
@@ -32,9 +54,6 @@ Klassen Board
     And it should create a matrix 7 x 6 with 0 in all cells
     And currentPlayers should be 1
     And playInProgres should be false
+=======
+>>>>>>> 96b968307b0419101f7df68fc4d3079a68b9b7ba:features/setup-board.feature
 
-  Scenario: A board is renderd on screen
-    Given  that a new board i created with playInProgres set to false
-    Then addEventHandler should be called
-    And then render should be called
-    And currentPlayers should be passed to tellTurn as an argument
