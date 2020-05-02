@@ -2,7 +2,7 @@ require('./_include-all')();
 
 module.exports = function () {
 
-  //Scenario: The game should be playeble 
+  //Scenario: The game should be playable 
   this.Given(/^that a new game is started$/, function () {
 
   });

@@ -1,7 +1,7 @@
 require('./_include-all')();
 
 module.exports = function () {
-  //Scenario: Board should be clickeble
+  //Scenario: Board should be clickable
   this.Given(/^that the board has an eventhandler$/, function () {
 
   });
