@@ -19,13 +19,3 @@ Feature: Beginning of a new game
     And render should be called
     And currentPlayer should be passed to tellTurn as an argument
 
-    And game should be of an instance of Game
-    And it should create a matrix 7 x 6 with 0 in all cells
-    And currentPlayers should be 1
-    And playInProgress should be false
-
-  Scenario: A 2 board is renderd on screen
-    Given that a new board is created with playInProgress set to false
-    Then addEventListener should be called
-    And then render should be called
-    And currentPlayers should be passed to tellTurn as an argument

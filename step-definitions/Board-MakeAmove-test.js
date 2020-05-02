@@ -6,6 +6,9 @@ module.exports = function () {
 
 class FakeBoard extends Board {
   wincheck() {
+    winCheckCalled = true;
+  }
+  render() {
 
   }
 }
@@ -13,6 +16,9 @@ class FakeBoard extends Board {
 
 class FakeGame extends Game {
   start() { this.board = new FakeBoard(this); }
+  tellTurn(player) {
+
+  }
 }
 
 let fakeGame = new FakeGame();
@@ -20,7 +26,7 @@ let fakeGame = new FakeGame();
 
 
 
-this.Given(/^that method returns null when PlayInProgress is set to true$/, function () {
-  expect(fakeGame.board.PlayInProgress).to.be.true;
-});
+//this.Given(/^that method returns null when PlayInProgress is set to true$/, function () {
+  //expect(fakeGame.board.PlayInProgress).to.be.true;
+//});
 
