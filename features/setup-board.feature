@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 Feature: Beginning of a new game
 Testing things when a new game is getting started.
 
@@ -14,6 +15,13 @@ Feature: There is an start
     Given that a new Game is created
     Then it should create a new Board
     <<<<<<< HEAD
+=======
+Feature: Beginning of a new game
+  Testing things when a new game is getting started.
+
+
+  Scenario: A new Game creates a new board
+>>>>>>> 965f796b786926b5bd3cb5d263fe49136e80435f
     Then game should be of an instance of Game
     And it should create a matrix 6 x 7 with 0 in all cells
     And currentPlayer should be 1
@@ -25,7 +33,10 @@ Feature: There is an start
     And render should be called
     And currentPlayer should be passed to tellTurn as an argument
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 965f796b786926b5bd3cb5d263fe49136e80435f
     And game should be of an instance of Game
     And it should create a matrix 7 x 6 with 0 in all cells
     And currentPlayers should be 1
@@ -35,6 +46,7 @@ Feature: There is an start
     Given that a new board is created with playInProgress set to false
     Then addEventListener should be called
     And then render should be called
+<<<<<<< HEAD
     And currentPlayers should be passed to tellTurn as an argument
 
 
@@ -81,3 +93,6 @@ Feature: There is an start
 >>>>>>> 96b968307b0419101f7df68fc4d3079a68b9b7ba:features/setup-board.feature
 >>>>>>> 96b968307b0419101f7df68fc4d3079a68b9b7ba
 
+=======
+    And currentPlayers should be passed to tellTurn as an argument
+>>>>>>> 965f796b786926b5bd3cb5d263fe49136e80435f

@@ -1,5 +1,24 @@
 Feature: The async method that makes player moves
-      The async method accepts a column with an integer value of 0 to 6
+  The async method accepts an column with an integer value of 0 to 6
+
+  Scenario: An player clicks a column to drop his/her marker
+    When a player drops a marker in a column
+    Given game is in play and column have space for a marker
+    Then set playInProgress to true
+    And the marker should fall down to the last empty space
+    And stop there
+
+
+  Scenario: When player clicks on an column that is full
+    When Player clicks on a column without empty space
+    Then Method should return false
+
+  Scenario: If player clicks when game is in play
+    Then Method should return null
+
+  Scenario: If makeMove get an column with value over 6 or under 0
+    Then an error should be throw with message "column must be an integer between 0 and 6"
+
 
       """
       async makeMove(column)
@@ -42,6 +61,7 @@ Feature: The async method that makes player moves
 
 
 
+  <<<<<<< HEAD:features/make-a-move.feature
   Scenario: A player clicks a column to drop his/her marker
     When a player drops a marker in a column
     Given game is in play and column have space for a marker
@@ -60,5 +80,7 @@ Feature: The async method that makes player moves
   Scenario: If makeMove get an column with value over 6 or under 0
     Then an error should be throw with message "column must be an integer between 0 and 6"
 
+=======
+>>>>>>> 965f796b786926b5bd3cb5d263fe49136e80435f:features/make-a-move.xfeature
 
 
