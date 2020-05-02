@@ -1,11 +1,9 @@
 Feature: Beginning of a new game
   Testing things when a new game is getting started.
 
-
   Scenario: A new Game creates a new board
     Given that a new Game is created
     Then it should create a new Board
-
 
   Scenario: A new Game creates a new board
     Then game should be of an instance of Game

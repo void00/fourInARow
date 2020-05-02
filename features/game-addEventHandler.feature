@@ -8,3 +8,4 @@ Feature:The game should have a button for play again
       Händelselyssnaren ska detektera om man har klickat på knappen med
       css-klassen again och i så fall anropa metoden start.
       """
+  Scenario:The game should add an
