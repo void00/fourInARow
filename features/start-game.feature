@@ -63,7 +63,7 @@ Feature: Start the game
       css-klassen again och i så fall anropa metoden start.
       """
 
-  <<<<<<< HEAD
+
   Scenario: The game can only accept 2 players
     Given that the board game only accepts 1 or 2 players
     And if there is not 1 or 2 players
@@ -83,5 +83,4 @@ Feature: Start the game
     Then it should render “Gul vann!” if won is 2 as innerHTML of .message
     Then it should render “Det blev oavgjort!” if won is “draw” as innerHTML of .message
     And it should render a button with the text ”Spela igen” and css-class ”again”
-=======
->>>>>>> 965f796b786926b5bd3cb5d263fe49136e80435f
+
