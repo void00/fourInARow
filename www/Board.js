@@ -12,6 +12,7 @@ class Board {
       [1, 2, 1, 2, 1, 2, 1],
       [1, 2, 1, 2, 1, 2, 1]
     ];*/
+
     this.currentPlayer = 1;
     this.playInProgress = false;
     this.addEventListener();
