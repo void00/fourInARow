@@ -12,6 +12,7 @@ class Board {
       [1, 2, 1, 2, 1, 2, 1],
       [1, 2, 1, 2, 1, 2, 1]
     ];*/
+    this.listener;
     this.currentPlayer = 1;
     this.playInProgress = false;
     this.addEventListener();
@@ -43,6 +44,7 @@ class Board {
       //console.log(this.winCheck());
       this.markWin(this.winCheck().combo);
       this.game.over(this.winCheck().winner);
+      this.removeEventListeners();
       return true;
     }
     this.currentPlayer = this.currentPlayer === 1 ? 2 : 1; // switch player
@@ -162,6 +164,10 @@ class Board {
       this.makeMove(whichColumn);
     }
     $('.board').addEventListener('click', this.listener);
+  }
+
+  removeEventListeners() {
+    $('.board').removeEventListener('click', this.listener);
   }
 
 };
