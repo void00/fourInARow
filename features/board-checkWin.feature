@@ -1,25 +1,6 @@
 Feature: Check for winner or if draw
-      As a player I would like to see if I have won.
-      So that we can play again.
-
-
-      """
-      npm --feature=featureFileName test
-      winCheck()
-      Ska titta på hela brädet och kontrollera om någon har vunnit
-      eller om det har blivit oavgjort.
-
-      Om någon har vunnit ska metoden returnera ett objekt.
-      Objektet ska ha egenskaperna winner satt till
-      vinnaren (1 eller 2), samt combo - en array av 4 arrayer,
-      där varje inre array är en position på brädet [radnummer, kolumnnummer].
-
-      Om det har blivit oavgjort ska metoden returnera ett objekt
-      med egenskapen winner satt till strängen “draw”.
-
-      Om ingen har vunnit och det inte har blivit oavgjort ska metoden
-      returnera värdet false.
-      """
+  As a player I would like to see if I have won.
+  So that we can play again.
 
   Scenario: When a player has won
     Given that a player has won
