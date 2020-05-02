@@ -14,7 +14,7 @@ class Board {
     ];*/
     this.currentPlayer = 1;
     this.playInProgress = false;
-    //this.winner;
+    this.game.tellTurn(this.currentPlayer);
     //this.listener;
     this.addEventListener();
     //this.winCheck();
