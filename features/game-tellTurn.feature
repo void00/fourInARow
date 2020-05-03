@@ -16,4 +16,4 @@ Feature:The game should swtich between two players
 
   Scenario: When player has used it's turn second player should be reminded about it's turn
     Given player 1 have made its draw and no winner or draw is announced
-    Then message element in the DOM should get the text “Guls tur…”
+    Then message element in the DOM should get the text “Guls tur...”
