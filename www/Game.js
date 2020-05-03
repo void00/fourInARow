@@ -39,6 +39,7 @@ class Game {
       $('.message').innerHTML = 'Det blev oavgjort!';
 
     $(".message").append($button);
+    //console.log($(".message"));
   }
   /*
   Metoden ska ta emot inargumentet won som ska ha värdet “draw”, 
