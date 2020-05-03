@@ -1,11 +1,7 @@
 Feature:The game should have a button for play again
-      So we can restart
-      """
-      addEventListener()
-      Metoden ska addera en händelselyssnare/funktion för click-händelser till
-      elementet med css-klassen message i DOM:en.
+  So we can restart
 
-      Händelselyssnaren ska detektera om man har klickat på knappen med
-      css-klassen again och i så fall anropa metoden start.
-      """
-  Scenario:The game should add an
+  Scenario:The game should add an reset button when won or draw is made
+    Given the game is over
+    Then there should be a button with an eventListener added in element message
+    And when the button is clicked start should be called
