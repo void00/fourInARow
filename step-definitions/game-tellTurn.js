@@ -22,7 +22,7 @@ module.exports = function () {
   });
 
   //Scenario: When player has used it's turn second player should be reminded about it's turn
-  //Not necessary, just as an example board setup.
+  //Matrix not necessary, just as an example of this scenario board setup.
   this.Given(/^player (\d+) have made its draw and no winner or draw is announced$/, function (player1) {
     board.matrix = [
       [0, 1, 2, 1, 2, 1, 2],
