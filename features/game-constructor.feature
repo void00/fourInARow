@@ -1,4 +1,4 @@
-Feature: The game should beable to start and be clickable
+Feature: The game should be able to start and be clickable
   So we can start playing the game
 
   Scenario: The game should be playable
