@@ -1,6 +1,13 @@
 require('./_include-all')();
 
 module.exports = function () {
+  class testGame extends Game {
+
+  }
+
+
+  let game = new testGame();
+  let board = game.board;
 
   //Scenario: The Game class should have a method 
   //tellTurn that takes a player with value 1 or 2 if not error should be thrown 
@@ -9,6 +16,7 @@ module.exports = function () {
   });
   this.Then(/^if that player is passed to tellTurn should throw “player must be (\d+) or (\d+)”$/, function (value1, value2) {
 
+    expect(tellTurn(3)).to.throw(Error, 'player must be 1 or 2');
   });
 
   //Scenario: When player has used it's turn second player should be reminded about it's turn

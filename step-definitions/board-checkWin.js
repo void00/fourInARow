@@ -32,12 +32,12 @@ require('./_include-all')();
 
 module.exports = function () {
 
-  class testGame extends Game { }
+  class TestGame extends Game { }
 
   let game;
   let board;
 
-  game = new testGame();
+  game = new TestGame();
   board = game.board;
 
   //Scenario: When a player has won
