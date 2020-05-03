@@ -160,8 +160,10 @@ class Board {
       let $slot = event.target.closest('.board > div');
       let $allSlots = [...$$('.board > div')];
       let whichColumn = $allSlots.indexOf($slot) % 7;
-      if (whichColumn > -1)//Fix for column -1
+      if (whichColumn > -1) {//Fix for column -1, When player "drag" clicks   
         this.makeMove(whichColumn);
+        return;
+      }
     }
     $('.board').addEventListener('click', this.listener);
   }
