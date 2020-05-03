@@ -26,7 +26,7 @@ module.exports = function () {
   this.Then(/^there should be a button with an eventListener added in element message$/, function () {
 
     //let $button = document.createElement('button');
-    expect($('.again')).to.be.a('button').that.include('Spela igen');
+    expect($('.message')).to.be.a('button').that.include('Spela igen');
   });
 
 
