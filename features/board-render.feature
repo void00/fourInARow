@@ -1,4 +1,12 @@
-Feature: Render method
+Feature:The board should have a render method
+        So it can update the screen with proper graphics
+
+        Scenario:When a player makes a move
+                Given a player made a move and
+                Then the render should be called
+                And render should make 42 div element in the board element
+                And if the position in the matrix has a value of 1 the representative div in board should be set to class red
+                And if
                         The method...
 
                         """
