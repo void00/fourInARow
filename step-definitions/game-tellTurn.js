@@ -34,9 +34,7 @@ module.exports = function () {
     ];
   });
   this.Then(/^message element in the DOM should get the text “Guls tur\.\.\.”$/, function () {
-    testCurrentPlayer = 2;
-    game.tellTurn(testCurrentPlayer);
-    let message = $('.message').innerHTML;
-    expect(message).to.equal('Guls tur...');
+    game.tellTurn(2);
+    expect($('.message').innerHTML).to.equal('Guls tur...');
   });
 }
