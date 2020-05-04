@@ -9,8 +9,7 @@ module.exports = function () {
   //Given over(won is called)
 
   this.Given(/^over won is called$/, function () {
-    let game = new Game();
-    expect(game.overCalled()).to.be.true;
+    game.over(2);
   });
 
   //Then check to see if wons value is draw, either 1 or 2, 
