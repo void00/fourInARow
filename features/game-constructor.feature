@@ -5,3 +5,4 @@ Feature: The game should be able to start and be clickable
     Given that a new game is started
     Then start should be called
     And addEventHandler should be called
+

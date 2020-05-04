@@ -21,11 +21,7 @@ module.exports = function () {
       [1, 0, 0, 0, 0, 0, 0]
     ];
   });
-
-
   this.Then(/^there should be a button with an eventListener added in element message$/, function () {
-
-
 
   });
 
