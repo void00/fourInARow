@@ -21,13 +21,17 @@ module.exports = function () {
       [1, 0, 0, 0, 0, 0, 0]
     ];
   });
+
+
   this.Then(/^there should be a button with an eventListener added in element message$/, function () {
 
+    //let $button = document.createElement('button');
+    expect($('.again')).to.be.a('button').that.include('Spela igen');
   });
 
 
   this.Then(/^when the button is clicked start should be called$/, function () {
-    game = new TestGame();
+
   });
 
 }
