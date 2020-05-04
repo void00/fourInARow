@@ -41,27 +41,6 @@ class Game {
     $(".message").append($button);
     //console.log($(".message"));
   }
-  /*
-  Metoden ska ta emot inargumentet won som ska ha värdet “draw”, 
-  1 eller 2 . Om så inte är fallet ska felet ‘won must be “draw”, 1 or 2’ kastas.
-  
-  Metoden ska ta tag i DOM-elementet med css-klassen message och byta dess innehåll till texten
-  
-  “Det blev oavgjort!” om won är “draw”.
-  “Röd vann!” om won är 1.
-  “Gul vann!” om won är 2.
-  Dessutom ska en knapp (button-element) läggas till i DOM-elementet med 
-  css-klassen message. Knappen ska ha css-klassen again och texten “Spela igen”.
-
-    if (won !== 1 && won !== 2 && won !== 'draw') { throw (new Error(' won must be "draw", 1 or 2')) };
-    let message = 'Det blev oavgjort';
-    switch (won) {
-      case 1: message = "Röd vann!"; break;
-      case 2: message = 'Gul vann!'; break;
-    }
-    $('.message').innerHTML = message + ' <button type="button" id = "PlayAgainbutton"> Play Again</button>';
-}
-*/
 
   addEventHandler() {
     $('body').addEventListener('click', event => {
