@@ -6,24 +6,30 @@ module.exports = function () {
     addEventHandler() {
       this.addEventListenerCalled = true;
     }
+    removeEventHandlers() {
+      this.removeEventHandlersWasCalled = true;
+    }
   }
   class TestGame extends Game { }
 
   let game;
   let board;
 
-  game = new TestGame();
-  board = game.board;
+
+
+  let gameEvent = new TestGameEvent();
+  let boardEvent = gameEvent.board;
+
 
 
   //Scenario: Board should be clickable
   this.Given(/^that the board has an eventhandler$/, function () {
     let gameEvent = new TestGameEvent();
-    //let boardEvent = gameEvent.board;
     expect(gameEvent.addEventListenerCalled).to.be.true;
   });
   this.Then(/^A click should detect what coulmn has been clicked on$/, function () {
-
+    game = new TestGame();
+    board = game.board;
     expect(game.listener).to.exist;// Don't know how to check this
   });
   this.Then(/^call makeMove with the same column$/, function () {
@@ -63,5 +69,15 @@ module.exports = function () {
   });
   this.Then(/^the addEventListener should find that element in DOM with the help function \$$/, function () {
     expect($('.yellow')).to.exist;
+  });
+
+  //Scenario: Board should have an removeEventListeners that removes listeners after game over
+  this.Given(/^that play is on$/, function () {
+    expect(gameEvent).to.exist;
+  });
+
+  this.Then(/^board should have an removeEventListeners$/, function () {
+    gameEvent.removeEventHandlers();// This is stupid.
+    expect(gameEvent.removeEventHandlersWasCalled).to.be.true;
   });
 }

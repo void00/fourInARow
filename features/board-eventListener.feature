@@ -9,5 +9,9 @@ Feature: Clicks on the board should be detected and used
             And the eventlistener should be saved as an property in this.listener
             And the addEventListener should find that element in DOM with the help function $
 
+      Scenario:Board should have an removeEventListeners that removes listeners after game over
+            Given that play is on
+            Then board should have an removeEventListeners
+
 
 

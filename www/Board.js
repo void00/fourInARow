@@ -49,7 +49,7 @@ class Board {
       }
     }
     if (this.winCheck()) {
-      //console.log(this.winCheck());
+      this.removeEventHandlers();
       this.markWin(this.winCheck().combo);
       this.game.over(this.winCheck().winner);
       return true;
@@ -172,6 +172,9 @@ class Board {
       this.makeMove(whichColumn);
     }
     $('.board').addEventListener('click', this.listener);
+  }
+  removeEventHandlers() {
+    $('.board').removeEventListener('click', this.listener);
   }
 
 };
