@@ -2,14 +2,8 @@ require('./_include-all')();
 
 module.exports = function () {
 
-  class TestGame extends Game { }
-
-  let game;
-  let board;
-
-  game = new TestGame();
-  board = game.board;
-
+  let game = new Game;
+  let board = game.board;
 
   this.Given(/^the game is over$/, function () {
     board.matrix = [
@@ -24,14 +18,17 @@ module.exports = function () {
 
 
   this.Then(/^there should be a button with an eventListener added in element message$/, function () {
-
-
-
+    let trueMess = '' + $(".message");
+    let shouldBe = 'class="again" > Spela igen</button ></div > ';
+    console.log('trueMess: ' + trueMess + ' shouldBe:' + shouldBe);
+    expect($(trueMess).to.be.equal(shouldBe));
   });
 
 
+
+
   this.Then(/^when the button is clicked start should be called$/, function () {
-    game = new TestGame();
+    let game = new Game;
   });
 
 }

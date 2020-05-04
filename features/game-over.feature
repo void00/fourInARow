@@ -1,9 +1,9 @@
-Feature:The game should beable to have a winner
+Feature:To check if the game is over
   So we can have a looser
 
-  Scenario:The over method should take an argument with 'draw', 1 or 2
-    Given this is false
-    Then an error should be thrown with ‘won must be “draw”, 1 or 2’
+  Scenario:Check to see if there is a argument won
+    Given over won is called
+    Then check to see if wons value is draw, either 1 or 2, If not then error "won must be "draw, 1 or 2"
 
   Scenario:If we have a winner
     Given we have a winner
