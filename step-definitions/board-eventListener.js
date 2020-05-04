@@ -15,12 +15,8 @@ module.exports = function () {
   let game;
   let board;
 
-
-
   let gameEvent = new TestGameEvent();
   let boardEvent = gameEvent.board;
-
-
 
   //Scenario: Board should be clickable
   this.Given(/^that the board has an eventhandler$/, function () {
@@ -44,7 +40,7 @@ module.exports = function () {
   });
   this.Then(/^the eventlistener should be saved as an property in this\.listener$/, function () {
 
-    expect(game.listener).to.exist;// Well not enugh, but some....
+    expect(game.listener).to.exist;// Well not enough, but something....
 
     $('.yellow').click();//Click is happening but in yellow space for now.
 
