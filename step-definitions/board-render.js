@@ -40,6 +40,7 @@ module.exports = function () {
   });
   this.Then(/^if the position in the matrix has a value of (\d+) the representative div in board should be set to class red$/, function (playerRed) {
     expect($('.red')).to.exist;
+    expect([...$$('.board > div')][38].innerHTML).to.equal('<div></div>');
   });
   this.Then(/^if the position in the matrix has a value of (\d+) the representative div in board should be set to class yellow$/, function (playerYellow) {
     expect($('.yellow')).to.exist;
