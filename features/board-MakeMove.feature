@@ -5,6 +5,7 @@ Feature: Make a move in the game
     Given That a player have made a move
     Then makeMove returns null when PlayInProgress is set to true
     And makeMove should return false when column is full
+    And makeMove should throw "column must be an integer between 0 and 6" if marker placed out of column
     And PlayInProgress is set to true
 
   Scenario:Player is droping marker in board

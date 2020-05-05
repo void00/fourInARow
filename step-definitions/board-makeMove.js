@@ -10,14 +10,48 @@ module.exports = function () {
   let game = new Game();
   let board = new Board(game);
 
+  /*
+  this.Then(/^some step$/, async function () {
+    expect(await board.makeMove(5)).to.be.true;
+  });
+  
+  this.Then(/^some other step$/, async function () {
+    expect(await board.makeMove(8).throwCheck).to.throw(
+    Error,
+    'column must be an integer between 0 and 6',
+    'Expected makeMove to throw an error on out of bound column'
+  );
+});*/
+
   //Scenario: Player makes a move
-  this.Given(/^That a player have made a move$/, function () {
+  this.Given(/^That a player have made a move$/, async function () {
+    board.matrix = [
+      [0, 0, 2, 1, 2, 1, 2],
+      [0, 1, 2, 1, 2, 1, 2],
+      [0, 1, 2, 1, 2, 1, 2],
+      [1, 2, 1, 2, 1, 2, 1],
+      [1, 2, 1, 2, 1, 2, 1],
+      [1, 2, 1, 2, 1, 2, 1]
+    ];
+    board.render();
+    await board.makeMove(1);
   });
   this.Then(/^makeMove returns null when PlayInProgress is set to true$/, function () {
+    expect(board.playInProgress).to.be.false;
   });
-  this.Then(/^makeMove should return false when column is full$/, function () {
+  this.Then(/^makeMove should return false when column is full$/, async function () {
+    expect(await board.makeMove(3)).to.be.false;
   });
-  this.Then(/^PlayInProgress is set to true$/, function () {
+  this.Then(/^makeMove should throw "([^"]*)" if marker placed out of column$/, async function (err) {
+    expect(await board.makeMove(8).throwCheck).to.throw(
+      Error,
+      err,
+      'Expected makeMove to throw an error on out of bound column'
+    );
+  });
+  this.Then(/^PlayInProgress is set to true$/, async function () {
+    await board.makeMove(0);
+    expect(board.playInProgress).to.be.true;
   });
 
   //Scenario: Player is droping marker in board
@@ -37,38 +71,28 @@ module.exports = function () {
   });
 
   //Scenario: When player made a move
-
-  this.Given(/^no winner nor draw$/, function (callback) {
-    // Write code here that turns the phrase above into concrete actions
-    callback(null, 'pending');
+  this.Given(/^no winner nor draw$/, function () {
   });
-  this.Then(/^the property currentPlayer are switched$/, function (callback) {
-    // Write code here that turns the phrase above into concrete actions
-    callback(null, 'pending');
+  this.Then(/^the property currentPlayer are switched$/, function () {
   });
-  this.Then(/^the game tellTurn method is called with board currentPlayer as an argument$/, function (callback) {
-    // Write code here that turns the phrase above into concrete actions
-    callback(null, 'pending');
+  this.Then(/^the game tellTurn method is called with board currentPlayer as an argument$/, function () {
   });
-  this.Then(/^playInProgress property should be set to false$/, function (callback) {
-    // Write code here that turns the phrase above into concrete actions
-    callback(null, 'pending');
+  this.Then(/^playInProgress property should be set to false$/, function () {
   });
-  this.Then(/^the method makeMove should return true$/, function (callback) {
-    // Write code here that turns the phrase above into concrete actions
-    callback(null, 'pending');
+  this.Then(/^the method makeMove should return true$/, function () {
   });
 
-
-
-
-
-
-
-
-
-
-  //... other step definitions...
+  //Scenario: Winner or draw is announced
+  this.Given(/^The last draw is made$/, function () {
+  });
+  this.Then(/^removeEventListener should be called$/, function () {
+  });
+  this.Then(/^winCheck is returning an object with property combo markWin should be called with winCheck as an argument$/, function () {
+  });
+  this.Then(/^game over method should get winChecks winner property value as an argument$/, function () {
+  });
+  this.Then(/^makeMove should return true$/, function () {
+  });
 
   //HOW TO HANDLE ASYNC METHODS:
 
