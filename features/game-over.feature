@@ -8,8 +8,8 @@ Feature:The game should beable to have a winner
 
   Scenario:If we have a winner
     Given we have a winner
-    Then if won is 1 message element in DOM should read “Röd vann!”
-    And if won is 2 message element in DOM should read “Gul vann!”
+    Then if won is 1 message element in DOM should read 'Röd vann!'
+    And if won is 2 message element in DOM should read 'Gul vann!'
 
   Scenario:If game is over without winner
     Given the board is full and no winner is found

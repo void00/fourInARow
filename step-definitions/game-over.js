@@ -31,21 +31,25 @@ module.exports = function () {
   });
 
   // player1 won 
-  this.Then(/^if won is (\d+) message element in DOM should read “Röd vann!”$/, function (redPlayer) {
+  this.Then(/^if won is (\d+) message element in DOM should read 'Röd vann!'$/, function (player1) {
     game.over(1)
-    expect($('.message').innerHTML).to.equal('Röd vann!');
+    let str = '<button type="button" class="again">Spela igen</button>';
+    expect($('.message').innerHTML).to.equal('Röd vann!' + str);
 
   });
 
   //player2 won 
-  this.Then(/^if won is (\d+) message element in DOM should read “Gul vann!”$/, function (yellowPlayer) {
+  this.Then(/^if won is (\d+) message element in DOM should read 'Gul vann!'$/, function (player2) {
     game.over(2)
-    expect($('.message').innerHTML).to.equal('Gul vann!');
+    let str = '<button type="button" class="again">Spela igen</button>';
+    expect($('.message').innerHTML).to.equal('Gul vann!' + str);
 
   });
 
   //Board full no winner found 
-  this.Given(/^the board is full and no winner is found$/, function (callback) {
+  this.Given(/^the board is full and no winner is found$/, function () {
+    game = new Game();
+
     board.matrix = [
       [1, 1, 2, 1, 2, 1, 2],
       [2, 1, 2, 1, 2, 1, 2],
@@ -57,13 +61,14 @@ module.exports = function () {
 
   });
 
-  this.Then(/^if won is 'draw' message element in DOM should read “Det blev oavgjort!”$/, function (callback) {
-    // Write code here that turns the phrase above into concrete actions
-
+  this.Then(/^if won is 'draw' message element in DOM should read “Det blev oavgjort!”$/, function () {
+    game.over(1);
+    game.over(2);
+    expect($('.message').innerHTML = 'Det blev oavgjort!');
   });
 
-  this.Then(/^there should be an button with the text “Spela igen” and class again added to the message element.$/, function (callback) {
-    // Write code here that turns the phrase above into concrete actions
+  this.Then(/^there should be an button with the text “Spela igen” and class again added to the message element.$/, function () {
+    let str = '<button type="button" class="again">Spela igen</button>';
   });
 
 }
