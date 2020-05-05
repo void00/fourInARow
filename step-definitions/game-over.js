@@ -9,31 +9,49 @@ module.exports = function () {
 
   game = new TestGame();
   board = game.board;
+  let testCurrentPlayer;
 
-  //Scenario: The over method should take an argument with 'draw', 1 or 2
-  this.Given(/^this is false$/, function () {
 
+
+  // over won is called 
+  this.Given(/^over won is called$/, function () {
+    game.over(2);
   });
-  this.Then(/^an error should be thrown with ‘won must be “draw”, (\d+) or (\d+)’$/, function (value1, value2) {
 
+
+  //should give error 
+  this.Then(/^check to see if wons value is draw, either (\d+) or (\d+)\. If not then expected error won must be draw, (\d+) or (\d+)$/, function (arg1, arg2, arg3, arg4) {
+    expect(() => game.over()).to.throw(Error, 'won must be “draw”, 1 or 2');
   });
 
-  //Scenario: If we have a winner 
+
+  // we have a winner 
   this.Given(/^we have a winner$/, function () {
-
-  });
-  this.Then(/^if won is (\d+) message element in DOM should read “Röd vann!”$/, function (winnerRed) {
-
-  });
-  this.Then(/^if won is (\d+) message element in DOM should read “Gul vann!”$/, function (winnerYellow) {
-
+    game.over(1);
   });
 
+  // player1 won 
+  this.Then(/^if won is (\d+) message element in DOM should read 'Röd vann!'$/, function (player1) {
+    game.over(1)
+    let str = '<button type="button" class="again">Spela igen</button>';
+    expect($('.message').innerHTML).to.equal('Röd vann!' + str);
 
-  //Scenario: If game is over without winner 
+  });
+
+  //player2 won 
+  this.Then(/^if won is (\d+) message element in DOM should read 'Gul vann!'$/, function (player2) {
+    game.over(2)
+    let str = '<button type="button" class="again">Spela igen</button>';
+    expect($('.message').innerHTML).to.equal('Gul vann!' + str);
+
+  });
+
+  //Board full no winner found 
   this.Given(/^the board is full and no winner is found$/, function () {
+    game = new Game();
+
     board.matrix = [
-      [2, 1, 2, 1, 2, 1, 2],
+      [1, 1, 2, 1, 2, 1, 2],
       [2, 1, 2, 1, 2, 1, 2],
       [2, 1, 2, 1, 2, 1, 2],
       [1, 2, 1, 2, 1, 2, 1],
@@ -42,9 +60,15 @@ module.exports = function () {
     ];
 
   });
-  this.Then(/^if won is 'draw' message element in DOM should read “Det blev oavgjort!”$/, function () {
 
+  this.Then(/^if won is 'draw' message element in DOM should read “Det blev oavgjort!”$/, function () {
+    game.over(1);
+    game.over(2);
+    expect($('.message').innerHTML = 'Det blev oavgjort!');
   });
-  this.Then(/^there should be an button with the text “Spela igen” and class again added to the message element$/, function (string) {
+
+  this.Then(/^there should be an button with the text “Spela igen” and class again added to the message element.$/, function () {
+    let str = '<button type="button" class="again">Spela igen</button>';
   });
+
 }
