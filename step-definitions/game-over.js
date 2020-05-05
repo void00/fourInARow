@@ -10,14 +10,8 @@ module.exports = function () {
   game = new TestGame();
   board = game.board;
 
-<<<<<<< HEAD
-
-
-  //Given over(won is called)
-=======
   //Scenario: The over method should take an argument with 'draw', 1 or 2
   this.Given(/^this is false$/, function () {
->>>>>>> 2ba2b2f6fa0146138ea4172d7c5d9417014cbec4
 
   });
   this.Then(/^an error should be thrown with ‘won must be “draw”, (\d+) or (\d+)’$/, function (value1, value2) {
@@ -27,15 +21,6 @@ module.exports = function () {
   //Scenario: If we have a winner 
   this.Given(/^we have a winner$/, function () {
 
-<<<<<<< HEAD
-
-
-  this.Then(/^check to see if wons value is draw, either (\d+) or (\d+), If not then error "([^"]*)"draw, (\d+) or (\d+)"$/, function () {
-    expect(() => game.over(draw)).to.not.throw(Error,
-      "Sending won as 'draw' should not throw any error"
-    );
-=======
->>>>>>> 2ba2b2f6fa0146138ea4172d7c5d9417014cbec4
   });
   this.Then(/^if won is (\d+) message element in DOM should read “Röd vann!”$/, function (winnerRed) {
 
@@ -56,9 +41,6 @@ module.exports = function () {
       [1, 2, 1, 2, 1, 2, 1]
     ];
 
-<<<<<<< HEAD
-}
-=======
   });
   this.Then(/^if won is 'draw' message element in DOM should read “Det blev oavgjort!”$/, function () {
 
@@ -66,4 +48,3 @@ module.exports = function () {
   this.Then(/^there should be an button with the text “Spela igen” and class again added to the message element$/, function (string) {
   });
 }
->>>>>>> 2ba2b2f6fa0146138ea4172d7c5d9417014cbec4
