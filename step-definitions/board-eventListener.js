@@ -2,7 +2,7 @@ require('./_include-all')();
 
 module.exports = function () {
 
-  class TestGameEvent extends Game {
+  class FakeTestGameEvent extends Game {
     addEventHandler() {
       this.addEventListenerCalled = true;
     }
@@ -15,12 +15,11 @@ module.exports = function () {
   let game;
   let board;
 
-  let gameEvent = new TestGameEvent();
-  let boardEvent = gameEvent.board;
+  let gameEvent = new FakeTestGameEvent();
 
   //Scenario: Board should be clickable
   this.Given(/^that the board has an eventhandler$/, function () {
-    let gameEvent = new TestGameEvent();
+    //let gameEvent = new TestGameEvent();
     expect(gameEvent.addEventListenerCalled).to.be.true;
   });
   this.Then(/^A click should detect what column has been clicked on$/, function () {
@@ -55,13 +54,10 @@ module.exports = function () {
       [1, 0, 0, 0, 0, 0, 0],
       [1, 0, 0, 2, 0, 0, 0]
     ];
-    //console.log('ETT: ' + board.matrix + ' TVÅ:' + board.matrix2);
     expect(board.matrix).to.deep.equal(board.matrix2);
-
     //game.addEventListener(event);
     //expect(game.listener).to.have.a.property('event');
     //expect(game.listener).to.include({});
-
   });
   this.Then(/^the addEventListener should find that element in DOM with the help function \$$/, function () {
     expect($('.yellow')).to.exist;
@@ -76,4 +72,5 @@ module.exports = function () {
     gameEvent.removeEventHandlers();// This is stupid.
     expect(gameEvent.removeEventHandlersWasCalled).to.be.true;
   });
+
 }

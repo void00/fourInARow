@@ -61,7 +61,8 @@ module.exports = function () {
   });
   this.Then(/^PlayInProgress is set to true$/, async function () {
     await board.makeMove(0);
-    expect(board.playInProgress).to.be.true;//This only works when making draw or winning move
+    //This only works when making draw or winning move
+    expect(board.playInProgress).to.be.true;
   });
 
   //Scenario: Player is droping marker in board
@@ -99,7 +100,7 @@ module.exports = function () {
     // No can do!
   });
   this.Then(/^check if column looks right$/, function () {
-    //This check is done when marker is droped
+    //This check is done when marker is dropped
   });
   this.Then(/^method winCheck should be called to look for winner \(for in a row\) or a draw$/, async function () {
     game = new Game();
@@ -192,31 +193,5 @@ module.exports = function () {
     ];
     expect(await board.makeMove(0)).to.be.true;
   });
-
-  //HOW TO HANDLE ASYNC METHODS:
-
-  //expect - to.equal, to.not.equal, to.be, to.not.be etc:
-  //Add async to the step function
-  //and await before the async method whose 
-  //return value you want to check
-  /*
-this.Then(/^some step$/, async function () {
-expect(await board.makeMove(5)).to.be.true;
-});*/
-
-  //expect - to.throw, to.not.throw:
-  //Add async to the step function
-  //INSTEAD OF encapsulating the call to the method
-  //you expect to throw (or not throw) in a function 
-  //ADD await before it and .throwCheck after it
-  //(only works if you have required the _async-helpers.js file)
-  /*
-  this.Then(/^some other step$/, async function () {
-  expect(await board.makeMove(8).throwCheck).to.throw(
-  Error,
-  'column must be an integer between 0 and 6',
-    'Expected makeMove to throw an error on out of bound column'
-      );
-    });*/
 
 }

@@ -33,4 +33,5 @@ module.exports = function () {
     expect($('.board').children[41].className).to.equal('win');
     expect($('.board').children[0].className).to.not.equal('win');
   });
+
 }
