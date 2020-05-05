@@ -10,7 +10,7 @@ Feature: Make a move in the game
 
   Scenario:Player is droping marker in board
     Given Player is making a valid move
-    And drops the marker in column
+    Then drops the marker in column
     And check if column added a marker
     And call render
     And call sleep for pause 50 ms

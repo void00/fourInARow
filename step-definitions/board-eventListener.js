@@ -23,10 +23,10 @@ module.exports = function () {
     let gameEvent = new TestGameEvent();
     expect(gameEvent.addEventListenerCalled).to.be.true;
   });
-  this.Then(/^A click should detect what coulmn has been clicked on$/, function () {
+  this.Then(/^A click should detect what column has been clicked on$/, function () {
     game = new TestGame();
     board = game.board;
-    expect(game.listener).to.exist;// Don't know how to check this
+    expect(game.listener).to.exist;
   });
   this.Then(/^call makeMove with the same column$/, function () {
     board.matrix = [
@@ -42,7 +42,7 @@ module.exports = function () {
 
     expect(game.listener).to.exist;// Well not enough, but something....
 
-    $('.yellow').click();//Click is happening but in yellow space for now.
+    //$('.yellow').click();//Click is happening but in yellow space for now.
 
     board.makeMove(2);//Without render and async sleep. No falling marker today.
 
