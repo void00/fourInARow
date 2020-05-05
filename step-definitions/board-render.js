@@ -16,7 +16,7 @@ module.exports = function () {
 
   //Scenario: When a player makes a move
   this.Given(/^a player made a move$/, function () {
-    let fakeGame = new FakeTestGame();//Fake
+    new FakeTestGame();//Fake
   });
   this.Then(/^the render should be called$/, function () {
     expect(fakeRender).to.be.true;

@@ -4,6 +4,7 @@ Feature: Beginning of a new game
   Scenario: A new Game creates a new board
     Given that a new Game is created
     Then it should create a new Board
+    Then if board get wrong instance Error "game must be instance of Game" should be thrown
 
   Scenario: A new Game creates a new board
     Then game should be of an instance of Game

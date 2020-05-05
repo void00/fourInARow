@@ -1,7 +1,7 @@
 class Board {
 
   constructor(game) {
-    if (!game instanceof Game) { throw (new Error(' Game must be instance of game')); }
+    if (!(game instanceof Game)) { throw (new Error('game must be instance of Game')); }
     this.game = game;
     this.matrix = Array(6).fill().map(() => Array(7).fill(0));
     /*this.matrix = [
