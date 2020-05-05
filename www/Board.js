@@ -1,9 +1,9 @@
 class Board {
 
   constructor(game) {
-    if (!game instanceof Game) { throw (new Error(' Game must be instance of game')); }
+    if (!(game instanceof Game)) { throw (new Error('game must be instance of Game')); }
     this.game = game;
-    this.matrixx = Array(6).fill().map(() => Array(7).fill(0));
+    this.matrix = Array(6).fill().map(() => Array(7).fill(0));
     /*this.matrix = [
       [0, 1, 2, 1, 2, 1, 2],
       [0, 1, 2, 1, 2, 1, 2],
@@ -11,7 +11,7 @@ class Board {
       [1, 2, 1, 2, 1, 2, 1],
       [1, 2, 1, 2, 1, 2, 1],
       [1, 2, 1, 2, 1, 2, 1]
-    ];*/
+    ];
     this.matrix = [
       [0, 0, 0, 0, 0, 0, 0],
       [0, 0, 0, 0, 0, 0, 0],
@@ -19,7 +19,7 @@ class Board {
       [0, 0, 0, 0, 0, 0, 0],
       [0, 0, 0, 0, 0, 0, 0],
       [0, 0, 1, 2, 0, 0, 0]
-    ];
+    ];*/
 
     this.currentPlayer = 1;
     this.playInProgress = false;

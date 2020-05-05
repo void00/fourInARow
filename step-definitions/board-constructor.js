@@ -13,6 +13,10 @@ module.exports = function () {
   this.Then(/^it should create a new Board$/, function () {
     expect(game.board).to.be.an.instanceof(Board);
   });
+  this.Then(/^if board get wrong instance Error "([^"]*)" should be thrown$/, function (err) {
+    //expect(function () { new Board({}); }).to.throw(Error, err)
+    expect(() => new Board({})).to.throw(Error, err);
+  });
 
   this.Then(/^game should be of an instance of Game$/, function () {
     expect(game).to.be.an.instanceof(Game);
