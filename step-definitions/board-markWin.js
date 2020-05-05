@@ -26,7 +26,7 @@ module.exports = function () {
     //How?
   });
   this.Then(/^add the class win to them$/, function () {
-    board.markWin(board.winCheck().combo);
+    expect($('.board').children[37].className).to.not.equal('win');
     expect($('.board').children[38].className).to.equal('win');
     expect($('.board').children[39].className).to.equal('win');
     expect($('.board').children[40].className).to.equal('win');
