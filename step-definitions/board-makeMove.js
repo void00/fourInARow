@@ -9,16 +9,14 @@ module.exports = function () {
 
   let fakeRender = false;
   let fakeRemoveEventListener = false;
-  let fakeSleep = 0;
   class FakeTestGame extends Game { }
   class FakeTestBoard extends Board {
     render() { fakeRender = true; }
     removeEventHandlers() { fakeRemoveEventListener = true; }
-    sleep() { fakeSleep = 50; }
   }
+
   let fakeGame = new FakeTestGame();
   let fakeBoard = new FakeTestBoard(fakeGame);
-
 
   let game = new Game();
   let board = new Board(game);
@@ -97,8 +95,8 @@ module.exports = function () {
     await fakeBoard.makeMove(0);
     expect(fakeRender).to.be.true;
   });
-  this.Then(/^call sleep for pause (\d+) ms$/, function (sleep50, ) {//Fake
-    //Not done expect(fakeSleep).to.be.equal(+sleep50);
+  this.Then(/^call sleep for pause (\d+) ms$/, async function (sleep50, ) {//Fake
+    // No can do!
   });
   this.Then(/^check if column looks right$/, function () {
     //This check is done when marker is droped
@@ -171,7 +169,6 @@ module.exports = function () {
       [2, 2, 1, 2, 1, 2, 1]
     ];
     await fakeBoard.makeMove(0);
-    console.log(fakeBoard.matrix);
     expect(fakeRemoveEventListener).to.be.true;
   });
   this.Then(/^winCheck is returning an object with property combo markWin should be called with winCheck as an argument$/, function () {
