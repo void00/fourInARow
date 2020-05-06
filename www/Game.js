@@ -15,7 +15,7 @@ class Game {
         this.playerNames[1] = $('.yellowPlayer').value;
     }
     this.board = new Board(this);
-    //this.board = new BoardWithAI(this, 1); // välj spelare 1 eller 2 för AI:n
+    //this.board = new BoardWithAI(this, 2); // välj spelare 1 eller 2 för AI:n Obs! AIt väljer inte eget namn
   }
 
   tellTurn(player) {
@@ -46,18 +46,14 @@ class Game {
   }
 
   addEventHandler() {
-    $('body').addEventListener('click', event => {
-      if (event.target.closest('.again')) {
-      }
-      if (event.target.closest('.nameButton')) {
+    this.listener = (event) => {
+      let $nameButton = event.target.closest('.nameButton');
+      let $playAgainButton = event.target.closest('.again');
+      if ($playAgainButton) {
+        $('.name').style.display = "block";
         this.start();
       }
-    });
-
-    this.listener = (event) => {
-      let $thing = event.target.closest('.again');
-      if ($thing) {
-        $('.name').style.display = "block";
+      else if ($nameButton) {
         this.start();
       }
     };
