@@ -65,7 +65,7 @@ module.exports = function () {
 
   //Scenario: Board should have an removeEventListeners that removes listeners after game over
   this.Given(/^that play is on$/, function () {
-    expect(gameEvent).to.exist;
+    expect(gameEvent, 'Play is not on').to.exist;
   });
 
   this.Then(/^board should have an removeEventListeners$/, function () {

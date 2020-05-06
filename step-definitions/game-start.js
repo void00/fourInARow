@@ -8,7 +8,9 @@ module.exports = function () {
 
   //Scenario: The start method should create a board 
   this.Given(/^a game is created and start is called$/, function () {
-    game = new testGame();
+    game = new testGame(game,
+      'game is not created and start hasnt been called');
+
   });
   this.Then(/^an instance of a board should be created$/, function () {
     expect(game.board).to.be.instanceof(Board,

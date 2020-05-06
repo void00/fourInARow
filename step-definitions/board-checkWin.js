@@ -21,6 +21,7 @@ module.exports = function () {
       [1, 2, 1, 2, 1, 2, 1]
     ];
   });
+  //wincheck didnt return an object with property value....
   this.Then(/^winCheck should return an object with property winner with value (\d+) or (\d+)$/, function (winner1, winner2) {
     expect(board.winCheck()).to.include({ winner: +winner1 || +winner2 });
   });
@@ -28,7 +29,6 @@ module.exports = function () {
     let win = { winner: 1, combo: [[2, 0], [3, 0], [4, 0], [5, 0]] };
     expect(board.winCheck()).to.deep.equal(win);
   });
-
   //Scenario: When the board is full and nowinner
   this.Given(/^that the board has no value of (\d+)$/, function (draw) {
     board.matrix = [
@@ -43,6 +43,7 @@ module.exports = function () {
   this.Given(/^no player has won$/, function () {
     expect(board.winCheck()).to.not.include({ winner: 1 || 2 });
   });
+
   this.Then(/^it should return an object with property winner as “draw”$/, function () {
     expect(board.winCheck()).to.include({ winner: 'draw' });
   });

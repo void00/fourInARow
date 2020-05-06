@@ -64,7 +64,6 @@ module.exports = function () {
     //This only works when making draw or winning move
     expect(board.playInProgress).to.be.true;
   });
-
   //Scenario: Player is droping marker in board
   this.Given(/^Player is making a valid move$/, function () {
     game = new Game();
@@ -140,7 +139,7 @@ module.exports = function () {
     expect($('.message').innerHTML).to.equal('Guls tur...');
   });
   this.Then(/^playInProgress property should be set to false$/, function () {
-    expect(board.playInProgress).to.be.false
+    expect(board.playInProgress, 'playInProgress is not set to false').to.be.false
   });
   this.Then(/^the method makeMove should return true$/, async function () {
     expect(await board.makeMove(0)).to.be.true;
