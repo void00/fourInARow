@@ -46,4 +46,5 @@ module.exports = function () {
   this.Then(/^if the position in the matrix has a value of (\d+) "([^"]*)" the representative div in board should be set to class yellow$/, function (value2, playerYellow) {
     expect($('.board').children[38].className).to.equal(playerYellow);
   });
+
 }

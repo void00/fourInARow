@@ -1,9 +1,8 @@
 require('./_include-all')();
 
 module.exports = function () {
-  let board;
-  let game;
 
+  let game;
 
   this.Given(/^that a new Game is created$/, function () {
     game = new Game();
@@ -37,9 +36,7 @@ module.exports = function () {
   this.Then(/^currentPlayer should be (\d+)$/, function (expectedPlayer) {
     expectedPlayer = +expectedPlayer;
     expect(game.board.currentPlayer, "current player doesnt have expected value").to.equal(expectedPlayer);
-
   });
-
 
   this.Then(/^playInProgress should be false$/, function () {
     expect(game.board.playInProgress, "playinprogress should be false").to.be.false;
@@ -50,7 +47,6 @@ module.exports = function () {
       this.tellTurnCalledWithPlayer = 1;
     }
   }
-
 
   class FakeBoard extends Board {
     addEventListener() {
@@ -83,10 +79,5 @@ module.exports = function () {
   this.Then(/^currentPlayer should be passed to tellTurn as an argument$/, function () {
     expect(fakeGame.tellTurnCalledWithPlayer, "The currentplayer was not passed correctly to tellTurn").to.equal(fakeBoard.currentPlayer);
   });
+
 }
-
-
-
-
-//this.Then(/^ CurrentPlayer is set to (d+)$/)
-//this.Then(/^)

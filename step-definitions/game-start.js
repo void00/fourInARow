@@ -12,9 +12,9 @@ module.exports = function () {
   });
   this.Then(/^an instance of a board should be created$/, function () {
     expect(game.board).to.be.instanceof(Board,
-      'game.board is not an instance of Board')
+      'game.board is not an instance of Board');
   });
   this.Then(/^it should have an property of the game instance$/, function () {
-    expect(game.board).to.have.property('game')
+    expect(game.board).to.have.property('game');
   });
 }

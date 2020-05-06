@@ -61,4 +61,5 @@ module.exports = function () {
   this.Then(/^it should return false$/, function () {
     expect(board.winCheck()).to.be.false;
   });
+
 }
