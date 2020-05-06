@@ -73,3 +73,22 @@ body {
 .board > .win > div {
   border-color: #000;
 }
+
+.name > p >.yellowText {
+  padding:0.3vh;
+  color:#000;
+  background-color: yellow;
+}
+
+.name > p > .redText {
+  padding:0.3vh;
+  color:#000;
+  background-color: red;
+}
+
+.nameButton {
+  margin: 1vh auto 0;
+  display: block;
+  font-size: 3vh;
+  cursor:pointer;
+}

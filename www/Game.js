@@ -1,14 +1,20 @@
 class Game {
 
   constructor() {
+    this.playerNames = ["Röd", "Gul"];
     this.start();
     this.addEventHandler();
     this.listener;
   }
 
   start() {
-    this.redPlayer = 'Röd';
-    this.yellowPlayer = 'Gul';
+
+    if ($('.redPlayer').value !== "Röd" || $('.yellowPlayer').value !== "Gul") {
+      if ($('.redPlayer').value !== "Röd" || $('.redPlayer').value !== "")
+        this.playerNames[0] = $('.redPlayer').value;
+      if ($('.yellowPlayer').value !== "Gul" || $('.yellowPlayer').value !== "")
+        this.playerNames[1] = $('.yellowPlayer').value;
+    }
     this.board = new Board(this);
     //this.board = new BoardWithAI(this, 1); // välj spelare 1 eller 2 för AI:n
   }
@@ -17,44 +23,43 @@ class Game {
     if (player !== 1 && player !== 2)
       throw (new Error('player must be 1 or 2'));
     else if (player === 1)
-      $('.message').innerHTML = this.redPlayer + 's tur...';
+      $('.message').innerHTML = this.playerNames[0] + 's tur...';
     else
-      $('.message').innerHTML = this.yellowPlayer + 's tur...';
+      $('.message').innerHTML = this.playerNames[1] + 's tur...';
   }
 
 
   over(won) {
+    if (won !== 1 && won !== 2 && won !== 'draw')
+      throw (new Error('won must be "draw", 1 or 2'));
+    else if (won === 1)
+      $('.message').innerHTML = this.playerNames[0] + ' vann!';
+    else if (won === 2)
+      $('.message').innerHTML = this.playerNames[1] + ' vann!';
+    else
+      $('.message').innerHTML = 'Det blev oavgjort!';
+
     let $button = document.createElement('button');
     $button.setAttribute('type', 'button');
     $button.className = 'again';
     $button.innerHTML = 'Spela igen';
-
-    if (won !== 1 && won !== 2 && won !== 'draw')
-      throw (new Error('won must be "draw", 1 or 2'));
-    else if (won === 1)
-      $('.message').innerHTML = this.redPlayer + ' vann!';
-    else if (won === 2)
-      $('.message').innerHTML = this.yellowPlayer + ' vann!';
-    else
-      $('.message').innerHTML = 'Det blev oavgjort!';
-
     $(".message").append($button);
-    //console.log($(".message"));
   }
 
   addEventHandler() {
     $('body').addEventListener('click', event => {
       if (event.target.closest('.again')) {
       }
+      if (event.target.closest('.nameButton')) {
+        this.start();
+      }
     });
 
     this.listener = (event) => {
       let $thing = event.target.closest('.again');
       if ($thing) {
-        //this.removeEventHandlers();
+        $('.name').style.display = "block";
         this.start();
-        //console.log(event + ' : Event i game klassen' + $thing);
-        //window.location.reload();//Kanske inte det bästa sättet men det funkar innan remove är klar.   
       }
     };
     $('body').addEventListener('click', this.listener);
