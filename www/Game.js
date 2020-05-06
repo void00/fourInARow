@@ -38,22 +38,22 @@ class Game {
     else
       $('.message').innerHTML = 'Det blev oavgjort!';
 
-    let $button = document.createElement('button');
-    $button.setAttribute('type', 'button');
-    $button.className = 'again';
-    $button.innerHTML = 'Spela igen';
-    $(".message").append($button);
+    let $playAgainButton = document.createElement('button');
+    $playAgainButton.setAttribute('type', 'button');
+    $playAgainButton.className = 'again';
+    $playAgainButton.innerHTML = 'Spela igen';
+    $(".message").append($playAgainButton);
   }
 
   addEventHandler() {
     this.listener = (event) => {
-      let $nameButton = event.target.closest('.nameButton');
+      let $addNamesButton = event.target.closest('.nameButton');
       let $playAgainButton = event.target.closest('.again');
       if ($playAgainButton) {
         $('.name').style.display = "block";
         this.start();
       }
-      else if ($nameButton) {
+      else if ($addNamesButton) {
         this.start();
       }
     };
