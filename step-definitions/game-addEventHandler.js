@@ -1,7 +1,7 @@
 require('./_include-all')();
-
+require('./_async-helpers.js');
 module.exports = function () {
-
+  this.After(() => fixNoSuchWindowError(driver));
   class TestGame extends Game { }
 
   let game;
@@ -11,27 +11,29 @@ module.exports = function () {
   board = game.board;
 
 
-  this.Given(/^the game is over$/, function () {
+  this.When(/^the game is over$/, async function () {
     board.matrix = [
       [0, 0, 0, 0, 0, 0, 0],
       [0, 0, 0, 0, 0, 0, 0],
-      [1, 0, 0, 0, 0, 0, 0],
-      [1, 0, 0, 0, 0, 0, 0],
-      [1, 0, 0, 0, 0, 0, 0],
-      [1, 0, 0, 0, 0, 0, 0]
+      [0, 0, 0, 0, 0, 0, 0],
+      [1, 2, 0, 0, 0, 0, 0],
+      [1, 2, 0, 0, 0, 0, 0],
+      [1, 2, 0, 0, 0, 0, 0]
     ];
+    await board.makeMove(0);
   });
 
-
-  this.Then(/^there should be a button with an eventListener added in element message$/, function () {
-
-    //let $button = document.createElement('button');
-    expect($('.again')).to.be.a('button').that.include('Spela igen');
+  this.Then(/^there should be a button added in the message div$/, function () {
+    expect($("div.message button"), "There should be a play again button").to.exist;
   });
 
+  this.Then(/^button should have the class again$/, function () {
+    expect($("div.message button.again"), "There should be a play again button with the css class again").to.exist;
+  });
 
-  this.Then(/^when the button is clicked start should be called$/, function () {
-
+  this.Then(/^the button should have the text "([^"]*)"$/, function (expectedText) {
+    let text = $("div.message button.again").innerHTML;
+    expect(text).to.equal(expectedText);
   });
 
 }
