@@ -25,11 +25,11 @@ module.exports = function () {
   });
   // player1 won 
   this.Then(/^if won is (\d+) message element in DOM should read 'Röd vann!'$/, function (player1) {
-    expect($('.message').innerHTML = this.playerNames + ' vann!')
+    expect()
 
     //player2 won  
     this.Then(/^if won is (\d+) message element in DOM should read 'Gul vann!'$/, function (player2) {
-      expect($('.message').innerHTML).to.equal('Gul vann!');
+      expect()
     });
 
     //Board full no winner found 
