@@ -9,7 +9,7 @@ module.exports = function () {
 
   game = new TestGame();
   board = game.board;
-  let testCurrentPlayer;
+
 
   // over won is called 
   this.Given(/^over won is called$/, function () {
@@ -28,12 +28,13 @@ module.exports = function () {
   this.Then(/^if won is (\d+) message element in DOM should read 'Röd vann!'$/, function (player1) {
     game.over(1)
     expect($('div.message').innerHTML).to.equal('Röd vann!');
+    expect($("div.message button.again"), "There should be a play again button with the css class again").to.exist;
   });
   //player2 won 
   // NOT DONE YET, WRONG TYPE OF CODE 
   this.Then(/^if won is (\d+) message element in DOM should read 'Gul vann!'$/, function (player2) {
     game.over(2)
-    let str = '<button type="button" class="again">Spela igen</button>';
+
     expect($('.message').innerHTML).to.equal('Gul vann!' + str);
   });
   //Board full no winner found 
