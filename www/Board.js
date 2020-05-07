@@ -29,7 +29,7 @@ class Board {
   }
 
   async makeMove(column) {
-    $('.name').style.display = "none";//Hiding name inputfield and button
+    //$('.name').style.display = "none";//Hiding name inputfield and button
     if (!Number.isInteger(column) || column > 6 || column < 0) {
       throw (new Error('column must be an integer between 0 and 6'))
     }

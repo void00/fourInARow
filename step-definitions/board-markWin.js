@@ -13,11 +13,12 @@ module.exports = function () {
     }
   }
 
-  let fakeBoard;
+  //let fakeBoard;
+  let fakeBoard = new FakeBoard(new Game());
+
 
   //Scenario: When we have a winner
   this.When(/^Winning move is made$/, async function () {
-    fakeBoard = new FakeBoard(new Game());
     fakeBoard.matrix = [
       [0, 0, 0, 0, 0, 0, 0],
       [0, 0, 0, 0, 0, 0, 0],
