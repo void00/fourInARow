@@ -8,7 +8,7 @@ class Game {
   }
 
   start() {
-    if ($('.redPlayer') != null) {
+    if ($('.redPlayer') !== null || $('.yellowPlayer') !== null) {
       if ($('.redPlayer').value !== "Röd" || $('.yellowPlayer').value !== "Gul") {
         if ($('.redPlayer').value !== "Röd" && $('.redPlayer').value !== "")
           this.playerNames[0] = $('.redPlayer').value;
