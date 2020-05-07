@@ -17,7 +17,7 @@ class Game {
       }
     }
     this.board = new Board(this);
-    //this.board = new BoardWithAI(this, 2); // välj spelare 1 eller 2 för AI:n Obs! AIt väljer inte eget namn
+    //this.board = new BoardWithAI( this, 2); /// välj spelare 1 eller 2 för AI:n Obs! AIt väljer inte eget name
   }
 
   tellTurn(player) {
