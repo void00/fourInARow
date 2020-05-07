@@ -29,7 +29,7 @@ class Board {
   }
 
   async makeMove(column) {
-    $('.name').style.display = "none";//Hiding name input field and button
+    $('.name').style.display = "none";//Hiding name inputfield and button
     if (!Number.isInteger(column) || column > 6 || column < 0) {
       throw (new Error('column must be an integer between 0 and 6'))
     }
@@ -50,7 +50,7 @@ class Board {
       }
     }
     if (this.winCheck()) {
-      this.removeEventHandlers();
+      this.removeEventListeners();
       this.markWin(this.winCheck().combo);
       this.game.over(this.winCheck().winner);
       return true;
@@ -75,7 +75,6 @@ class Board {
 
   winCheck() {
     let winningPlayer = {};
-    winningPlayer.winner;
     let combo = new Array(4);// Winning positions
     let draw = true;
     let width = this.matrix[0].length;
@@ -174,7 +173,7 @@ class Board {
     }
     $('.board').addEventListener('click', this.listener);
   }
-  removeEventHandlers() {
+  removeEventListeners() {
     $('.board').removeEventListener('click', this.listener);
   }
 
