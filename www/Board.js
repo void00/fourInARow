@@ -50,7 +50,7 @@ class Board {
       }
     }
     if (this.winCheck()) {
-      this.removeEventHandlers();
+      this.removeEventListeners();
       this.markWin(this.winCheck().combo);
       this.game.over(this.winCheck().winner);
       return true;
@@ -75,7 +75,6 @@ class Board {
 
   winCheck() {
     let winningPlayer = {};
-    winningPlayer.winner;
     let combo = new Array(4);// Winning positions
     let draw = true;
     let width = this.matrix[0].length;
@@ -174,7 +173,7 @@ class Board {
     }
     $('.board').addEventListener('click', this.listener);
   }
-  removeEventHandlers() {
+  removeEventListeners() {
     $('.board').removeEventListener('click', this.listener);
   }
 
