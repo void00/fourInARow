@@ -17,10 +17,12 @@ module.exports = function () {
     game = new testGame();
   });
   this.Then(/^start should be called$/, function () {
-    expect(game.startWasCalled, 'Start was not called').to.be.true;
+    expect(game.startWasCalled,
+      'Start was not called').to.be.true;
   });
   this.Then(/^addEventHandler should be called$/, function () {
-    expect(game.addEventHandlerCalled, 'addEventHandler was not called').to.be.true;
+    expect(game.addEventHandlerCalled,
+      'addEventHandler was not called').to.be.true;
 
   });
 }

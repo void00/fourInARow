@@ -70,7 +70,8 @@ module.exports = function () {
 
   this.Then(/^board should have an removeEventListeners$/, function () {
     gameEvent.removeEventHandlers();// This is stupid.
-    expect(gameEvent.removeEventHandlersWasCalled, 'Event in game was not called').to.be.true;
+    expect(gameEvent.removeEventHandlersWasCalled,
+      'Event in game was not called').to.be.true;
   });
 
 }

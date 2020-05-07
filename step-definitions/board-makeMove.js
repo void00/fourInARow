@@ -185,7 +185,8 @@ module.exports = function () {
       [2, 2, 1, 2, 1, 2, 1]
     ];
     await fakeBoard.makeMove(0);
-    expect(fakeRemoveEventListener).to.be.true;
+    expect(fakeRemoveEventListener,
+      'Message did not display that removeEventListener should be called').to.be.true;
   });
   this.Then(/^winCheck is returning an object with property combo markWin should be called with winCheck as an argument$/, function () {
     //This check is done when makeMove is calling winCheck, in Scenario: "Player is droping marker in board"

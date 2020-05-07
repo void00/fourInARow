@@ -16,7 +16,8 @@ module.exports = function () {
   });
   this.Then(/^if that player is passed to tellTurn should throw “player must be (\d+) or (\d+)”$/, function (value1, value2) {
     //expect(function () { game.tellTurn(testCurrentPlayer); }).to.throw('player must be ' + value1 + ' or ' + value2);
-    expect(() => game.tellTurn(testCurrentPlayer)).to.throw('player must be ' + value1 + ' or ' + value2);
+    expect(() => game.tellTurn(testCurrentPlayer)).to.throw(
+      'player must be ' + value1 + ' or ' + value2);
   });
 
   //Scenario: When player has used it's turn second player should be reminded about it's turn
@@ -33,7 +34,8 @@ module.exports = function () {
   });
   this.Then(/^message element in the DOM should get the text “Guls tur\.\.\.”$/, function () {
     game.tellTurn(2);
-    expect($('.message').innerHTML).to.equal('Guls tur...');
+    expect($('.message',
+      'Message did not display Guls tur, as it should').innerHTML).to.equal('Guls tur...');
   });
 
 }
