@@ -14,7 +14,7 @@ module.exports = function () {
 
   // over won is called 
   this.Given(/^over won is called$/, function () {
-    game.over(2);
+    game.over(1);
   });
   //should give error 
   this.Then(/^check to see if wons value is draw, either (\d+) or (\d+)\. If not then expected error won must be draw, (\d+) or (\d+)$/, function (arg1, arg2, arg3, arg4) {
@@ -25,13 +25,16 @@ module.exports = function () {
     //because we already have a winner .
   });
   // player1 won 
-  this.Then(/^if won is (\d+) message element in DOM should read 'Röd vann!'$/, function (playerNames) {
-    expect($('.message').innerHTML).to.include(this.playerNames[0] + 'vann!');
+  this.Then(/^if won is (\d+) message element in DOM should read 'Röd vann!'$/, function (playerName) {
+    game.over(1);
+    expect($('.message').innerHTML).to.include('Röd vann!');
+
   });
-
-
   //player2 won  
+  //player2 won 
   this.Then(/^if won is (\d+) message element in DOM should read 'Gul vann!'$/, function (player2) {
+    game.over(2);
+    expect($('.message').innerHTML).to.include('Gul vann!');
   });
 
   //Board full no winner found 
@@ -50,9 +53,7 @@ module.exports = function () {
     expect($('.message').innerHTML = 'Det blev oavgjort!');
   });
 
-  this.Then(/^there should be an button with the text “Spela igen” and class again added to the message element.$/, function (againMsg) {
-    expect($('.message .again').innerHTML.to.equal(againMsg,
-    ));
-
+  this.Then(/^there should be an button with the text “Spela igen” and class again added to the message element.$/, function () {
+    expect($('div.message button.again')).innerHTML = 'Spela igen';
   });
 }
