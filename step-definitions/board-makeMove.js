@@ -12,7 +12,7 @@ module.exports = function () {
   class FakeTestGame extends Game { }
   class FakeTestBoard extends Board {
     render() { fakeRender = true; }
-    removeEventHandlers() { fakeRemoveEventListener = true; }
+    removeEventListeners() { fakeRemoveEventListener = true; }
   }
 
   let fakeGame = new FakeTestGame();

@@ -14,7 +14,7 @@ module.exports = function () {
     board.matrix = [
       [0, 1, 2, 1, 2, 1, 2],
       [0, 1, 2, 1, 2, 1, 2],
-      [0, 1, 2, 1, 2, 1, 2],
+      [1, 1, 2, 1, 2, 1, 2],
       [1, 2, 1, 2, 1, 2, 1],
       [1, 2, 1, 2, 1, 2, 1],
       [1, 2, 1, 2, 1, 2, 1]
@@ -45,7 +45,7 @@ module.exports = function () {
   });
   this.Given(/^no player has won$/, function () {
     expect(board.winCheck(),
-      'winCheck did not return 1 o 2 as winner'
+      'winCheck did return 1 o 2 as winner when it should be draw'
     ).to.not.include({ winner: 1 || 2 });
   });
 

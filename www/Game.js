@@ -8,12 +8,14 @@ class Game {
   }
 
   start() {
-    /*if ($('.redPlayer').value !== "Röd" || $('.yellowPlayer').value !== "Gul") {
-      if ($('.redPlayer').value !== "Röd" && $('.redPlayer').value !== "")
-        this.playerNames[0] = $('.redPlayer').value;
-      if ($('.yellowPlayer').value !== "Gul" && $('.yellowPlayer').value !== "")
-        this.playerNames[1] = $('.yellowPlayer').value;
-    }*/
+    if ($('.redPlayer') != null) {
+      if ($('.redPlayer').value !== "Röd" || $('.yellowPlayer').value !== "Gul") {
+        if ($('.redPlayer').value !== "Röd" && $('.redPlayer').value !== "")
+          this.playerNames[0] = $('.redPlayer').value;
+        if ($('.yellowPlayer').value !== "Gul" && $('.yellowPlayer').value !== "")
+          this.playerNames[1] = $('.yellowPlayer').value;
+      }
+    }
     this.board = new Board(this);
     //this.board = new BoardWithAI(this, 2); // välj spelare 1 eller 2 för AI:n Obs! AIt väljer inte eget namn
   }
@@ -45,6 +47,7 @@ class Game {
     $(".message").append($playAgainButton);
   }
 
+
   addEventHandler() {
     this.listener = (event) => {
       let $addNamesButton = event.target.closest('.nameButton');
@@ -60,9 +63,9 @@ class Game {
     $('body').addEventListener('click', this.listener);
   }
 
-  removeEventHandlers() {
-    $('body').removeEventListener('click', this.listener);
-  }
+  //removeEventHandlers() {
+  //  $('body').removeEventListener('click', this.listener);
+  //}
 
 }
 // make it possible to test on backend

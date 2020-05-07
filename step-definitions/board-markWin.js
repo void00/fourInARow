@@ -14,8 +14,7 @@ module.exports = function () {
   }
 
   let fakeBoard = new FakeBoard(new Game());
-
-
+  let $divs;
   //Scenario: When we have a winner
   this.When(/^Winning move is made$/, async function () {
     fakeBoard.matrix = [
@@ -35,8 +34,7 @@ module.exports = function () {
   });
   //Tag bort helper
   this.Then(/^find the winning position from combo in the div board$/, function () {
-    //Reusing board from previous steps
-    let $divs = $$('.board > div');
+    $divs = $$('.board > div');
   });
 
   this.Then(/^add the class win to them$/, function () {
