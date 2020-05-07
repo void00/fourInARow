@@ -29,14 +29,17 @@ module.exports = function () {
   // player1 won 
   this.Then(/^if won is (\d+) message element in DOM should read 'Röd vann!'$/, function (playerName) {
     game.over(1);
-    expect($('.message', 'Message did not display right winner, it should be Röd vann!').innerHTML).to.include('Röd vann!');
+    expect($('.message',
+      'Message did not display right winner, it should be Röd vann!'
+    ).innerHTML).to.include('Röd vann!');
   });
 
-  //player2 won  
   //player2 won 
   this.Then(/^if won is (\d+) message element in DOM should read 'Gul vann!'$/, function (player2) {
     game.over(2);
-    expect($('.message').innerHTML).to.include('Gul vann!');
+    expect($('.message',
+      'Message did not display right winner, it should be Gul vann!'
+    ).innerHTML).to.include('Gul vann!');
   });
 
   //Board full no winner found 
@@ -52,10 +55,12 @@ module.exports = function () {
     ];
   });
   this.Then(/^if won is 'draw' message element in DOM should read “Det blev oavgjort!”$/, function () {
-    expect($('.message').innerHTML = 'Det blev oavgjort!');
+    expect($('.message',
+      'Message did not display Det blev oavgjort, as it should!').innerHTML = 'Det blev oavgjort!');
   });
 
   this.Then(/^there should be an button with the text “Spela igen” and class again added to the message element.$/, function () {
-    expect($('div.message button.again')).innerHTML = 'Spela igen';
+    expect($('div.message button.again',
+      'Message did not display Spela igen, as it should')).innerHTML = 'Spela igen';
   });
 }
