@@ -8,12 +8,13 @@ class Game {
   }
 
   start() {
-    if ($('.redPlayer').value !== "Röd" || $('.yellowPlayer').value !== "Gul") {
-      if ($('.redPlayer').value !== "Röd" && $('.redPlayer').value !== "")
-        this.playerNames[0] = $('.redPlayer').value;
-      if ($('.yellowPlayer').value !== "Gul" && $('.yellowPlayer').value !== "")
-        this.playerNames[1] = $('.yellowPlayer').value;
+    if ($('.redPlayer') !== "Röd" || $('.yellowPlayer') !== "Gul") {
+      if ($('.redPlayer') !== "Röd" && $('.redPlayer') !== "")
+        this.playerNames[0] = $('.redPlayer');
+      if ($('.yellowPlayer') !== "Gul" && $('.yellowPlayer') !== "")
+        this.playerNames[1] = $('.yellowPlayer');
     }
+
     this.board = new Board(this);
     //this.board = new BoardWithAI(this, 2); // välj spelare 1 eller 2 för AI:n Obs! AIt väljer inte eget namn
   }
