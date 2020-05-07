@@ -12,7 +12,7 @@ module.exports = function () {
   class FakeTestGame extends Game { }
   class FakeTestBoard extends Board {
     render() { fakeRender = true; }
-    removeEventHandlers() { fakeRemoveEventListener = true; }
+    removeEventListeners() { fakeRemoveEventListener = true; }
   }
 
   let fakeGame = new FakeTestGame();
@@ -47,10 +47,14 @@ module.exports = function () {
     await board.makeMove(1);
   });
   this.Then(/^makeMove returns null when PlayInProgress is set to true$/, function () {
-    expect(board.playInProgress).to.be.false;
+    expect(board.playInProgress,
+      'playInProgress was not set to false in the begining of an move'
+    ).to.be.false;
   });
   this.Then(/^makeMove should return false when column is full$/, async function () {
-    expect(await board.makeMove(3)).to.be.false;
+    expect(await board.makeMove(3),
+      'False move was not detected'
+    ).to.be.false;
   });
   this.Then(/^makeMove should throw "([^"]*)" if marker placed out of column$/, async function (err) {
     expect(await board.makeMove(8).throwCheck).to.throw(
@@ -62,7 +66,9 @@ module.exports = function () {
   this.Then(/^PlayInProgress is set to true$/, async function () {
     await board.makeMove(0);
     //This only works when making draw or winning move
-    expect(board.playInProgress).to.be.true;
+    expect(board.playInProgress,
+      'playInProgress was not set to true after a winning move'
+    ).to.be.true;
   });
   //Scenario: Player is droping marker in board
   this.Given(/^Player is making a valid move$/, function () {
@@ -93,7 +99,9 @@ module.exports = function () {
   });
   this.Then(/^call render$/, async function () {//Fake
     await fakeBoard.makeMove(0);
-    expect(fakeRender).to.be.true;
+    expect(fakeRender,
+      'Render was not called when making a move'
+    ).to.be.true;
   });
   this.Then(/^call sleep for pause (\d+) ms$/, async function (sleep50, ) {//Fake
     // No can do!
@@ -114,7 +122,9 @@ module.exports = function () {
     ];
     expect(board.winCheck()).to.be.false;
     await board.makeMove(0);
-    expect(board.winCheck()).to.be.deep.equal({ winner: 1, combo: [[2, 0], [3, 0], [4, 0], [5, 0]] });
+    expect(board.winCheck(),
+      'No winner was found when making a valid winning move'
+    ).to.be.deep.equal({ winner: 1, combo: [[2, 0], [3, 0], [4, 0], [5, 0]] });
   });
 
   //Scenario: When player made a move
@@ -131,12 +141,18 @@ module.exports = function () {
     ];
   });
   this.Then(/^the property currentPlayer are switched$/, async function () {
-    expect(board.currentPlayer).to.be.equal(1);
+    expect(board.currentPlayer,
+      'The right player was not set to the right one in turn, should be player 1 red'
+    ).to.be.equal(1);
     await board.makeMove(0);
-    expect(board.currentPlayer).to.be.equal(2);
+    expect(board.currentPlayer,
+      'The right player was not set to the right one in turn, should be player 2 yellow'
+    ).to.be.equal(2);
   });
   this.Then(/^the game tellTurn method is called with board currentPlayer as an argument$/, function () {
-    expect($('.message').innerHTML).to.equal('Guls tur...');
+    expect($('.message',
+      'Message was not set to the rightfull winner'
+    ).innerHTML).to.equal('Guls tur...');
   });
   this.Then(/^playInProgress property should be set to false$/, function () {
     expect(board.playInProgress, 'playInProgress is not set to false').to.be.false
@@ -176,7 +192,9 @@ module.exports = function () {
   });
   this.Then(/^game over method should get winChecks winner property value as an argument$/, function () {
     let str = '<button type="button" class="again">Spela igen</button>';
-    expect($('.message').innerHTML).to.be.equal('Gul vann!' + str || 'Röd vann!' + str || 'Det blev oavgjort!' + str);
+    expect($('.message',
+      'Game over did not sett right message after match is over'
+    ).innerHTML).to.be.equal('Gul vann!' + str || 'Röd vann!' + str || 'Det blev oavgjort!' + str);
     //Something is fishy here
   });
   this.Then(/^makeMove should return true$/, async function () {
@@ -190,7 +208,9 @@ module.exports = function () {
       [1, 2, 1, 2, 1, 2, 1],
       [1, 2, 1, 2, 1, 2, 1]
     ];
-    expect(await board.makeMove(0)).to.be.true;
+    expect(await board.makeMove(0),
+      'makeMove did not return true after turn was done'
+    ).to.be.true;
   });
 
 }

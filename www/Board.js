@@ -29,7 +29,9 @@ class Board {
   }
 
   async makeMove(column) {
-    //$('.name').style.display = "none";//Hiding name inputfield and button
+    if ($('.name') !== null) {
+      $('.name').style.display = "none";//Hiding name inputfield and button
+    }
     if (!Number.isInteger(column) || column > 6 || column < 0) {
       throw (new Error('column must be an integer between 0 and 6'))
     }
@@ -173,7 +175,9 @@ class Board {
     }
     $('.board').addEventListener('click', this.listener);
   }
+
   removeEventListeners() {
+    //console.log(this.listener);
     $('.board').removeEventListener('click', this.listener);
   }
 

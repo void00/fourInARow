@@ -13,10 +13,8 @@ module.exports = function () {
     }
   }
 
-  //let fakeBoard;
   let fakeBoard = new FakeBoard(new Game());
-
-
+  let $divs;
   //Scenario: When we have a winner
   this.When(/^Winning move is made$/, async function () {
     fakeBoard.matrix = [
@@ -36,8 +34,7 @@ module.exports = function () {
   });
   //Tag bort helper
   this.Then(/^find the winning position from combo in the div board$/, function () {
-    //Reusing board from previous steps
-    let $divs = $$('.board > div');
+    $divs = $$('.board > div');
   });
 
   this.Then(/^add the class win to them$/, function () {
@@ -48,12 +45,6 @@ module.exports = function () {
       $divs[41].classList.contains('win')
       , 'The correct markers was not marked as win.'
     ).to.be.true;
-    /*expect($('.board').children[37].className).to.not.equal('win');
-    expect($('.board').children[38].className).to.equal('win');
-    expect($('.board').children[39].className).to.equal('win');
-    expect($('.board').children[40].className).to.equal('win');
-    expect($('.board').children[41].className).to.equal('win');
-    expect($('.board').children[0].className).to.not.equal('win');*/
   });
 
 }
