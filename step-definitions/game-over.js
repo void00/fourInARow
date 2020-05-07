@@ -9,7 +9,7 @@ module.exports = function () {
 
   game = new TestGame();
   board = game.board;
-  let testCurrentPlayer;
+
 
   // over won is called 
   this.Given(/^over won is called$/, function () {
@@ -21,20 +21,14 @@ module.exports = function () {
   });
   // we have a winner 
   this.Given(/^we have a winner$/, function () {
-    game.over(1);
   });
   // player1 won 
-  //NOT DONE YET, WRONG TYPE OF CODE 
   this.Then(/^if won is (\d+) message element in DOM should read 'Röd vann!'$/, function (player1) {
-    game.over(1)
-    expect($('div.message').innerHTML).to.equal('Röd vann!');
+    let $divs = $$('.board > div');
   });
-  //player2 won 
-  // NOT DONE YET, WRONG TYPE OF CODE 
+  //player2 won  
   this.Then(/^if won is (\d+) message element in DOM should read 'Gul vann!'$/, function (player2) {
-    game.over(2)
-    let str = '<button type="button" class="again">Spela igen</button>';
-    expect($('.message').innerHTML).to.equal('Gul vann!' + str);
+    expect($('div.message').innerHTML).to.equal('Gul vann!');
   });
   //Board full no winner found 
   this.Given(/^the board is full and no winner is found$/, function () {
@@ -50,8 +44,6 @@ module.exports = function () {
   });
 
   this.Then(/^if won is 'draw' message element in DOM should read “Det blev oavgjort!”$/, function () {
-    game.over(1);
-    game.over(2);
     expect($('.message').innerHTML = 'Det blev oavgjort!');
   });
 

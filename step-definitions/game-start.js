@@ -2,13 +2,13 @@ require('./_include-all')();
 
 module.exports = function () {
 
-  class testGame extends Game { }
+  class TestGame extends Game { }
 
   let game;
 
   //Scenario: The start method should create a board 
   this.Given(/^a game is created and start is called$/, function () {
-    game = new testGame(game,
+    game = new TestGame(game,
       'game is not created and start hasnt been called');
 
   });

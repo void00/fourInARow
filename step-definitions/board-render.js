@@ -20,7 +20,7 @@ module.exports = function () {
   });
 
   this.Then(/^the render should be called$/, function () {
-    expect(fakeRender).to.be.true;
+    expect(fakeRender, 'Render is not called').to.be.true;
   });
   this.Then(/^render should find board element with help function \$$/, function () {
     testGame = new Game();

@@ -12,7 +12,6 @@ module.exports = function () {
   }
 
   let game;
-
   //Scenario: The game should be playable 
   this.Given(/^that a new game is started$/, function () {
     game = new testGame();
