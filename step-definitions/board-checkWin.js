@@ -9,9 +9,6 @@ module.exports = function () {
   game = new TestGame();
 
   board = new Board(game);
-
-
-
   //Scenario: When a player has won
   this.Given(/^that a player has won$/, function () {
     board.matrix = [

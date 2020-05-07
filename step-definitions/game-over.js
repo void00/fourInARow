@@ -21,33 +21,36 @@ module.exports = function () {
   });
   // we have a winner 
   this.Given(/^we have a winner$/, function () {
+    //because we already have a winner .
   });
   // player1 won 
   this.Then(/^if won is (\d+) message element in DOM should read 'Röd vann!'$/, function (player1) {
-    let $divs = $$('.board > div');
-  });
-  //player2 won  
-  this.Then(/^if won is (\d+) message element in DOM should read 'Gul vann!'$/, function (player2) {
-    expect($('div.message').innerHTML).to.equal('Gul vann!');
-  });
-  //Board full no winner found 
-  this.Given(/^the board is full and no winner is found$/, function () {
-    game = new Game();
-    board.matrix = [
-      [1, 1, 2, 1, 2, 1, 2],
-      [2, 1, 2, 1, 2, 1, 2],
-      [2, 1, 2, 1, 2, 1, 2],
-      [1, 2, 1, 2, 1, 2, 1],
-      [1, 2, 1, 2, 1, 2, 1],
-      [1, 2, 1, 2, 1, 2, 1]
-    ];
-  });
+    expect($('.message').innerHTML = this.playerNames + ' vann!')
 
-  this.Then(/^if won is 'draw' message element in DOM should read “Det blev oavgjort!”$/, function () {
-    expect($('.message').innerHTML = 'Det blev oavgjort!');
-  });
+    //player2 won  
+    this.Then(/^if won is (\d+) message element in DOM should read 'Gul vann!'$/, function (player2) {
+      expect($('.message').innerHTML).to.equal('Gul vann!');
+    });
 
-  this.Then(/^there should be an button with the text “Spela igen” and class again added to the message element.$/, function () {
-    let str = '<button type="button" class="again">Spela igen</button>';
-  });
+    //Board full no winner found 
+    this.Given(/^the board is full and no winner is found$/, function () {
+      game = new Game();
+      board.matrix = [
+        [1, 1, 2, 1, 2, 1, 2],
+        [2, 1, 2, 1, 2, 1, 2],
+        [2, 1, 2, 1, 2, 1, 2],
+        [1, 2, 1, 2, 1, 2, 1],
+        [1, 2, 1, 2, 1, 2, 1],
+        [1, 2, 1, 2, 1, 2, 1]
+      ];
+    });
+    this.Then(/^if won is 'draw' message element in DOM should read “Det blev oavgjort!”$/, function () {
+      expect($('.message').innerHTML = 'Det blev oavgjort!');
+    });
+
+    this.Then(/^there should be an button with the text “Spela igen” and class again added to the message element.$/, function () {
+      expect()
+
+    });
+  })
 }
