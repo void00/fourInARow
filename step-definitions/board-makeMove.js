@@ -192,10 +192,9 @@ module.exports = function () {
     //This check is done when makeMove is calling winCheck, in Scenario: "Player is droping marker in board"
   });
   this.Then(/^game over method should get winChecks winner property value as an argument$/, function () {
-    let str = '<button type="button" class="again">Spela igen</button>';
     expect($('.message',
       'Game over did not sett right message after match is over'
-    ).innerHTML).to.be.equal('Gul vann!' + str || 'Röd vann!' + str || 'Det blev oavgjort!' + str);
+    ).innerHTML).to.be.include('Gul vann!' || 'Röd vann!' || 'Det blev oavgjort!');
     //Something is fishy here
   });
   this.Then(/^makeMove should return true$/, async function () {

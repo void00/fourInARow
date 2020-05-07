@@ -18,7 +18,9 @@ module.exports = function () {
   });
   //should give error 
   this.Then(/^check to see if wons value is draw, either (\d+) or (\d+)\. If not then expected error won must be draw, (\d+) or (\d+)$/, function (arg1, arg2, arg3, arg4) {
-    expect(() => game.over()).to.throw(Error, 'won must be "draw", 1 or 2');
+    expect(() => game.over()).to.throw(
+      Error,
+      'won must be "draw", 1 or 2');
   });
   // we have a winner 
   this.Given(/^we have a winner$/, function () {

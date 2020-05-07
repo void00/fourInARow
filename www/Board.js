@@ -168,9 +168,14 @@ class Board {
   addEventListener() {
     this.listener = (event) => {
       let $slot = event.target.closest('.board > div');
+      console.log($slot);
       let $allSlots = [...$$('.board > div')];
+      console.log($allSlots);
       let whichColumn = $allSlots.indexOf($slot) % 7;
-      if (whichColumn === -1) { return; }//Fix for column -1, When player "drag" clicks   
+      if (whichColumn === -1) {//Fix for column -1, When player "drag" clicks 
+        console.log(whichColumn);
+        return;
+      }
       this.makeMove(whichColumn);
     }
     $('.board').addEventListener('click', this.listener);
