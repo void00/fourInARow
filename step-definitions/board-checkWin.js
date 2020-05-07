@@ -25,11 +25,15 @@ module.exports = function () {
   });
   //wincheck didnt return an object with property value....
   this.Then(/^winCheck should return an object with property winner with value (\d+) or (\d+)$/, function (winner1, winner2) {
-    expect(board.winCheck(), 'winCheck didnt return an object with the property "winner" set to 1 or 2').to.include({ winner: +winner1 || +winner2 });
+    expect(board.winCheck(),
+      'winCheck didnt return an object with the property "winner" set to 1 or 2'
+    ).to.include({ winner: +winner1 || +winner2 });
   });
   this.Then(/^an array with the winning positions$/, function () {
     let win = { winner: 1, combo: [[2, 0], [3, 0], [4, 0], [5, 0]] };
-    expect(board.winCheck()).to.deep.equal(win);
+    expect(board.winCheck(),
+      'The Player object was not equal to the expected'
+    ).to.deep.equal(win);
   });
   //Scenario: When the board is full and nowinner
   this.Given(/^that the board has no value of (\d+)$/, function (draw) {
@@ -43,11 +47,15 @@ module.exports = function () {
     ];
   });
   this.Given(/^no player has won$/, function () {
-    expect(board.winCheck()).to.not.include({ winner: 1 || 2 });
+    expect(board.winCheck(),
+      'winCheck did not return 1 o 2 as winner'
+    ).to.not.include({ winner: 1 || 2 });
   });
 
   this.Then(/^it should return an object with property winner as “draw”$/, function () {
-    expect(board.winCheck()).to.include({ winner: 'draw' });
+    expect(board.winCheck(),
+      'winCheck did not return winner as draw'
+    ).to.include({ winner: 'draw' });
   });
 
   //Scenario: When game is in play
@@ -62,7 +70,9 @@ module.exports = function () {
     ];
   });
   this.Then(/^it should return false$/, function () {
-    expect(board.winCheck()).to.be.false;
+    expect(board.winCheck(),
+      'winCheck sould be false when there is no winner'
+    ).to.be.false;
   });
 
 }

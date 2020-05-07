@@ -20,12 +20,12 @@ module.exports = function () {
   //Scenario: Board should be clickable
   this.Given(/^that the board has an eventhandler$/, function () {
     //let gameEvent = new TestGameEvent();
-    expect(gameEvent.addEventListenerCalled).to.be.true;
+    expect(gameEvent.addEventListenerCalled, 'The addEventListener was not called at start of the Game').to.be.true;
   });
   this.Then(/^A click should detect what column has been clicked on$/, function () {
     game = new TestGame();
     board = game.board;
-    expect(game.listener).to.exist;
+    expect(game.listener, 'Game variable listener did not exist').to.exist;
   });
   this.Then(/^call makeMove with the same column$/, function () {
     board.matrix = [
@@ -60,7 +60,7 @@ module.exports = function () {
     //expect(game.listener).to.include({});
   });
   this.Then(/^the addEventListener should find that element in DOM with the help function \$$/, function () {
-    expect($('.yellow')).to.exist;
+    expect($('.yellow'), 'There is no div in board from yellow players move').to.exist;
   });
 
   //Scenario: Board should have an removeEventListeners that removes listeners after game over
@@ -70,7 +70,7 @@ module.exports = function () {
 
   this.Then(/^board should have an removeEventListeners$/, function () {
     gameEvent.removeEventHandlers();// This is stupid.
-    expect(gameEvent.removeEventHandlersWasCalled).to.be.true;
+    expect(gameEvent.removeEventHandlersWasCalled, 'Event in game was not called').to.be.true;
   });
 
 }

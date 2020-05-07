@@ -9,37 +9,54 @@ module.exports = function () {
   });
 
   this.Then(/^it should create a new Board$/, function () {
-    expect(game.board, 'Board is not an instance of board').to.be.an.instanceof(Board);
+    expect(game.board,
+      'Board is not an instance of board'
+    ).to.be.an.instanceof(Board);
   });
   this.Then(/^if board get wrong instance Error "([^"]*)" should be thrown$/, function (err) {
     //expect(function () { new Board({}); }).to.throw(Error, err)
-    expect(() => new Board({})).to.throw(Error, err);
+    expect(() => new Board({})).to.throw(
+      Error,
+      err,
+      'Error was thrown, the instance was not the right instance');
   });
 
   this.Then(/^game should be of an instance of Game$/, function () {
-    expect(game, 'Game is not an instance of game').to.be.an.instanceof(Game);
+    expect(game,
+      'Game is not an instance of game'
+    ).to.be.an.instanceof(Game);
   });
 
   this.Then(/^it should create a matrix (\d+) x (\d+) with (\d+) in all cells$/, function (rows, columns, value) {
     value = +value; // converting all arguments to numbers
     rows = +rows;
     columns = +columns;
-    expect(game.board.matrix.length, "wrong row length!").to.equal(rows); //checking row length 
+    expect(game.board.matrix.length,
+      'wrong row length!'
+    ).to.equal(rows); //checking row length 
     for (let row of game.board.matrix) {
-      expect(row.length, "Wrong column length!").to.equal(columns); // checking column length
+      expect(row.length,
+        'Wrong column length!'
+      ).to.equal(columns); // checking column length
       for (let column of row) {
-        expect(column, "wrong cell length!").to.equal(value); //checking value of cell
+        expect(column,
+          'Wrong cell length!'
+        ).to.equal(value); //checking value of cell
       }
     }
   });
 
   this.Then(/^currentPlayer should be (\d+)$/, function (expectedPlayer) {
     expectedPlayer = +expectedPlayer;
-    expect(game.board.currentPlayer, "current player doesnt have expected value").to.equal(expectedPlayer);
+    expect(game.board.currentPlayer,
+      'Current player doesnt have expected value'
+    ).to.equal(expectedPlayer);
   });
 
   this.Then(/^playInProgress should be false$/, function () {
-    expect(game.board.playInProgress, "playinprogress should be false").to.be.false;
+    expect(game.board.playInProgress,
+      'playinProgress should be false'
+    ).to.be.false;
   });
 
   class FakeGame extends Game {
@@ -68,15 +85,21 @@ module.exports = function () {
   });
 
   this.Then(/^addEventListener should be called$/, function () {
-    expect(fakeBoard.addEventListenerWasCalled, "addEventListener was not called").to.be.true;
+    expect(fakeBoard.addEventListenerWasCalled,
+      'addEventListener was not called'
+    ).to.be.true;
   });
 
   this.Then(/^render should be called$/, function () {
-    expect(fakeBoard.renderWasCalled, "render was not called").to.be.true;
+    expect(fakeBoard.renderWasCalled,
+      'render was not called'
+    ).to.be.true;
   });
 
   this.Then(/^currentPlayer should be passed to tellTurn as an argument$/, function () {
-    expect(fakeGame.tellTurnCalledWithPlayer, "The currentplayer was not passed correctly to tellTurn").to.equal(fakeBoard.currentPlayer);
+    expect(fakeGame.tellTurnCalledWithPlayer,
+      'The currentplayer was not passed correctly to tellTurn'
+    ).to.equal(fakeBoard.currentPlayer);
   });
 
 }

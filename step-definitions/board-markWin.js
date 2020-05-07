@@ -13,7 +13,6 @@ module.exports = function () {
     }
   }
 
-  //let fakeBoard;
   let fakeBoard = new FakeBoard(new Game());
 
 
@@ -48,12 +47,6 @@ module.exports = function () {
       $divs[41].classList.contains('win')
       , 'The correct markers was not marked as win.'
     ).to.be.true;
-    /*expect($('.board').children[37].className).to.not.equal('win');
-    expect($('.board').children[38].className).to.equal('win');
-    expect($('.board').children[39].className).to.equal('win');
-    expect($('.board').children[40].className).to.equal('win');
-    expect($('.board').children[41].className).to.equal('win');
-    expect($('.board').children[0].className).to.not.equal('win');*/
   });
 
 }
