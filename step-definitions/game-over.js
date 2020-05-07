@@ -1,5 +1,6 @@
 require('./_include-all')();
 
+
 module.exports = function () {
 
   class TestGame extends Game { }
@@ -17,19 +18,24 @@ module.exports = function () {
   });
   //should give error 
   this.Then(/^check to see if wons value is draw, either (\d+) or (\d+)\. If not then expected error won must be draw, (\d+) or (\d+)$/, function (arg1, arg2, arg3, arg4) {
-    expect(() => game.over()).to.throw(Error, 'won must be "draw", 1 or 2');
+    expect(() => game.over()).to.throw(
+      Error,
+      'won must be "draw", 1 or 2');
   });
   // we have a winner 
   this.Given(/^we have a winner$/, function () {
     //because we already have a winner .
   });
   // player1 won 
-  this.Then(/^if won is (\d+) message element in DOM should read 'Röd vann!'$/, function (player1) {
-    //expect()
+  this.Then(/^if won is (\d+) message element in DOM should read 'Röd vann!'$/, function (playerName) {
+    game.over(1);
+    expect($('.message', 'Message did not display right winner, it should be Röd vann!').innerHTML).to.include('Röd vann!');
   });
+
   //player2 won  
   this.Then(/^if won is (\d+) message element in DOM should read 'Gul vann!'$/, function (player2) {
-    //expect()
+    game.over(2);
+    expect($('.message').innerHTML).to.include('Gul vann!');
   });
 
   //Board full no winner found 
@@ -49,8 +55,7 @@ module.exports = function () {
   });
 
   this.Then(/^there should be an button with the text “Spela igen” and class again added to the message element.$/, function () {
-    expect()
+    expect($('div.message button.again')).innerHTML = 'Spela igen';
 
   });
-})
 }
