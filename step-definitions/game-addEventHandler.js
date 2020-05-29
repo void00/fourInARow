@@ -24,16 +24,22 @@ module.exports = function () {
   });
 
   this.Then(/^there should be a button added in the message div$/, function () {
-    expect($("div.message button"), "There should be a play again button").to.exist;
+    expect($("div.message button"),
+      'There should be a play again button'
+    ).to.exist;
   });
 
   this.Then(/^button should have the class again$/, function () {
-    expect($("div.message button.again"), "There should be a play again button with the css class again").to.exist;
+    expect($("div.message button.again"),
+      'There should be a play again button with the css class again'
+    ).to.exist;
   });
 
   this.Then(/^the button should have the text "([^"]*)"$/, function (expectedText) {
     let text = $("div.message button.again").innerHTML;
-    expect(text).to.equal(expectedText);
+    expect(text).to.equal(expectedText,
+      'Then button Play again is missing or have wrong text'
+    );
   });
 
 }

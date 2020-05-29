@@ -74,13 +74,13 @@ body {
   border-color: #000;
 }
 
-.name > p > .yellowText {
+.playerName > p > .yellowText {
   padding:0.3vh;
   color:#000;
   background-color: yellow;
 }
 
-.name > p > .redText {
+.playerName > p > .redText {
   padding:0.3vh;
   color:#000;
   background-color: red;

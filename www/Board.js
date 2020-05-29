@@ -29,9 +29,6 @@ class Board {
   }
 
   async makeMove(column) {
-    if ($('.name') !== null) {
-      $('.name').style.display = "none";//Hiding name inputfield and button
-    }
     if (!Number.isInteger(column) || column > 6 || column < 0) {
       throw (new Error('column must be an integer between 0 and 6'))
     }
@@ -64,6 +61,7 @@ class Board {
   }
 
   markWin(combo) {
+    this.removeEventListeners();// think is a bug
     let position;
     let $children = [...$('.board').children];
     for (let match of combo) {
@@ -146,7 +144,6 @@ class Board {
   }
 
   render() {
-    let $container = $(".board");// Copy board to local
     $(".board").innerHTML = "";// Remove old board
     let $blockDiv, $playerDiv;
     for (let row of this.matrix) {
@@ -160,7 +157,7 @@ class Board {
           $blockDiv.className = "yellow";
         }
         $blockDiv.append($playerDiv);
-        $container.append($blockDiv);// Building new board from matrix
+        $('.board').append($blockDiv);// Building new board from matrix
       }
     }
   }
@@ -168,21 +165,16 @@ class Board {
   addEventListener() {
     this.listener = (event) => {
       let $slot = event.target.closest('.board > div');
-      console.log($slot);
+      if (!$slot) { return; } //Fix for column -1, When player "drag" clicks
       let $allSlots = [...$$('.board > div')];
-      console.log($allSlots);
       let whichColumn = $allSlots.indexOf($slot) % 7;
-      if (whichColumn === -1) {//Fix for column -1, When player "drag" clicks 
-        console.log(whichColumn);
-        return;
-      }
+      if (whichColumn === -1) { return; }//Fix for column -1, When player "drag" clicks
       this.makeMove(whichColumn);
     }
     $('.board').addEventListener('click', this.listener);
   }
 
   removeEventListeners() {
-    //console.log(this.listener);
     $('.board').removeEventListener('click', this.listener);
   }
 
